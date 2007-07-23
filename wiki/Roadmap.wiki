@@ -1,4 +1,4 @@
-#summary Roadmap of the application.
+#summary Roadmap of the application. [DRAFT]
 #labels Featured,Phase-Requirements
 
 == Introduction ==
@@ -23,4 +23,3 @@ Rails app doing crud operations. Interfacing via XML/HTTPService with Flex front
   # Order invoicing, pro forma invoicing
   # Order payment via Activemerchant
   #
-
