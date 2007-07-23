@@ -8,7 +8,8 @@ Add your content here.
 
 == Release 1 ==
 
-  # Login
+Rails app doing crud operations. Interfacing via XML/HTTPService with Flex front end. Flex front end using Cairngorm framework. Working end to end system. 
+
   # Customer management 
   # Customer <--> Agent relationship management
   # Create new orders
@@ -20,6 +21,6 @@ Add your content here.
   # Order tax rules (New Zealand, New Zealand-Export, maybe others initially)
   # Order shipping tracking
   # Order invoicing, pro forma invoicing
-  # 
-
+  # Order payment via Activemerchant
+  #
 
