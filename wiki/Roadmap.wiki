@@ -1,0 +1,25 @@
+#summary Roadmap of the application.
+#labels Featured,Phase-Requirements
+
+== Introduction ==
+
+Add your content here.
+
+
+== Release 1 ==
+
+  # Login
+  # Customer management 
+  # Customer <--> Agent relationship management
+  # Create new orders
+  # List orders (sortable, fixed columns) 
+  # View orders
+  # Order status management
+  # Product management
+  # Pricing Catalogs
+  # Order tax rules (New Zealand, New Zealand-Export, maybe others initially)
+  # Order shipping tracking
+  # Order invoicing, pro forma invoicing
+  # 
+
+
