@@ -1,4 +1,5 @@
 #summary Basic documentation of API functions
+#labels Featured
 
 = Introduction =
 
@@ -12,6 +13,10 @@ Basic summary of REST actions, used by Flex interface but could be used by anyth
 || GET || /orders/[:id] ||  Shows Order (all fields) || 
 || GET || /orders/new;select_customer || Returns customers (id, name, country_name ). Need to get the customer id to create an order ||
 || GET || /orders/new?customer_id=[:customer_id] || Returns a starting point of an order xml fragment. For the given customer id will prefill the address fields in the order (to be moved to sperate address objects ||
+|| PUT || /orders/[:id] || Update the order object and save order || 
+|| PUT || /orders/[:id|;recalculate_only || Recalculates the order given passed order lines, but doesn't save the order, returns updated order without comitting changes || 
+|| PUT || /orders/[:id];payment_selection || Set the payment type for the order || 
+|| PUT || /orders/[:id];update_status || Change the status for the order || 
 
 
 
