@@ -24,10 +24,16 @@ Basic summary of REST actions, used by Flex interface but could be used by anyth
 || GET || /products || Get unfiltered list of all products || 
 
 
+== Customers API == 
+
+|| *Method* || *URL* || *Description* ||
+|| GET || /customers || Get list of all customers (unfiltered)  ||
+|| GET || /customer/[:id] || Gets all details for this customer ||
+|| POST || /customers/ || Create a new customer with given xml fragment.  ||
+
 == Security API == 
 
 || *Method* || *URL* || *Description* ||
-
 
 
 
