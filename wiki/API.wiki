@@ -1,0 +1,19 @@
+#summary Basic documentation of API functions
+
+= Introduction =
+
+Basic summary of REST actions, used by Flex interface but could be used by anything that consumes XML. 
+
+
+== Order API ==
+
+|| *Method* || *URL* || *Description* ||
+|| GET || /orders ||  Lists orders (summary fields: id, created_at, purchase_order_nume, customer_name, country_name, order_status_name, order_status_id, total_amount_payable, price_type_symbol, price_type_dollar_sign ||
+|| GET || /orders/[:id] ||  Shows Order (all fields) || 
+|| GET || /orders/new;select_customer || Returns customers (id, name, country_name ). Need to get the customer id to create an order ||
+|| GET || /orders/new?customer_id=[:customer_id] || Returns a starting point of an order xml fragment. For the given customer id will prefill the address fields in the order (to be moved to sperate address objects ||
+
+
+
+
+
