@@ -1,9 +1,9 @@
 #summary Basic documentation of API functions
 #labels Featured
 
-= Introduction =
+= Introduction [Draft] =
 
-Basic summary of REST actions, used by Flex interface but could be used by anything that consumes XML. 
+Basic summary of REST actions, used by Flex interface but could be used by anything that consumes XML. Note this is obviously not the final API, just a work in progress draft. 
 
 
 == Order API ==
@@ -34,6 +34,5 @@ Basic summary of REST actions, used by Flex interface but could be used by anyth
 == Security API == 
 
 || *Method* || *URL* || *Description* ||
-
 
 
