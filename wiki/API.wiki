@@ -18,6 +18,15 @@ Basic summary of REST actions, used by Flex interface but could be used by anyth
 || PUT || /orders/[:id];payment_selection || Set the payment type for the order || 
 || PUT || /orders/[:id];update_status || Change the status for the order || 
 
+== Products API ==
+
+|| *Method* || *URL* || *Description* ||
+|| GET || /products || Get unfiltered list of all products || 
+
+
+== Security API == 
+
+|| *Method* || *URL* || *Description* ||
 
 
 
