@@ -36,13 +36,13 @@ class Order < ActiveRecord::Base
   
     #we get the shipping amount before doing the transaction so we can log any failures. 
     #begin 
-      shipment             = Shipment.new
-      tmp_shipment_amount  = shipment.get_shipping_amount(
-                             :weight => self.shipping_weight,
-                             :dest_city => self.shipping_city,
-                             :dest_postal_code => self.shipping_postcode,
-                             :dest_country => self.shipping_country.code
-                             )
+  #    shipment             = Shipment.new
+  #    tmp_shipment_amount  = shipment.get_shipping_amount(
+  #                           :weight => self.shipping_weight,
+  #                           :dest_city => self.shipping_city,
+  #                           :dest_postal_code => self.shipping_postcode,
+  #                           :dest_country => self.shipping_country.code
+  #                           )
    # rescue
    #   return false
     #end
