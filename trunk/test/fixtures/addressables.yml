@@ -1,2 +1,7 @@
---- {}
-
+--- 
+addressables_001: 
+  is_default: "1"
+  address_type: "0"
+  id: "2"
+  customer_id: "1"
+  address_id: "2"

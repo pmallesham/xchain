@@ -1,2 +1,25 @@
---- {}
-
+--- 
+order_lines_001: 
+  order_id: "1"
+  price_as_ordered: "1.00"
+  product_id: "1"
+  id: "1"
+  description: Widget 001
+  qty_ordered: "100"
+  discount_applied: "0.00"
+order_lines_002: 
+  order_id: "1"
+  price_as_ordered: "2.00"
+  product_id: "3"
+  id: "2"
+  description: Widget 003
+  qty_ordered: "100"
+  discount_applied: "0.00"
+order_lines_003: 
+  order_id: "1"
+  price_as_ordered: "23.00"
+  product_id: "2"
+  id: "3"
+  description: Widget 002
+  qty_ordered: "50"
+  discount_applied: "0.00"
