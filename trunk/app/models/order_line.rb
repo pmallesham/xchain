@@ -11,6 +11,6 @@ class OrderLine < ActiveRecord::Base
   end 
   
   def get_price(price_type)
-    self.price_as_ordered = self.product.prices.get_price(price_type) * self.qty_ordered
+    self.price_as_ordered = self.product.get_price(price_type) * self.qty_ordered
   end
 end
