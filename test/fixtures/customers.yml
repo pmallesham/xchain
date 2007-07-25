@@ -1,0 +1,43 @@
+--- 
+customers_001: 
+  name: Acme Corp
+  payment_term_id: "1"
+  price_type_id: "1"
+  website_url: www.acme.com
+  country_id: "110"
+  id: "1"
+  billing_address_2: 
+  fax: 
+  phone: 
+  status_id: "1"
+  alternate_name: ""
+  is_agent: "0"
+  email: 
+customers_002: 
+  name: Vespa Enterprises
+  payment_term_id: "1"
+  price_type_id: "1"
+  website_url: www.vespa.it
+  country_id: "110"
+  id: "2"
+  billing_address_2: 
+  fax: 
+  phone: 
+  status_id: "1"
+  alternate_name: ""
+  is_agent: "0"
+  email: 
+customers_003: 
+  name: Widget Co
+  payment_term_id: "1"
+  price_type_id: "1"
+  website_url: www.widgets.com
+  country_id: "110"
+  id: "3"
+  billing_address_2: 
+  fax: 
+  phone: 
+  status_id: "1"
+  alternate_name: ""
+  is_agent: "0"
+  email: 

@@ -1,0 +1,1441 @@
+--- 
+countries_025: 
+  name: Belgium
+  zone_id: 
+  id: "26"
+  iso_code: BE
+  currency_code: 
+countries_051: 
+  name: Colombia
+  zone_id: 
+  id: "52"
+  iso_code: CO
+  currency_code: 
+countries_106: 
+  name: Ireland
+  zone_id: 
+  id: "108"
+  iso_code: IE
+  currency_code: 
+countries_132: 
+  name: Malaysia
+  zone_id: 
+  id: "134"
+  iso_code: MY
+  currency_code: 
+countries_213: 
+  name: Thailand
+  zone_id: 
+  id: "216"
+  iso_code: TH
+  currency_code: 
+countries_240: 
+  name: Zimbabwe
+  zone_id: 
+  id: "244"
+  iso_code: ZW
+  currency_code: 
+countries_026: 
+  name: Belize
+  zone_id: 
+  id: "27"
+  iso_code: BZ
+  currency_code: 
+countries_052: 
+  name: Comoros
+  zone_id: 
+  id: "53"
+  iso_code: KM
+  currency_code: 
+countries_107: 
+  name: Israel
+  zone_id: 
+  id: "109"
+  iso_code: IL
+  currency_code: 
+countries_133: 
+  name: Maldives
+  zone_id: 
+  id: "135"
+  iso_code: MV
+  currency_code: 
+countries_214: 
+  name: Timor-leste
+  zone_id: 
+  id: "217"
+  iso_code: TL
+  currency_code: 
+countries_027: 
+  name: Benin
+  zone_id: 
+  id: "28"
+  iso_code: BJ
+  currency_code: 
+countries_053: 
+  name: Congo
+  zone_id: 
+  id: "54"
+  iso_code: CG
+  currency_code: 
+countries_080: 
+  name: Gabon
+  zone_id: 
+  id: "82"
+  iso_code: GA
+  currency_code: 
+countries_108: 
+  name: Italy
+  zone_id: 
+  id: "110"
+  iso_code: IT
+  currency_code: EUR
+countries_134: 
+  name: Mali
+  zone_id: 
+  id: "136"
+  iso_code: ML
+  currency_code: 
+countries_160: 
+  name: Norfolk Island
+  zone_id: 
+  id: "163"
+  iso_code: NF
+  currency_code: 
+countries_215: 
+  name: Togo
+  zone_id: 
+  id: "218"
+  iso_code: TG
+  currency_code: 
+countries_028: 
+  name: Bermuda
+  zone_id: 
+  id: "29"
+  iso_code: BM
+  currency_code: 
+countries_054: 
+  name: Congo, The Democratic Republic Of The
+  zone_id: 
+  id: "55"
+  iso_code: CD
+  currency_code: 
+countries_081: 
+  name: Gambia
+  zone_id: 
+  id: "83"
+  iso_code: GM
+  currency_code: 
+countries_109: 
+  name: Jamaica
+  zone_id: 
+  id: "111"
+  iso_code: JM
+  currency_code: 
+countries_135: 
+  name: Malta
+  zone_id: 
+  id: "137"
+  iso_code: MT
+  currency_code: 
+countries_161: 
+  name: Northern Mariana Islands
+  zone_id: 
+  id: "164"
+  iso_code: MP
+  currency_code: 
+countries_216: 
+  name: Tokelau
+  zone_id: 
+  id: "219"
+  iso_code: TK
+  currency_code: 
+countries_029: 
+  name: Bhutan
+  zone_id: 
+  id: "30"
+  iso_code: BT
+  currency_code: 
+countries_055: 
+  name: Cook Islands
+  zone_id: 
+  id: "56"
+  iso_code: CK
+  currency_code: 
+countries_082: 
+  name: Georgia
+  zone_id: 
+  id: "84"
+  iso_code: GE
+  currency_code: 
+countries_136: 
+  name: Marshall Islands
+  zone_id: 
+  id: "138"
+  iso_code: MH
+  currency_code: 
+countries_162: 
+  name: Norway
+  zone_id: 
+  id: "165"
+  iso_code: "NO"
+  currency_code: 
+countries_217: 
+  name: Tonga
+  zone_id: 
+  id: "220"
+  iso_code: TO
+  currency_code: 
+countries_056: 
+  name: Costa Rica
+  zone_id: 
+  id: "57"
+  iso_code: CR
+  currency_code: 
+countries_137: 
+  name: Martinique
+  zone_id: 
+  id: "139"
+  iso_code: MQ
+  currency_code: 
+countries_163: 
+  name: Oman
+  zone_id: 
+  id: "166"
+  iso_code: OM
+  currency_code: 
+countries_190: 
+  name: Senegal
+  zone_id: 
+  id: "193"
+  iso_code: SN
+  currency_code: 
+countries_218: 
+  name: Trinidad And Tobago
+  zone_id: 
+  id: "221"
+  iso_code: TT
+  currency_code: 
+countries_057: 
+  name: Cote D'ivoire
+  zone_id: 
+  id: "58"
+  iso_code: CI
+  currency_code: 
+countries_083: 
+  name: Germany
+  zone_id: 
+  id: "85"
+  iso_code: DE
+  currency_code: EUR
+countries_138: 
+  name: Mauritania
+  zone_id: 
+  id: "140"
+  iso_code: MR
+  currency_code: 
+countries_164: 
+  name: Pakistan
+  zone_id: 
+  id: "167"
+  iso_code: PK
+  currency_code: 
+countries_191: 
+  name: Serbia And Montenegro
+  zone_id: 
+  id: "194"
+  iso_code: CS
+  currency_code: 
+countries_219: 
+  name: Tunisia
+  zone_id: 
+  id: "222"
+  iso_code: TN
+  currency_code: 
+countries_058: 
+  name: Croatia
+  zone_id: 
+  id: "59"
+  iso_code: HR
+  currency_code: 
+countries_084: 
+  name: Ghana
+  zone_id: 
+  id: "86"
+  iso_code: GH
+  currency_code: 
+countries_139: 
+  name: Mauritius
+  zone_id: 
+  id: "141"
+  iso_code: MU
+  currency_code: 
+countries_165: 
+  name: Palau
+  zone_id: 
+  id: "168"
+  iso_code: PW
+  currency_code: 
+countries_192: 
+  name: Seychelles
+  zone_id: 
+  id: "195"
+  iso_code: SC
+  currency_code: 
+countries_085: 
+  name: Gibraltar
+  zone_id: 
+  id: "87"
+  iso_code: GI
+  currency_code: 
+countries_166: 
+  name: Palestinian Territory, Occupied
+  zone_id: 
+  id: "169"
+  iso_code: PS
+  currency_code: 
+countries_059: 
+  name: Cuba
+  zone_id: 
+  id: "60"
+  iso_code: CU
+  currency_code: 
+countries_086: 
+  name: Greece
+  zone_id: 
+  id: "88"
+  iso_code: GR
+  currency_code: 
+countries_167: 
+  name: Panama
+  zone_id: 
+  id: "170"
+  iso_code: PA
+  currency_code: 
+countries_193: 
+  name: Sierra Leone
+  zone_id: 
+  id: "196"
+  iso_code: SL
+  currency_code: 
+countries_168: 
+  name: Papua New Guinea
+  zone_id: 
+  id: "171"
+  iso_code: PG
+  currency_code: 
+countries_194: 
+  name: Singapore
+  zone_id: 
+  id: "197"
+  iso_code: SG
+  currency_code: SGD
+countries_087: 
+  name: Greenland
+  zone_id: 
+  id: "89"
+  iso_code: GL
+  currency_code: 
+countries_169: 
+  name: Paraguay
+  zone_id: 
+  id: "172"
+  iso_code: PY
+  currency_code: 
+countries_195: 
+  name: Slovakia
+  zone_id: 
+  id: "198"
+  iso_code: SK
+  currency_code: 
+countries_088: 
+  name: Grenada
+  zone_id: 
+  id: "90"
+  iso_code: GD
+  currency_code: 
+countries_196: 
+  name: Slovenia
+  zone_id: 
+  id: "199"
+  iso_code: SI
+  currency_code: 
+countries_089: 
+  name: Guadeloupe
+  zone_id: 
+  id: "91"
+  iso_code: GP
+  currency_code: 
+countries_197: 
+  name: Solomon Islands
+  zone_id: 
+  id: "200"
+  iso_code: SB
+  currency_code: 
+countries_198: 
+  name: Somalia
+  zone_id: 
+  id: "201"
+  iso_code: SO
+  currency_code: 
+countries_199: 
+  name: South Africa
+  zone_id: 
+  id: "202"
+  iso_code: ZA
+  currency_code: ZAR
+countries_010: 
+  name: Andorra
+  zone_id: 
+  id: "10"
+  iso_code: AD
+  currency_code: 
+countries_011: 
+  name: Angola
+  zone_id: 
+  id: "11"
+  iso_code: AO
+  currency_code: 
+countries_012: 
+  name: Anguilla
+  zone_id: 
+  id: "12"
+  iso_code: AI
+  currency_code: 
+countries_200: 
+  name: South Georgia And The South Sandwich Islands
+  zone_id: 
+  id: "203"
+  iso_code: GS
+  currency_code: 
+countries_013: 
+  name: Antarctica
+  zone_id: 
+  id: "13"
+  iso_code: AQ
+  currency_code: 
+countries_120: 
+  name: Latvia
+  zone_id: 
+  id: "122"
+  iso_code: LV
+  currency_code: 
+countries_201: 
+  name: Spain
+  zone_id: 
+  id: "204"
+  iso_code: ES
+  currency_code: EUR
+countries_014: 
+  name: Antigua And Barbuda
+  zone_id: 
+  id: "14"
+  iso_code: AG
+  currency_code: 
+countries_040: 
+  name: Cambodia
+  zone_id: 
+  id: "41"
+  iso_code: KH
+  currency_code: 
+countries_121: 
+  name: Lebanon
+  zone_id: 
+  id: "123"
+  iso_code: LB
+  currency_code: 
+countries_202: 
+  name: Sri Lanka
+  zone_id: 
+  id: "205"
+  iso_code: LK
+  currency_code: 
+countries_015: 
+  name: Argentina
+  zone_id: 
+  id: "15"
+  iso_code: AR
+  currency_code: 
+countries_041: 
+  name: Cameroon
+  zone_id: 
+  id: "42"
+  iso_code: CM
+  currency_code: 
+countries_122: 
+  name: Lesotho
+  zone_id: 
+  id: "124"
+  iso_code: LS
+  currency_code: 
+countries_203: 
+  name: Sudan
+  zone_id: 
+  id: "206"
+  iso_code: SD
+  currency_code: 
+countries_230: 
+  name: Uzbekistan
+  zone_id: 
+  id: "234"
+  iso_code: UZ
+  currency_code: 
+countries_016: 
+  name: Armenia
+  zone_id: 
+  id: "16"
+  iso_code: AM
+  currency_code: 
+countries_042: 
+  name: Canada
+  zone_id: 
+  id: "43"
+  iso_code: CA
+  currency_code: CAD
+countries_123: 
+  name: Liberia
+  zone_id: 
+  id: "125"
+  iso_code: LR
+  currency_code: 
+countries_204: 
+  name: Suriname
+  zone_id: 
+  id: "207"
+  iso_code: SR
+  currency_code: 
+countries_231: 
+  name: Vanuatu
+  zone_id: 
+  id: "235"
+  iso_code: VU
+  currency_code: 
+countries_017: 
+  name: Aruba
+  zone_id: 
+  id: "17"
+  iso_code: AW
+  currency_code: 
+countries_043: 
+  name: Cape Verde
+  zone_id: 
+  id: "44"
+  iso_code: CV
+  currency_code: 
+countries_070: 
+  name: Eritrea
+  zone_id: 
+  id: "71"
+  iso_code: ER
+  currency_code: 
+countries_124: 
+  name: Libyan Arab Jamahiriya
+  zone_id: 
+  id: "126"
+  iso_code: LY
+  currency_code: 
+countries_150: 
+  name: Namibia
+  zone_id: 
+  id: "152"
+  iso_code: NA
+  currency_code: 
+countries_205: 
+  name: Svalbard And Jan Mayen
+  zone_id: 
+  id: "208"
+  iso_code: SJ
+  currency_code: 
+countries_232: 
+  name: Venezuela
+  zone_id: 
+  id: "236"
+  iso_code: VE
+  currency_code: 
+countries_018: 
+  name: Austria
+  zone_id: 
+  id: "19"
+  iso_code: AT
+  currency_code: 
+countries_044: 
+  name: Cayman Islands
+  zone_id: 
+  id: "45"
+  iso_code: KY
+  currency_code: 
+countries_071: 
+  name: Estonia
+  zone_id: 
+  id: "72"
+  iso_code: EE
+  currency_code: 
+countries_125: 
+  name: Liechtenstein
+  zone_id: 
+  id: "127"
+  iso_code: LI
+  currency_code: 
+countries_151: 
+  name: Nauru
+  zone_id: 
+  id: "153"
+  iso_code: NR
+  currency_code: 
+countries_206: 
+  name: Swaziland
+  zone_id: 
+  id: "209"
+  iso_code: SZ
+  currency_code: 
+countries_233: 
+  name: Viet Nam
+  zone_id: 
+  id: "237"
+  iso_code: VN
+  currency_code: 
+countries_019: 
+  name: Azerbaijan
+  zone_id: 
+  id: "20"
+  iso_code: AZ
+  currency_code: 
+countries_045: 
+  name: Central African Republic
+  zone_id: 
+  id: "46"
+  iso_code: CF
+  currency_code: 
+countries_126: 
+  name: Lithuania
+  zone_id: 
+  id: "128"
+  iso_code: LT
+  currency_code: 
+countries_152: 
+  name: Nepal
+  zone_id: 
+  id: "154"
+  iso_code: NP
+  currency_code: 
+countries_207: 
+  name: Sweden
+  zone_id: 
+  id: "210"
+  iso_code: SE
+  currency_code: 
+countries_234: 
+  name: Virgin Islands, British
+  zone_id: 
+  id: "238"
+  iso_code: VG
+  currency_code: 
+countries_046: 
+  name: Chad
+  zone_id: 
+  id: "47"
+  iso_code: TD
+  currency_code: 
+countries_072: 
+  name: Ethiopia
+  zone_id: 
+  id: "73"
+  iso_code: ET
+  currency_code: 
+countries_127: 
+  name: Luxembourg
+  zone_id: 
+  id: "129"
+  iso_code: LU
+  currency_code: 
+countries_153: 
+  name: Netherlands
+  zone_id: 
+  id: "155"
+  iso_code: NL
+  currency_code: EUR
+countries_180: 
+  name: Rwanda
+  zone_id: 
+  id: "183"
+  iso_code: RW
+  currency_code: 
+countries_208: 
+  name: Switzerland
+  zone_id: 
+  id: "211"
+  iso_code: CH
+  currency_code: CHF
+countries_235: 
+  name: Virgin Islands, U.s.
+  zone_id: 
+  id: "239"
+  iso_code: VI
+  currency_code: 
+countries_047: 
+  name: Chile
+  zone_id: 
+  id: "48"
+  iso_code: CL
+  currency_code: 
+countries_073: 
+  name: Falkland Islands (malvinas)
+  zone_id: 
+  id: "74"
+  iso_code: FK
+  currency_code: 
+countries_128: 
+  name: Macao
+  zone_id: 
+  id: "130"
+  iso_code: MO
+  currency_code: 
+countries_154: 
+  name: Netherlands Antilles
+  zone_id: 
+  id: "156"
+  iso_code: AN
+  currency_code: 
+countries_181: 
+  name: Saint Helena
+  zone_id: 
+  id: "184"
+  iso_code: SH
+  currency_code: 
+countries_209: 
+  name: Syrian Arab Republic
+  zone_id: 
+  id: "212"
+  iso_code: SY
+  currency_code: 
+countries_236: 
+  name: Wallis And Futuna
+  zone_id: 
+  id: "240"
+  iso_code: WF
+  currency_code: 
+countries_048: 
+  name: China
+  zone_id: 
+  id: "49"
+  iso_code: CN
+  currency_code: 
+countries_074: 
+  name: Faroe Islands
+  zone_id: 
+  id: "75"
+  iso_code: FO
+  currency_code: 
+countries_129: 
+  name: Macedonia, The Former Yugoslav Republic Of
+  zone_id: 
+  id: "131"
+  iso_code: MK
+  currency_code: 
+countries_155: 
+  name: New Caledonia
+  zone_id: 
+  id: "157"
+  iso_code: NC
+  currency_code: 
+countries_237: 
+  name: Western Sahara
+  zone_id: 
+  id: "241"
+  iso_code: EH
+  currency_code: 
+countries_049: 
+  name: Christmas Island
+  zone_id: 
+  id: "50"
+  iso_code: CX
+  currency_code: 
+countries_075: 
+  name: Fiji
+  zone_id: 
+  id: "76"
+  iso_code: FJ
+  currency_code: 
+countries_156: 
+  name: Nicaragua
+  zone_id: 
+  id: "159"
+  iso_code: NI
+  currency_code: 
+countries_182: 
+  name: Saint Kitts And Nevis
+  zone_id: 
+  id: "185"
+  iso_code: KN
+  currency_code: 
+countries_238: 
+  name: Yemen
+  zone_id: 
+  id: "242"
+  iso_code: YE
+  currency_code: 
+countries_076: 
+  name: Finland
+  zone_id: 
+  id: "77"
+  iso_code: FI
+  currency_code: 
+countries_157: 
+  name: Niger
+  zone_id: 
+  id: "160"
+  iso_code: NE
+  currency_code: 
+countries_183: 
+  name: Saint Lucia
+  zone_id: 
+  id: "186"
+  iso_code: LC
+  currency_code: 
+countries_239: 
+  name: Zambia
+  zone_id: 
+  id: "243"
+  iso_code: ZM
+  currency_code: 
+countries_077: 
+  name: French Guiana
+  zone_id: 
+  id: "79"
+  iso_code: GF
+  currency_code: 
+countries_158: 
+  name: Nigeria
+  zone_id: 
+  id: "161"
+  iso_code: NG
+  currency_code: 
+countries_184: 
+  name: Saint Pierre And Miquelon
+  zone_id: 
+  id: "187"
+  iso_code: PM
+  currency_code: 
+countries_078: 
+  name: French Polynesia
+  zone_id: 
+  id: "80"
+  iso_code: PF
+  currency_code: 
+countries_159: 
+  name: Niue
+  zone_id: 
+  id: "162"
+  iso_code: NU
+  currency_code: 
+countries_185: 
+  name: Saint Vincent And The Grenadines
+  zone_id: 
+  id: "188"
+  iso_code: VC
+  currency_code: 
+countries_079: 
+  name: French Southern Territories
+  zone_id: 
+  id: "81"
+  iso_code: TF
+  currency_code: 
+countries_186: 
+  name: Samoa
+  zone_id: 
+  id: "189"
+  iso_code: WS
+  currency_code: 
+countries_187: 
+  name: San Marino
+  zone_id: 
+  id: "190"
+  iso_code: SM
+  currency_code: 
+countries_188: 
+  name: Sao Tome And Principe
+  zone_id: 
+  id: "191"
+  iso_code: ST
+  currency_code: 
+countries_189: 
+  name: Saudi Arabia
+  zone_id: 
+  id: "192"
+  iso_code: SA
+  currency_code: 
+countries_001: 
+  name: France
+  zone_id: 
+  id: "1"
+  iso_code: FR
+  currency_code: EUR
+countries_002: 
+  name: New Zealand
+  zone_id: 
+  id: "2"
+  iso_code: NZ
+  currency_code: NZD
+countries_110: 
+  name: Japan
+  zone_id: 
+  id: "112"
+  iso_code: JP
+  currency_code: JPY
+countries_003: 
+  name: Great Britain
+  zone_id: 
+  id: "3"
+  iso_code: GB
+  currency_code: GBP
+countries_111: 
+  name: Jordan
+  zone_id: 
+  id: "113"
+  iso_code: JO
+  currency_code: 
+countries_004: 
+  name: Australia
+  zone_id: 
+  id: "4"
+  iso_code: AU
+  currency_code: AUD
+countries_030: 
+  name: Bolivia
+  zone_id: 
+  id: "31"
+  iso_code: BO
+  currency_code: 
+countries_112: 
+  name: Kazakhstan
+  zone_id: 
+  id: "114"
+  iso_code: KZ
+  currency_code: 
+countries_005: 
+  name: Afghanistan
+  zone_id: 
+  id: "5"
+  iso_code: AF
+  currency_code: 
+countries_031: 
+  name: Bosnia And Herzegovina
+  zone_id: 
+  id: "32"
+  iso_code: BA
+  currency_code: 
+countries_113: 
+  name: Kenya
+  zone_id: 
+  id: "115"
+  iso_code: KE
+  currency_code: 
+countries_220: 
+  name: Turkey
+  zone_id: 
+  id: "223"
+  iso_code: TR
+  currency_code: 
+countries_006: 
+  name: "\xC3\x83\xE2\x80\xA6land Islands"
+  zone_id: 
+  id: "6"
+  iso_code: AX
+  currency_code: 
+countries_032: 
+  name: Botswana
+  zone_id: 
+  id: "33"
+  iso_code: BW
+  currency_code: 
+countries_140: 
+  name: Mayotte
+  zone_id: 
+  id: "142"
+  iso_code: YT
+  currency_code: 
+countries_221: 
+  name: Turkmenistan
+  zone_id: 
+  id: "224"
+  iso_code: TM
+  currency_code: 
+countries_007: 
+  name: Albania
+  zone_id: 
+  id: "7"
+  iso_code: AL
+  currency_code: 
+countries_033: 
+  name: Bouvet Island
+  zone_id: 
+  id: "34"
+  iso_code: BV
+  currency_code: 
+countries_060: 
+  name: Cyprus
+  zone_id: 
+  id: "61"
+  iso_code: CY
+  currency_code: 
+countries_114: 
+  name: Kiribati
+  zone_id: 
+  id: "116"
+  iso_code: KI
+  currency_code: 
+countries_141: 
+  name: Mexico
+  zone_id: 
+  id: "143"
+  iso_code: MX
+  currency_code: 
+countries_222: 
+  name: Turks And Caicos Islands
+  zone_id: 
+  id: "225"
+  iso_code: TC
+  currency_code: 
+countries_008: 
+  name: Algeria
+  zone_id: 
+  id: "8"
+  iso_code: DZ
+  currency_code: 
+countries_034: 
+  name: Brazil
+  zone_id: 
+  id: "35"
+  iso_code: BR
+  currency_code: 
+countries_115: 
+  name: Korea, Democratic People's Republic Of
+  zone_id: 
+  id: "117"
+  iso_code: KP
+  currency_code: 
+countries_223: 
+  name: Tuvalu
+  zone_id: 
+  id: "226"
+  iso_code: TV
+  currency_code: 
+countries_009: 
+  name: American Samoa
+  zone_id: 
+  id: "9"
+  iso_code: AS
+  currency_code: 
+countries_035: 
+  name: British Indian Ocean Territory
+  zone_id: 
+  id: "36"
+  iso_code: IO
+  currency_code: 
+countries_061: 
+  name: Czech Republic
+  zone_id: 
+  id: "62"
+  iso_code: CZ
+  currency_code: 
+countries_116: 
+  name: Korea, Republic Of
+  zone_id: 
+  id: "118"
+  iso_code: KR
+  currency_code: 
+countries_142: 
+  name: Micronesia, Federated States Of
+  zone_id: 
+  id: "144"
+  iso_code: FM
+  currency_code: 
+countries_224: 
+  name: Uganda
+  zone_id: 
+  id: "227"
+  iso_code: UG
+  currency_code: 
+countries_170: 
+  name: Peru
+  zone_id: 
+  id: "173"
+  iso_code: PE
+  currency_code: 
+countries_036: 
+  name: Brunei Darussalam
+  zone_id: 
+  id: "37"
+  iso_code: BN
+  currency_code: 
+countries_062: 
+  name: Denmark
+  zone_id: 
+  id: "63"
+  iso_code: DK
+  currency_code: EUR
+countries_117: 
+  name: Kuwait
+  zone_id: 
+  id: "119"
+  iso_code: KW
+  currency_code: 
+countries_143: 
+  name: Moldova, Republic Of
+  zone_id: 
+  id: "145"
+  iso_code: MD
+  currency_code: 
+countries_225: 
+  name: Ukraine
+  zone_id: 
+  id: "228"
+  iso_code: UA
+  currency_code: 
+countries_037: 
+  name: Bulgaria
+  zone_id: 
+  id: "38"
+  iso_code: BG
+  currency_code: 
+countries_063: 
+  name: Djibouti
+  zone_id: 
+  id: "64"
+  iso_code: DJ
+  currency_code: 
+countries_090: 
+  name: Guam
+  zone_id: 
+  id: "92"
+  iso_code: GU
+  currency_code: 
+countries_118: 
+  name: Kyrgyzstan
+  zone_id: 
+  id: "120"
+  iso_code: KG
+  currency_code: 
+countries_144: 
+  name: Monaco
+  zone_id: 
+  id: "146"
+  iso_code: MC
+  currency_code: 
+countries_226: 
+  name: United Arab Emirates
+  zone_id: 
+  id: "229"
+  iso_code: AE
+  currency_code: 
+countries_038: 
+  name: Burkina Faso
+  zone_id: 
+  id: "39"
+  iso_code: BF
+  currency_code: 
+countries_064: 
+  name: Dominica
+  zone_id: 
+  id: "65"
+  iso_code: DM
+  currency_code: 
+countries_091: 
+  name: Guatemala
+  zone_id: 
+  id: "93"
+  iso_code: GT
+  currency_code: 
+countries_119: 
+  name: Lao People's Democratic Republic
+  zone_id: 
+  id: "121"
+  iso_code: LA
+  currency_code: 
+countries_145: 
+  name: Mongolia
+  zone_id: 
+  id: "147"
+  iso_code: MN
+  currency_code: 
+countries_171: 
+  name: Philippines
+  zone_id: 
+  id: "174"
+  iso_code: PH
+  currency_code: 
+countries_227: 
+  name: United States of America
+  zone_id: 
+  id: "231"
+  iso_code: US
+  currency_code: USD
+countries_039: 
+  name: Burundi
+  zone_id: 
+  id: "40"
+  iso_code: BI
+  currency_code: 
+countries_065: 
+  name: Dominican Republic
+  zone_id: 
+  id: "66"
+  iso_code: DO
+  currency_code: 
+countries_092: 
+  name: Guinea
+  zone_id: 
+  id: "94"
+  iso_code: GN
+  currency_code: 
+countries_146: 
+  name: Montserrat
+  zone_id: 
+  id: "148"
+  iso_code: MS
+  currency_code: 
+countries_172: 
+  name: Pitcairn
+  zone_id: 
+  id: "175"
+  iso_code: PN
+  currency_code: 
+countries_228: 
+  name: United States Minor Outlying Islands
+  zone_id: 
+  id: "232"
+  iso_code: UM
+  currency_code: 
+countries_066: 
+  name: Ecuador
+  zone_id: 
+  id: "67"
+  iso_code: EC
+  currency_code: 
+countries_093: 
+  name: Guinea-bissau
+  zone_id: 
+  id: "95"
+  iso_code: GW
+  currency_code: 
+countries_147: 
+  name: Morocco
+  zone_id: 
+  id: "149"
+  iso_code: MA
+  currency_code: 
+countries_173: 
+  name: Poland
+  zone_id: 
+  id: "176"
+  iso_code: PL
+  currency_code: 
+countries_229: 
+  name: Uruguay
+  zone_id: 
+  id: "233"
+  iso_code: UY
+  currency_code: 
+countries_067: 
+  name: Egypt
+  zone_id: 
+  id: "68"
+  iso_code: EG
+  currency_code: 
+countries_148: 
+  name: Mozambique
+  zone_id: 
+  id: "150"
+  iso_code: MZ
+  currency_code: 
+countries_174: 
+  name: Portugal
+  zone_id: 
+  id: "177"
+  iso_code: PT
+  currency_code: 
+countries_068: 
+  name: El Salvador
+  zone_id: 
+  id: "69"
+  iso_code: SV
+  currency_code: 
+countries_094: 
+  name: Guyana
+  zone_id: 
+  id: "96"
+  iso_code: GY
+  currency_code: 
+countries_149: 
+  name: Myanmar
+  zone_id: 
+  id: "151"
+  iso_code: MM
+  currency_code: 
+countries_175: 
+  name: Puerto Rico
+  zone_id: 
+  id: "178"
+  iso_code: PR
+  currency_code: 
+countries_069: 
+  name: Equatorial Guinea
+  zone_id: 
+  id: "70"
+  iso_code: GQ
+  currency_code: 
+countries_095: 
+  name: Haiti
+  zone_id: 
+  id: "97"
+  iso_code: HT
+  currency_code: 
+countries_176: 
+  name: Qatar
+  zone_id: 
+  id: "179"
+  iso_code: QA
+  currency_code: 
+countries_096: 
+  name: Heard Island And Mcdonald Islands
+  zone_id: 
+  id: "98"
+  iso_code: HM
+  currency_code: 
+countries_177: 
+  name: Reunion
+  zone_id: 
+  id: "180"
+  iso_code: RE
+  currency_code: 
+countries_097: 
+  name: Holy See (vatican City State)
+  zone_id: 
+  id: "99"
+  iso_code: VA
+  currency_code: 
+countries_178: 
+  name: Romania
+  zone_id: 
+  id: "181"
+  iso_code: RO
+  currency_code: 
+countries_098: 
+  name: Honduras
+  zone_id: 
+  id: "100"
+  iso_code: HN
+  currency_code: 
+countries_179: 
+  name: Russian Federation
+  zone_id: 
+  id: "182"
+  iso_code: RU
+  currency_code: 
+countries_099: 
+  name: Hong Kong
+  zone_id: 
+  id: "101"
+  iso_code: HK
+  currency_code: HKD
+countries_100: 
+  name: Hungary
+  zone_id: 
+  id: "102"
+  iso_code: HU
+  currency_code: 
+countries_020: 
+  name: Bahamas
+  zone_id: 
+  id: "21"
+  iso_code: BS
+  currency_code: 
+countries_101: 
+  name: Iceland
+  zone_id: 
+  id: "103"
+  iso_code: IS
+  currency_code: 
+countries_021: 
+  name: Bahrain
+  zone_id: 
+  id: "22"
+  iso_code: BH
+  currency_code: 
+countries_102: 
+  name: India
+  zone_id: 
+  id: "104"
+  iso_code: IN
+  currency_code: 
+countries_022: 
+  name: Bangladesh
+  zone_id: 
+  id: "23"
+  iso_code: BD
+  currency_code: 
+countries_103: 
+  name: Indonesia
+  zone_id: 
+  id: "105"
+  iso_code: ID
+  currency_code: 
+countries_210: 
+  name: Taiwan
+  zone_id: 
+  id: "213"
+  iso_code: TW
+  currency_code: 
+countries_023: 
+  name: Barbados
+  zone_id: 
+  id: "24"
+  iso_code: BB
+  currency_code: 
+countries_104: 
+  name: Iran, Islamic Republic Of
+  zone_id: 
+  id: "106"
+  iso_code: IR
+  currency_code: 
+countries_130: 
+  name: Madagascar
+  zone_id: 
+  id: "132"
+  iso_code: MG
+  currency_code: 
+countries_211: 
+  name: Tajikistan
+  zone_id: 
+  id: "214"
+  iso_code: TJ
+  currency_code: 
+countries_024: 
+  name: Belarus
+  zone_id: 
+  id: "25"
+  iso_code: BY
+  currency_code: 
+countries_050: 
+  name: Cocos (keeling) Islands
+  zone_id: 
+  id: "51"
+  iso_code: CC
+  currency_code: 
+countries_105: 
+  name: Iraq
+  zone_id: 
+  id: "107"
+  iso_code: IQ
+  currency_code: 
+countries_131: 
+  name: Malawi
+  zone_id: 
+  id: "133"
+  iso_code: MW
+  currency_code: 
+countries_212: 
+  name: Tanzania, United Republic Of
+  zone_id: 
+  id: "215"
+  iso_code: TZ
+  currency_code: 

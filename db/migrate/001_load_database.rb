@@ -164,10 +164,95 @@ class LoadDatabase < ActiveRecord::Migration
 
     add_index "orders", ["id"], :name => "order_id", :unique => true
 
-    create_table "payment_methods", :id => false, :force => true do |t|
-      t.column "method_id", :integer,               :default => 0, :null => false
+    create_table "payment_methods", :force => true do |t|
       t.column "name",      :string,  :limit => 60
     end
+    
+    create_table "payment_terms", :force => true do |t|
+      t.column "terms_text", :string, :limit => 100, :default => "", :null => false
+    end
+
+    create_table "price_types", :force => true do |t|
+      t.column "code",                   :string,  :limit => 45,  :default => "",  :null => false
+      t.column "is_discountable",        :integer, :limit => 1,   :default => 1,   :null => false
+      t.column "title",                  :string,  :limit => 45,  :default => "",  :null => false
+      t.column "invoice_line_1",         :string,  :limit => 200, :default => "",  :null => false
+      t.column "invoice_line_2",         :string,  :limit => 200, :default => "",  :null => false
+      t.column "invoice_line_3",         :string,  :limit => 200, :default => "",  :null => false
+      t.column "shipping_exchange_rate", :float,   :limit => 10,  :default => 1.0, :null => false
+      t.column "symbol",                 :string,  :limit => 10,  :default => "",  :null => false
+      t.column "dollar_sign",            :string,  :limit => 10,  :default => "$"
+    end
+
+    create_table "pricing", :force => true do |t|
+      t.column "product_id",    :integer, :limit => 10,                               :default => 0, :null => false
+      t.column "price_type_id", :integer, :limit => 10,                               :default => 0, :null => false
+      t.column "price",         :decimal,               :precision => 5, :scale => 2
+    end
+
+    create_table "products", :force => true do |t|
+      t.column "code",                    :string,  :limit => 10
+      t.column "title",                   :string,  :limit => 100
+      t.column "sell_price",              :decimal,                :precision => 5, :scale => 2
+      t.column "visible",                 :integer, :limit => 1,                                 :default => 1
+      t.column "order_min_quantity",      :integer
+      t.column "qty_per_box",             :integer
+      t.column "shipping_weight_per_box", :float,   :limit => 15
+      t.column "commission",              :integer, :limit => 2,                                 :default => 1, :null => false
+    end
+
+    create_table "role", :force => true do |t|
+      t.column "name",                         :string,  :limit => 30, :default => "0", :null => false
+      t.column "can_view_orders",              :integer, :limit => 1,  :default => 0,   :null => false
+      t.column "can_update_users",             :integer, :limit => 1,  :default => 0,   :null => false
+      t.column "can_change_status",            :integer, :limit => 1,  :default => 0
+      t.column "must_follow_status_flow",      :integer, :limit => 1,  :default => 0,   :null => false
+      t.column "can_view_customers",           :integer, :limit => 1,  :default => 0
+      t.column "can_view_agents",              :integer, :limit => 1,  :default => 0
+      t.column "can_create_orders",            :integer, :limit => 1,  :default => 0
+      t.column "can_link_customers_to_agents", :integer, :limit => 1,  :default => 0
+      t.column "can_create_customers",         :integer, :limit => 1,  :default => 0
+      t.column "can_create_agents",            :integer, :limit => 1,  :default => 0,   :null => false
+    end
+
+    create_table "sessions", :force => true do |t|
+      t.column "session_id", :string
+      t.column "data",       :text
+      t.column "updated_at", :datetime
+    end
+
+    add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+    add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+    create_table "shipping_method", :force => true do |t|
+      t.column "name",               :string,  :limit => 50
+      t.column "status_class_name",  :string,  :limit => 20
+      t.column "notification_email", :string,  :limit => 30
+    end
+
+    create_table "shipping_weight_zone_matrix", :force => true do |t|
+      t.column "zone_id",        :string,  :limit => 11,                               :default => "", :null => false
+      t.column "weight_bracket", :float,   :limit => 5
+      t.column "rate",           :decimal,               :precision => 5, :scale => 2
+    end
+
+    create_table "shipping_zones",  :force => true do |t|
+      t.column "zone_code", :string,  :limit => 20
+      t.column "name",      :string,  :limit => 50
+    end
+
+    create_table "user", :force => true do |t|
+      t.column "customer_id",   :integer
+      t.column "role_id",       :integer
+      t.column "login_name",    :string,  :limit => 50
+      t.column "real_name",     :string,  :limit => 60
+      t.column "password",      :string,  :limit => 50
+      t.column "login_count",   :integer
+      t.column "email_address", :string,  :limit => 100
+      t.column "phone",         :string,  :limit => 20
+      t.column "remember_me",   :integer,                :default => 0
+    end
+    
   end
 
   def self.down

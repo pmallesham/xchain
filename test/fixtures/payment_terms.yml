@@ -1,0 +1,10 @@
+--- 
+payment_terms_001: 
+  id: "1"
+  terms_text: Payment due before Order Completion
+payment_terms_002: 
+  id: "2"
+  terms_text: Payment due on shipment of goods
+payment_terms_003: 
+  id: "3"
+  terms_text: Payment due on delivery
