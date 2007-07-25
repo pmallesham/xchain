@@ -1,0 +1,34 @@
+--- 
+price_types_001: 
+  dollar_sign: $
+  symbol: CAD
+  title: CAD List Price
+  code: CAD-List
+  shipping_exchange_rate: "0"
+  id: "1"
+  invoice_line_1: Please pay in Canadian dollars
+  invoice_line_2: Using Credit Card or Money Order
+  invoice_line_3: ""
+  is_discountable: "1"
+price_types_002: 
+  dollar_sign: $
+  symbol: CAD
+  title: CAD Distributor Price
+  code: CAD-Distributor
+  shipping_exchange_rate: "0"
+  id: "2"
+  invoice_line_1: Please pay via wia transfer
+  invoice_line_2: To bank Acc 124213123
+  invoice_line_3: Or arrange via Head Office
+  is_discountable: "0"
+price_types_003: 
+  dollar_sign: $$
+  symbol: EUR
+  title: Euro List Price
+  code: EUR-List
+  shipping_exchange_rate: "0"
+  id: "3"
+  invoice_line_1: Please pay via credit card
+  invoice_line_2: ""
+  invoice_line_3: ""
+  is_discountable: "1"

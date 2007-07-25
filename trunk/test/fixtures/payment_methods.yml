@@ -1,0 +1,7 @@
+--- 
+payment_methods_001: 
+  name: Credit Card Online
+  id: "1"
+payment_methods_002: 
+  name: Pay via Transfer
+  id: "2"
