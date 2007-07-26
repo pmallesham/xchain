@@ -241,17 +241,18 @@ class LoadDatabase < ActiveRecord::Migration
       t.column "name",      :string,  :limit => 50
     end
 
-    create_table "user", :force => true do |t|
-      t.column "customer_id",   :integer
-      t.column "role_id",       :integer
-      t.column "login_name",    :string,  :limit => 50
-      t.column "real_name",     :string,  :limit => 60
-      t.column "password",      :string,  :limit => 50
-      t.column "login_count",   :integer
-      t.column "email_address", :string,  :limit => 100
-      t.column "phone",         :string,  :limit => 20
-      t.column "remember_me",   :integer,                :default => 0
+
+    create_table "users", :force => true do |t|
+      t.column "login",                     :string
+      t.column "email",                     :string
+      t.column "crypted_password",          :string,   :limit => 100
+      t.column "salt",                      :string,   :limit => 40
+      t.column "created_at",                :datetime
+      t.column "updated_at",                :datetime
+      t.column "remember_token",            :string
+      t.column "remember_token_expires_at", :datetime
     end
+
     
   end
 
