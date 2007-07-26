@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" label="Edit Order"  creationComplete="initOrderViewTab()" paddingLeft="10" paddingRight="10" verticalGap="1" initialize="initOrderViewTab()">
+<mx:Script>
+    <![CDATA[
+    	import mx.containers.TabNavigator;
+    
+    	//import mx.rpc.events.ResultEvent;
+        import mx.controls.Alert;
+        //import mx.collections.ArrayCollection;
+        //import mx.collections.XMLListCollection;
+        import com.xchain.util.*;
+		
+		[Bindable]        
+        public var _selectedOrder:XML
+        
+        private function initOrderViewTab():void
+        {
+        	var parentTabView:TabNavigator = TabNavigator(parent); 
+        	parentTabView.selectedIndex = 0; 
+        }
+        
+        public function setOrderDirty(event:KeyboardEvent):void
+        {
+        	shipping_amount.setStyle('color', '#FF9143');
+        	shipping_amount.text = '$--.--';  
+        	tax_amount.setStyle('color', '#FF9143');
+        	tax_amount.text = '$--.--';  
+        	subtotal.setStyle('color', '#FF9143');
+        	subtotal.text = '$--.--';  
+        	total_amount.setStyle('color', '#FF9143');
+        	total_amount.text = '$--.--';  
+        	Alert.show('Test'+event.target.parent.parent.name);
+        	
+        }
+        public function sendOrder():void 
+        {
+        	
+        }
+
+    ]]>
+</mx:Script>
+
+        
+    <mx:HTTPService 
+        id="svcOrderUpdate" 
+        url="http://localhost:3000/orders/{_selectedOrder.id}.xml"
+        useProxy="false" 
+        method="PUT">
+    	<mx:request>
+    		<_method>PUT</_method>
+    		<order>
+    			<id>{_selectedOrder.id}</id>
+    			<billing_address_1>{_selectedOrder.billing_address_1}</billing_address_1>
+    			<billing_address_1>{_selectedOrder.billing_address_2}</billing_address_1>
+    			<billing_city>{_selectedOrder.billing_city}</billing_city>
+    		</order>
+    	</mx:request>
+    </mx:HTTPService> 
+
+
+	<mx:HBox>
+		<mx:Label text="Edit Order #{_selectedOrder.id}" fontSize="17" fontWeight="bold"/>
+		<mx:LinkButton label="Recalculate" textDecoration="underline" themeColor="#ffccad" icon="@Embed('../../../assets/check2.png')" color="#827431"/>
+		<mx:LinkButton label="Save Order" textDecoration="underline" themeColor="#ffccad" icon="@Embed('../../../assets/check2.png')" color="#827431"/>
+		<mx:LinkButton label="Cancel Edit" textDecoration="underline" themeColor="#ffccad" icon="@Embed('../../../assets/check2.png')" color="#827431"/>
+	</mx:HBox>
+	<mx:HRule width="100%" strokeWidth="1" strokeColor="#000000" />
+	<mx:HBox width="100%" horizontalGap="1">
+		<mx:Form verticalGap="1" paddingLeft="0" width="50%">
+			<mx:FormItem label="Customer" fontWeight="bold"><mx:Label text="{_selectedOrder.id}" fontWeight="normal"/></mx:FormItem>
+			<mx:FormItem label="Billing Address" fontWeight="bold"><mx:TextArea text="{_selectedOrder.billing_address_1} {_selectedOrder.billing_address_2}"  fontWeight="normal" editable="true" height="50" width="207"/></mx:FormItem>
+			<mx:FormItem label="City" fontWeight="bold"><mx:TextInput text="{_selectedOrder.billing_city}"  fontWeight="normal" width="207"/></mx:FormItem>
+			<mx:FormItem label="Country" fontWeight="bold"><mx:ComboBox dataProvider="['United States', 'United Kingdom']" /></mx:FormItem>
+			<mx:FormItem label="Contact" fontWeight="bold" width="310"><mx:TextInput text="{_selectedOrder.billing_city}" fontWeight="normal" width="223"/></mx:FormItem>
+			<mx:FormItem label="Phone" fontWeight="bold"><mx:TextInput text="" fontWeight="normal" width="207"/></mx:FormItem>
+		</mx:Form>
+		<mx:Form horizontalGap="0" verticalGap="1" width="50%" height="100%">
+			<mx:FormItem label="Order ID"><mx:Label text="SHIP TO:" fontWeight="bold" /></mx:FormItem>
+			<mx:FormItem label="Billing Address" fontWeight="bold"><mx:TextArea text="{_selectedOrder.billing_address_1} {_selectedOrder.billing_address_2}"  fontWeight="normal" editable="true" height="50" width="207"/></mx:FormItem>
+			<mx:FormItem label="City" fontWeight="bold"><mx:TextInput text="{_selectedOrder.billing_city}"  fontWeight="normal" width="207"/></mx:FormItem>
+			<mx:FormItem label="Country" fontWeight="bold"><mx:ComboBox dataProvider="['United States', 'United Kingdom']" /></mx:FormItem>
+			<mx:FormItem label="Contact" fontWeight="bold" width="310"><mx:TextInput text="{_selectedOrder.billing_city}" fontWeight="normal" width="223"/></mx:FormItem>
+			<mx:FormItem label="Phone" fontWeight="bold"><mx:TextInput text="" fontWeight="normal" width="207"/></mx:FormItem>
+		</mx:Form>
+	</mx:HBox>
+	<mx:Label text="Line Items" fontSize="12" fontWeight="bold"/>
+	<mx:HRule width="100%" strokeWidth="1" strokeColor="#000000" />
+	
+	<mx:HBox>
+		<mx:Label text="Item" fontWeight="bold" width="396" />
+		<mx:Label text="Qty" fontWeight="bold" width="62" />
+		<mx:Label text="Unit Price" fontWeight="bold" width="75" />
+		<mx:Label text="Line Total" fontWeight="bold" width="75" />						
+	</mx:HBox>
+
+	<mx:Repeater id="rptOrderLinesView" dataProvider="{_selectedOrder.order_lines.children()}" width="100%" maxHeight="8">
+		<mx:HBox name="hbox" paddingBottom="0" paddingTop="0" horizontalGap="0" borderStyle="none" borderThickness="1" borderColor="#f03162" height="22">
+			<mx:Text name="rpt" text="{rptOrderLinesView.currentItem.description}" width="403" height="16"/>
+			<mx:TextInput name="ti" keyUp="setOrderDirty(event)" text="{rptOrderLinesView.currentItem.qty_ordered}" width="67" height="20" textAlign="left"/>
+			<mx:Text name="price_as_ordered" text="${rptOrderLinesView.currentItem.price_as_ordered}" width="85" height="20" textAlign="left"/>
+			<mx:Text name="line_total" text="${Math.round(rptOrderLinesView.currentItem.price_as_ordered * rptOrderLinesView.currentItem.qty_ordered)}" width="75" height="16" textAlign="left"/>
+		</mx:HBox>
+	</mx:Repeater>	
+	<mx:Button label="Add New Item" click="svcOrderUpdate.send()"/>
+				
+	<mx:HBox>
+		<mx:Text text="Shipping" width="547" height="16" left="80" textAlign="right" fontWeight="bold"/>
+		<mx:Text id="shipping_amount" text="${_selectedOrder.shipping_amount}" width="75" height="16" textAlign="left"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:Text text="Subtotal" width="547" height="16" left="80" textAlign="right" fontWeight="bold"/>
+		<mx:Text id="subtotal" text="$0.00" width="75" height="16" textAlign="left"/>
+	</mx:HBox>
+	<mx:HBox id="taxTotalRow">
+		<mx:Text text="Tax" width="547" height="16" left="80" textAlign="right" fontWeight="bold"/>
+		<mx:Text id="tax_amount" text="${_selectedOrder.tax_amount}" width="75" height="16" textAlign="left"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:Text text="Total ({_selectedOrder.price_type.symbol})" width="547" height="16" left="80" textAlign="right" fontWeight="bold"/>
+		<mx:Text id="total_amount" text="${_selectedOrder.total_amount_payable}" width="75" height="16" textAlign="left"/>
+	</mx:HBox>
+
+
+	
+	<mx:Label text="Shipping Details" fontSize="12" fontWeight="bold"/>
+	<mx:HRule width="100%" strokeWidth="1" strokeColor="#000000" />
+	
+	<mx:Label text="Notes" fontSize="12" fontWeight="bold"/>
+	<mx:Text text="{_selectedOrder.notes}" width="100%" height="26" />
+	<mx:HRule width="100%" strokeWidth="1" strokeColor="#000000" />
+	
+	<mx:Label text="Payment / Pricing Details" fontSize="12" fontWeight="bold"/>
+	<mx:HRule width="100%" strokeWidth="1" strokeColor="#000000" />
+	<mx:Text text="{_selectedOrder.price_type.invoice_line_1}" width="100%" />
+	<mx:Text text="{_selectedOrder.price_type.invoice_line_2}" width="100%" />
+	<mx:Text text="{_selectedOrder.price_type.invoice_line_3}" width="100%" />
+	
+
+</mx:VBox>

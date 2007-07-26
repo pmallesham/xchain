@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:xc="com.xchain.components.*" width="100%" height="100%" label="Orders" initialize="showList()" show="showList()">
+<mx:Script>
+    <![CDATA[
+    	import mx.binding.utils.BindingUtils;
+        import mx.rpc.events.ResultEvent;
+        import mx.controls.Alert;
+        import mx.collections.ArrayCollection;
+        import mx.collections.XMLListCollection;
+        import com.xchain.util.*;
+        import mx.binding.utils.BindingUtils; 
+        import mx.managers.PopUpManager;
+        import com.xchain.events.CustomerPickedEvent;  
+        
+        [Bindable]
+        public var _selectedOrderID:Number; 
+        [Bindable]
+        public var	_selectedOrder:XML;
+        
+        private var _myCurrentEdit:OrderEdit;
+        private var _myCurrentView:OrderView;
+        private var orderCustomerPicker:OrderCustomerPicker; 
+        
+        
+        public function showList():void{
+        	showLoadingMsg();
+			svcOrdersList.send();
+			ordersStack.selectedChild 	= ordersListView;
+		 	//@todo not shown yet. 
+		 	if (btnViewOrder) {
+			 	btnViewOrder.enabled = false;		 		
+		 	}
+        }
+        
+        private function showLoadingMsg():void{
+        	//pnlOrdersList.status = "...loading";
+        }
+		private function hideLoadingMsg():void{
+			//pnlOrdersList.status = "";
+		}        
+        
+        private function handleOrdersClicked(event: MouseEvent):void {
+        	svcOrderShow.send({id:ordersGrid.selectedItem.id})
+        }
+        /**
+        * We need to show the orderCustomerPicker and respond to a customer picked event
+        *
+        */
+        private function onOrderNewClick(event: MouseEvent):void {
+        	this.orderCustomerPicker = OrderCustomerPicker(PopUpManager.createPopUp(this, OrderCustomerPicker, true)); 
+        	PopUpManager.centerPopUp(this.orderCustomerPicker); 
+        	this.orderCustomerPicker.addEventListener(CustomerPickedEvent.CUSTOMER_PICKED, closePicker); 
+        	this.orderCustomerPicker.initComponent(); 
+        }        
+        private function closePicker(event:CustomerPickedEvent):void
+        {
+        	PopUpManager.removePopUp(this.orderCustomerPicker); 
+        	if(event.customerID > 0) {
+        		svcOrderNew.send({customer_id:event.customerID}); 
+        	} 	
+        }
+        private function onOrderViewClick(event: MouseEvent):void {
+        	_selectedOrderID 			= ordersGrid.selectedItem.id
+        	svcOrderShow.send();
+        }
+        private function onSvcOrderShowResult(event:ResultEvent):void {
+        	var result:Object 			= event.result;
+        	_selectedOrder 				= XML(result);
+        	ordersStack.selectedChild 	= orderView;
+        	if ( tabOrderView ) 
+        	{
+        		tabOrderView.setOrderView();
+        	}
+        	
+        }
+        
+        
+        
+        private function formatCurrency(item:Object, column:DataGridColumn):String
+        {       
+          var field:String = column.dataField;       
+          return item.price_type_dollar_sign+' '+item[field]+' '+item.price_type_symbol;
+        }
+        
+        private function formatStatus(item:Object, column:DataGridColumn):String
+        {       
+          return item.order_status_name;
+        }
+        
+
+        
+        private function editOrder():void
+        {
+        }
+        
+        private function initOrderTabs():void
+        {
+        }
+        
+
+    ]]>
+</mx:Script>
+
+<mx:HTTPService id="svcOrdersList" url="http://localhost:3000/orders.xml" resultFormat="e4x" useProxy="false" method="POST" /> 
+<mx:HTTPService id="svcOrderShow" url="http://localhost:3000/orders/{_selectedOrderID}.xml" resultFormat="e4x" useProxy="false" method="GET" result="onSvcOrderShowResult(event)"/> 
+<mx:HTTPService id="svcOrderNew" url="http://localhost:3000/orders/new.xml" resultFormat="e4x" useProxy="false" method="GET" result="onSvcOrderShowResult(event)"/> 
+
+<mx:XMLListCollection id="ordersXLC" source="{XMLList(svcOrdersList.lastResult.children())}"/>
+        
+        
+<mx:Blur id="blurImage" duration="1000" blurXFrom="0.0" blurXTo="5.0" blurYFrom="0.0" blurYTo="5.0"/>
+<mx:Blur id="unblurImage" duration="1000" blurXFrom="10.0" blurXTo="0.0" blurYFrom="10.0" blurYTo="0.0"/>
+
+<mx:ViewStack id="ordersStack" height="100%" width="100%">
+	<mx:VBox id="ordersListView" height="100%" width="100%">
+		<mx:Panel id="pnlOrdersList" title="Orders List" height="100%" width="100%" >
+    	  <mx:HBox label="Orders" width="100%" height="100%">
+            <mx:Canvas height="100%" width="174" backgroundColor="#cccccc">
+            	<mx:VBox left="5" top="7" width="169">
+            		<mx:Button label="New Order" click="onOrderNewClick(event)" width="160" icon="@Embed(source='/assets/magic-wand.png')"/>
+            		<mx:Button id="btnViewOrder" label="View Order" click="onOrderViewClick(event)" enabled="false" width="160"  icon="@Embed(source='/assets/view.png')" disabledIcon="@Embed(source='/assets/view_off.png')"/>
+		        	<mx:Button id="btnEditOrder" label="Edit Order" click="onOrderViewClick(event)" enabled="false" width="160"  icon="@Embed(source='/assets/edit.png')" disabledIcon="@Embed(source='/assets/edit_off.png')"/>
+		        	<mx:Button id="btnReviewOrder" label="Review Order" mouseDownEffect="{blurImage}" enabled="false" width="160"  icon="@Embed(source='/assets/check2.png')" disabledIcon="@Embed(source='/assets/check2_off.png')"/>
+		        	<mx:HRule width="100%" />
+		        	<mx:Label text="Search Orders" fontWeight="bold" paddingTop="15" />
+		        	<mx:ComboBox labelField="Search On" dataProvider="['Invoice Number', 'Customer Name', 'Account Number', 'Customer Country', 'Purchase Order Number']" width="160"/>
+		        	<mx:TextInput id="searchOrderText" mouseDown="orderDoSearch.enabled=true" />
+		        	<mx:Button id="orderDoSearch" label="Do Search"   width="160" enabled="false" />
+		        	<mx:HRule width="100%" />
+		        	<mx:Label text="Filter Order List" fontWeight="bold" paddingTop="15"  />
+		        	<mx:ComboBox labelField="Filter Orders" dataProvider="['All', 'Ordering', 'Manufacturing', 'Shipping']" width="160"/>
+            	</mx:VBox>
+            </mx:Canvas>
+
+        
+            <mx:DataGrid id="ordersGrid" rowHeight="25" width="100%" height="100%" dataProvider="{ordersXLC}" click="btnViewOrder.enabled = true" doubleClick="handleOrdersClicked(event)" doubleClickEnabled="true" paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="5">
+                <mx:columns>
+                    <mx:DataGridColumn headerText="Order ID" dataField="id" paddingLeft="4" paddingRight="4"/>
+                    <mx:DataGridColumn headerText="Date Created" dataField="created_at"/>
+                    <mx:DataGridColumn headerText="Customer Name" dataField="customer_name"/>
+                    <mx:DataGridColumn headerText="Country" dataField="country_name"/>
+                    <mx:DataGridColumn headerText="Total Amount" dataField="total_amount_payable" labelFunction="formatCurrency"/>
+                    <mx:DataGridColumn headerText="Status" dataField="order_status_id" labelFunction="formatStatus"/>
+                </mx:columns>
+            </mx:DataGrid>
+        </mx:HBox>
+        	<mx:ControlBar>
+		        
+		    </mx:ControlBar> 
+    	</mx:Panel>
+	</mx:VBox>
+	<mx:VBox id="orderView" show="initOrderTabs()">
+		<mx:Panel title="View Order" width="100%" height="100%">
+			<mx:HBox width="100%" height="100%" horizontalGap="0">
+				<mx:Canvas height="100%" width="174" backgroundColor="#cccccc">
+				     <mx:VBox left="5" top="7">
+	            		<mx:Button label="Back to Orders" click="showList()" width="160" icon="@Embed(source='/assets/arrow_left_green.png')"/>
+					    <!-- <mx:ComboBox dataProvider="{_selectedOrder.order_statuses.children()}" />
+					    <mx:TextArea/>
+					    <mx:Button label="Change Status" width="160" icon="@Embed(source='/assets/transform.png')" disabledIcon="@Embed(source='/assets/transform_off.png')" enabled="false"/>
+		            	-->
+	            	
+	            	</mx:VBox>
+
+            	</mx:Canvas>
+				<mx:VBox height="581" verticalGap="1" horizontalGap="1" borderStyle="solid" borderThickness="1" width="100%">
+					<mx:TabNavigator id="orderTabs" width="100%" height="100%" creationPolicy="all"> 
+						
+						<xc:OrderView id="tabOrderView" _selectedOrder="{_selectedOrder}" creationPolicy="all" />
+						
+						<mx:VBox id="tabOrderAuditTrail" label="Audit Trail" paddingLeft="10" paddingRight="10" >
+														
+							<mx:Label text="Audit Trail" fontSize="12" fontWeight="bold"/>
+							<mx:HRule width="100%" strokeWidth="1" strokeColor="#000000" />
+						</mx:VBox>
+						<mx:VBox id="tabOrderCalculations" label="Calculations" paddingLeft="10" paddingRight="10" >
+														
+							<mx:Label text="Debug information" fontSize="12" fontWeight="bold"/>
+							<mx:Text text="The following is the worksheet for how the price on this order was derived" />
+							<mx:HRule width="100%" strokeWidth="1" strokeColor="#000000" />
+							<mx:Form horizontalGap="0" verticalGap="1" width="100%">
+									<mx:FormItem label="Order ID"><mx:Label text="{_selectedOrder.id}" fontWeight="normal"/></mx:FormItem>
+									<mx:FormItem label="Customer ID" fontWeight="bold"><mx:Label text="{_selectedOrder.customer_id}" fontWeight="normal"/></mx:FormItem>
+									<mx:FormItem label="Price Type ID" fontWeight="bold"><mx:Label text="{_selectedOrder.price_type_id} ({_selectedOrder.price_type.title})" fontWeight="normal"/></mx:FormItem>
+							</mx:Form>
+							
+						</mx:VBox>
+					</mx:TabNavigator>
+					
+					
+						            					
+				</mx:VBox>
+			</mx:HBox>
+			
+		</mx:Panel>
+	</mx:VBox>
+	<mx:VBox id="orderCreate">
+		 <mx:Panel title="New Order" width="100%" height="100%">
+		 	<mx:HBox width="100%" height="100%">
+				<mx:Canvas height="100%" width="174" backgroundColor="#cccccc">
+					<mx:VBox left="5" top="7">
+		            	<mx:Button label="Cancel Orders" click="showList()" width="160" icon="@Embed(source='/assets/arrow_left_green.png')"/>
+		            	<mx:Button label="Save Order" click="showList()" width="160" icon="@Embed(source='/assets/arrow_left_green.png')"/>
+		            	<mx:Button label="Close Order" click="showList()" width="160" icon="@Embed(source='/assets/arrow_left_green.png')"/>
+					</mx:VBox>
+	            </mx:Canvas>
+	            <mx:HBox width="632" horizontalGap="1">
+						<mx:Form verticalGap="1">
+							<mx:FormItem label="Customer" fontWeight="bold"></mx:FormItem>
+							<mx:FormItem label="Billing Address" fontWeight="bold"><mx:TextInput /></mx:FormItem>
+							<mx:FormItem label="City" fontWeight="bold"><mx:TextInput /></mx:FormItem>
+							<mx:FormItem label="Country" fontWeight="bold"><mx:TextInput /></mx:FormItem>
+							<mx:FormItem label="Contact" fontWeight="bold"><mx:TextInput /></mx:FormItem>
+							<mx:FormItem label="Phone" fontWeight="bold"><mx:TextInput /></mx:FormItem>
+						</mx:Form>
+						<mx:Form horizontalGap="0" verticalGap="1">
+							<mx:FormItem label="Order ID"><mx:Label text="" /></mx:FormItem>
+							<mx:FormItem label="Address"><mx:TextInput /></mx:FormItem>
+							<mx:FormItem label="City"><mx:TextInput /></mx:FormItem>
+							<mx:FormItem label="Country"><mx:TextInput /></mx:FormItem>
+							<mx:FormItem label="Contact"><mx:TextInput /></mx:FormItem>
+							<mx:FormItem label="Phone"><mx:TextInput /></mx:FormItem>
+						</mx:Form>
+					</mx:HBox>
+			</mx:HBox>	
+		</mx:Panel>
+	</mx:VBox>
+</mx:ViewStack>
+</mx:VBox>

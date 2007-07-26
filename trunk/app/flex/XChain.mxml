@@ -1,4 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
-	
+<mx:Application
+    xmlns:mx="http://www.adobe.com/2006/mxml"
+    layout="vertical"
+    width="100%"
+    height="100%" xmlns:xc="com.xchain.components.*">
+    <mx:Style source="application.css" />
+<mx:Script>
+    <![CDATA[
+    
+        import mx.events.MenuEvent;
+        import mx.collections.ArrayCollection;
+        import mx.collections.XMLListCollection;
+        import mx.rpc.events.ResultEvent;
+        import mx.controls.Alert;
+        import com.xchain.components.*;
+        import com.xchain.events.*;
+
+		private var _app_version:String = '$LastChangedRevision: 61 $';
+
+        [Bindable]
+        private var _user:XML;
+		
+		private function getAppVersion():String {
+			var clean_version:String = _app_version.replace('$LastChangedRevision: ', '');
+			return clean_version.replace(' $', '');
+		}
+		
+        private function showAppForUser(user:XML):void {
+            _user = user;
+            mainStack.selectedChild = appBox;
+            //ordersStack.showList();
+        }
+        
+        // Event handler for the MenuBar control's itemClick event.
+        private function menuHandler(event:MenuEvent):void  {
+            Alert.show("Label: " + event.item.@label + "\n" + 
+                "Data: " + event.item.@data, "Clicked menu item");
+        }        
+        
+        private function handleAppStackShow(event: Event):void {
+        	//appStack.selectedChild = ordersList2;
+        	//Alert.show('test');
+        	//svcOrdersList.send();
+        }
+      
+    ]]>
+</mx:Script>
+
+	    <mx:ViewStack id="mainStack" width="100%" height="100%">
+	        <mx:VBox id="splashBox" horizontalAlign="center" verticalAlign="middle" width="100%" height="100%">
+	            <mx:HBox>
+	               <xc:LoginPanel login="showAppForUser(event.user)"/>
+	            </mx:HBox>
+	        </mx:VBox>
+        <mx:VBox id="appBox" width="100%" height="100%" paddingLeft="10" paddingRight="10" paddingTop="10">
+			<mx:HBox width="100%">
+				<mx:Image source="/assets/logo.png" />
+				<mx:VBox width="100%">
+					<mx:ApplicationControlBar width="100%" height="30" styleName="storeControlBar" paddingTop="0">
+	     				<mx:ToggleButtonBar	id="mainButtons" height="100%" dataProvider="{appStack}" styleName="storeButtonBar" />
+	    			</mx:ApplicationControlBar>			
+	    			<mx:Text text="app version 0.{getAppVersion()}" fontSize="9" color="white"/>	
+				</mx:VBox>
+
+			</mx:HBox>
+
+        	<mx:ViewStack id="appStack" width="100%" height="100%" initialize="handleAppStackShow(event)">
+        		<mx:VBox id="dashboard" label="Dashboard">
+        			<mx:Panel label="Dashboard" height="100%" width="100%">
+        				<mx:HBox height="100%" width="100%">
+        					
+        				</mx:HBox>
+        			</mx:Panel>
+        		</mx:VBox>
+        		<xc:OrdersStack id="ordersStack" />
+        		<mx:VBox id="customers" label="Customers">
+        			<mx:Panel label="Customers list" height="100%" width="100%">
+        				
+        			</mx:Panel>
+        		</mx:VBox>
+        		<mx:VBox id="inventory" label="Inventory">
+        			<mx:Panel label="Inventory" height="100%" width="100%">
+        				
+        			</mx:Panel>
+        		</mx:VBox>
+        		<mx:VBox id="reports" label="Reports">
+        			<mx:Panel label="Customers list" height="100%" width="100%">
+        				
+        			</mx:Panel>
+        		</mx:VBox>
+        		<mx:VBox id="admin" label="Admin">
+        			<mx:Panel label="Customers list" height="100%" width="100%">
+        				
+        			</mx:Panel>
+        		</mx:VBox>
+        		
+        		
+        	</mx:ViewStack>
+            
+        </mx:VBox>
+    </mx:ViewStack>
+     <mx:Label text="Copyright 2007 Rowan Hick" paddingTop="5"/>
+     
 </mx:Application>

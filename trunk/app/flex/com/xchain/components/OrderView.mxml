@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" label="View Order"  paddingLeft="10" paddingRight="10" verticalGap="0" creationComplete="checkOrderNew()" initialize="initOrderViewTab()">
+<mx:Script>
+    <![CDATA[
+    	import mx.states.RemoveChild;
+    	import mx.controls.Button;
+    	import mx.states.AddChild;
+    	import mx.events.StateChangeEvent;
+    
+    	//import mx.rpc.events.ResultEvent;
+        import mx.controls.Alert;
+        //import mx.collections.ArrayCollection;
+        //import mx.collections.XMLListCollection;
+        import com.xchain.util.*;
+		
+		[Bindable]        
+        public var _selectedOrder:XML
+        
+        public var repeaterGridItems:Array = new Array(); 
+        
+        public function setOrderView():void
+        {
+        	this.currentState = ''; 
+        }
+        private function initOrderViewTab():void
+        {
+        	this.addEventListener(StateChangeEvent.CURRENT_STATE_CHANGING, checkStateChange);  
+        }
+        
+        private function checkStateChange(event:StateChangeEvent):void
+        {
+        	
+        	// First we setup the items we're going to change about our repeater grid. 
+        	if ( repeaterGridItems.length == 0 ) {
+        		var button:Button = new Button(); 
+        		button.label = 'Test1'; 
+        		repeaterGridItems.push(button); 
+        		var button2:Button = new Button(); 
+        		button2.label = 'Test2'; 
+        		repeaterGridItems.push(button); 
+        	}
+        	if ( event.newState == 'orderEdit') 
+        	{
+        		Alert.show('changing to edit mode'); 
+        		var children:Array = new Array; 
+        		for each (var uItem:* in repeaterGridItems) {
+        			var addChild:AddChild = new AddChild(); 
+        			addChild.target = uItem; 
+        			addChild.relativeTo = addControls; 
+        			odrState.overrides.push(addChild); 
+        			 
+        		}	
+        	} else if ( event.newState == '' ) {
+        		//Alert.show(this.states[0].overrides.length);
+        		//var removeChild = new RemoveChild(); 
+        		//removeChild.target = button; 
+        		//this.states[0].overrides.push( 
+        	} 
+        	
+        	
+        }
+        
+        private function checkOrderNew():void
+        {
+        	if ( Number(_selectedOrder.id) < 1 || _selectedOrder.id == '' ) 
+        	{
+        		this.currentState = 'orderEdit';
+        		
+        	}
+        }
+        
+        private function onCancelEditClick():void
+        {
+        	this.currentState = ''; 
+        }
+        
+        private function onSaveOrderClick():void
+        {
+        	
+        }
+        
+        private function onRecalculateOrderClick():void
+        {
+        	
+        }
+
+    ]]>
+</mx:Script>
+<mx:states>
+	<mx:State id="odrState" name="orderEdit">
+		<!-- Button Bar --> 
+		<mx:RemoveChild target="{lBnEditOrder}" />
+		<mx:AddChild relativeTo="{hbxOrderButtons}">
+			<mx:LinkButton label="Cancel Edit" click="onCancelEditClick()" textDecoration="underline" themeColor="#ffccad" icon="@Embed('../../../assets/delete2.png')" color="#827431"/>
+		</mx:AddChild>
+		<mx:AddChild relativeTo="{hbxOrderButtons}">
+			<mx:LinkButton label="Recalculate" click="onRecalculateOrderClick()" textDecoration="underline" themeColor="#ffccad" icon="@Embed('../../../assets/refresh.png')" color="#827431"/>
+		</mx:AddChild>
+		<mx:AddChild relativeTo="{hbxOrderButtons}">
+			<mx:LinkButton label="Save Order" click="onSaveOrderClick()" textDecoration="underline" themeColor="#ffccad" icon="@Embed('../../../assets/data_disk.png')" color="#827431"/>
+		</mx:AddChild>		
+
+		<!-- Address form --> 
+		
+		<mx:RemoveChild target="{lbBillingAddress}" />
+		<mx:AddChild relativeTo="{fiBillingAddress}" >
+			<mx:TextArea id="tiBillingAddress" text="{_selectedOrder.billing_address_1}"  width="100%"/>
+		</mx:AddChild>
+				
+		<mx:RemoveChild target="{lbBillingCity}"/>
+		<mx:AddChild relativeTo="{fiBillingCity}">
+			<mx:TextInput id="tiBillingCity" text="{_selectedOrder.billing_city}" width="100%"/>
+		</mx:AddChild>
+		<mx:RemoveChild target="{lbBillingCountry}" />
+		<mx:AddChild relativeTo="{fiBillingCountry}">
+			<mx:TextInput id="tiBillingCountry" text="{_selectedOrder.billing_city}"/>
+		</mx:AddChild>
+		
+		<mx:RemoveChild target="{lbBillingContact}" />
+		<mx:AddChild relativeTo="{fiBillingContact}">
+			<mx:TextInput id="tiBillingContact" text="{_selectedOrder.billing_contact}"/>
+		</mx:AddChild>
+		<mx:RemoveChild target="{lbBillingPhone}" />
+		<mx:AddChild relativeTo="{fiBillingPhone}">
+			<mx:TextInput id="tiBillingPhone" text="{_selectedOrder.billing_phone}"/>
+		</mx:AddChild>
+		
+		<mx:RemoveChild target="{lbShippingAddress}" />
+		<mx:AddChild relativeTo="{fiShippingAddress}" >
+			<mx:TextArea id="tiShippingAddress" text="{_selectedOrder.shipping_address_1}"  width="100%"/>
+		</mx:AddChild>
+				
+		<mx:RemoveChild target="{lbShippingCity}"/>
+		<mx:AddChild relativeTo="{fiShippingCity}">
+			<mx:TextInput id="tiShippingCity" text="{_selectedOrder.shipping_city}" width="100%"/>
+		</mx:AddChild>
+		<mx:RemoveChild target="{lbShippingCountry}" />
+		<mx:AddChild relativeTo="{fiShippingCountry}">
+			<mx:TextInput id="tiShippingCountry" text="{_selectedOrder.shipping_city}"/>
+		</mx:AddChild>
+		
+		<mx:RemoveChild target="{lbShippingContact}" />
+		<mx:AddChild relativeTo="{fiShippingContact}">
+			<mx:TextInput id="tiShippingContact" text="{_selectedOrder.shipping_contact}"/>
+		</mx:AddChild>
+		<mx:RemoveChild target="{lbShippingPhone}" />
+		<mx:AddChild relativeTo="{fiShippingPhone}">
+			<mx:TextInput id="tiShippingPhone" text="{_selectedOrder.shipping_phone}"/>
+		</mx:AddChild>
+		
+		<mx:AddChild relativeTo="{addControls}">
+			<mx:Button label="Add New Product" />
+		</mx:AddChild>
+		<mx:AddChild relativeTo="{addControls}">
+			<mx:Button label="Add New Custom Line 2" />
+		</mx:AddChild>
+
+		<mx:AddChild relativeTo="{fiShippingCountry}">
+			<mx:Validator source="{tiShippingCountry}" property="text" />
+			<mx:Validator source="{tiBillingCountry}" property="text" />
+			<mx:Validator source="{tiBillingCity}" property="text" />
+			<mx:Validator source="{tiBillingAddress}" property="text" />
+			
+		</mx:AddChild>
+		
+	</mx:State>
+</mx:states>
+	
+	<mx:HBox id="hbxOrderButtons">
+		<mx:Label id="lblOrderDetails" text="Order Details v#{_selectedOrder.id}" fontSize="17" fontWeight="bold"/>
+		<mx:LinkButton id="lBnEditOrder" click="currentState = 'orderEdit'" label="Edit Order" textDecoration="underline" themeColor="#ffccad" icon="@Embed('../../../assets/check2.png')" color="#827431"/>
+	</mx:HBox>
+	<mx:HRule width="100%" strokeWidth="1" strokeColor="#000000" />
+	<mx:HBox width="100%" horizontalGap="1" backgroundColor="#A1A1A1">
+		<mx:Label text="Billing Details: " width="100%"  fontSize="11" fontWeight="bold" color="#FFFFFF"/>
+		<mx:Label text="Shipping Details: " width="100%"  fontSize="11" fontWeight="bold" color="#FFFFFF"/>
+	</mx:HBox>
+	<mx:HBox width="100%" horizontalGap="1">
+		<mx:Form verticalGap="1" paddingLeft="0" label="BillAddress" width="50%" paddingTop="0">
+			<mx:FormItem id="fiPurchaseOrder" label="Purchase Order Number" fontWeight="bold"><mx:Text id="lbPurchaseOrderNumber" text="{_selectedOrder.purchase_order_number}" /></mx:FormItem>
+			<mx:FormItem id="fiBillingAddress" label="Address" fontWeight="bold"><mx:Text  id="lbBillingAddress" text="{_selectedOrder.billing_address_1} {_selectedOrder.billing_address_2}" fontWeight="normal"/></mx:FormItem>
+			<mx:FormItem id="fiBillingCity" label="City" fontWeight="bold" width="100%"><mx:Label id="lbBillingCity" text="{_selectedOrder.billing_city}"  fontWeight="normal" width="100%"/></mx:FormItem>
+			<mx:FormItem id="fiBillingCountry" label="Country" fontWeight="bold" width="100%"><mx:Label id="lbBillingCountry" text="{_selectedOrder.billing_city}" fontWeight="normal"/></mx:FormItem>
+			<mx:FormItem id="fiBillingContact" label="Contact" fontWeight="bold" width="100%"><mx:Label id="lbBillingContact" text="{_selectedOrder.billing_city}" fontWeight="normal"/></mx:FormItem>
+			<mx:FormItem id="fiBillingPhone" label="Phone" fontWeight="bold" width="100%"><mx:Label id="lbBillingPhone" text="" fontWeight="normal"/></mx:FormItem>
+		</mx:Form>
+		<mx:Form horizontalGap="0" verticalGap="1" width="50%" paddingLeft="0" paddingTop="0">
+			<mx:FormItem id="fiShipVia" label="Ship via" fontWeight="bold" paddingTop="0"><mx:Label text="" /></mx:FormItem>
+			<mx:FormItem id="fiShippingAddress" label="Address" fontWeight="bold"><mx:Label id="lbShippingAddress" text="{_selectedOrder.shipping_address_1}" fontWeight="normal"/></mx:FormItem>
+			<mx:FormItem id="fiShippingCity" label="City" fontWeight="bold"><mx:Label id="lbShippingCity" text="{_selectedOrder.shipping_city}" fontWeight="normal"/></mx:FormItem>
+			<mx:FormItem id="fiShippingCountry" label="Country" fontWeight="bold"><mx:Label id="lbShippingCountry" text="{_selectedOrder.shipping_country_id}" fontWeight="normal" paddingBottom="0" paddingRight="0" paddingTop="0" paddingLeft="0"/></mx:FormItem>
+			<mx:FormItem id="fiShippingContact" label="Contact" fontWeight="bold"><mx:Label id="lbShippingContact" text="{_selectedOrder.shipping_contact}" fontWeight="normal" /></mx:FormItem>
+			<mx:FormItem id="fiShippingPhone" label="Phone" fontWeight="bold"><mx:Label id="lbShippingPhone" text="{_selectedOrder.shipping_phone}" fontWeight="normal" /></mx:FormItem>
+		</mx:Form>
+	</mx:HBox>
+	<mx:HBox backgroundColor="#A1A1A1" width="100%">
+		<mx:Label text="Line Items: " fontSize="11" fontWeight="bold" color="#FFFFFF"/>
+	</mx:HBox>
+	<mx:HRule width="100%" strokeWidth="1" strokeColor="#000000" />
+	
+	<mx:HBox id="header">
+		<mx:Label text="Item" fontWeight="bold" width="396" />
+		<mx:Label text="Qty" fontWeight="bold" width="62" />
+		<mx:Label text="Unit Price" fontWeight="bold" width="75" />
+		<mx:Label text="Line Total" fontWeight="bold" width="75" />						
+	</mx:HBox>
+
+	<mx:Repeater id="rptOrderLinesView" dataProvider="{_selectedOrder.order_lines.children()}" width="100%" maxHeight="8">
+		<mx:HBox paddingBottom="0" paddingTop="0" horizontalGap="0" borderStyle="none" borderThickness="1" borderColor="#f03162">
+			<mx:Text text="{rptOrderLinesView.currentItem.description}" width="403" height="16"/>
+			<mx:Text text="{rptOrderLinesView.currentItem.qty_ordered}" width="67" height="16" textAlign="left"/>
+			<mx:Text text="${rptOrderLinesView.currentItem.price_as_ordered}" width="85" height="16" textAlign="left"/>
+			<mx:Text text="${Math.round(rptOrderLinesView.currentItem.price_as_ordered * rptOrderLinesView.currentItem.qty_ordered)}" width="75" height="16" textAlign="left"/>
+		</mx:HBox>
+	</mx:Repeater>	
+	<mx:HBox id="addControls">
+		
+	</mx:HBox>
+
+	<mx:HBox>
+		<mx:Text text="Shipping" width="547" height="16" left="80" textAlign="right" fontWeight="bold"/>
+		<mx:Text text="${_selectedOrder.shipping_amount}" width="75" height="16" textAlign="left"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:Text text="Subtotal" width="547" height="16" left="80" textAlign="right" fontWeight="bold"/>
+		<mx:Text text="$0.00" width="75" height="16" textAlign="left"/>
+	</mx:HBox>
+	<mx:HBox id="taxTotalRow">
+		<mx:Text text="Tax" width="547" height="16" left="80" textAlign="right" fontWeight="bold"/>
+		<mx:Text text="${_selectedOrder.tax_amount}" width="75" height="16" textAlign="left"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:Text text="Total ({_selectedOrder.price_type.symbol})" width="547" height="16" left="80" textAlign="right" fontWeight="bold"/>
+		<mx:Text text="${_selectedOrder.total_amount_payable}" width="75" height="16" textAlign="left"/>
+	</mx:HBox>
+
+
+	<mx:HBox backgroundColor="#A1A1A1" width="100%">
+		<mx:Label text="Shipping Details" fontSize="11" color="white" fontWeight="bold"/>
+	</mx:HBox>
+	
+	
+	<mx:Text text="{_selectedOrder.notes}" width="100%" height="26" />
+	
+	<mx:HBox backgroundColor="#A1A1A1" width="100%">
+		<mx:Label text="Notes" fontSize="11" color="white" fontWeight="bold"/>	
+	</mx:HBox>
+	
+	<mx:Text text="{_selectedOrder.notes}" width="100%" height="26" />
+	
+	<mx:HBox backgroundColor="#A1A1A1" width="100%">
+		<mx:Label text="Payment / Pricing Details" fontSize="11" color="white" fontWeight="bold"/>	
+	</mx:HBox>
+	
+	<mx:Text text="{_selectedOrder.price_type.invoice_line_1}" width="100%" />
+	<mx:Text text="{_selectedOrder.price_type.invoice_line_2}" width="100%" />
+	<mx:Text text="{_selectedOrder.price_type.invoice_line_3}" width="100%" />
+	
+
+</mx:VBox>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- NOTE original source from FlexibleRails book, slightly modified. XCHain's license doesn't apply to this file --> 
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" title="Login" width="400" height="200">
+<mx:Metadata>
+    [Event(name="login", type="com.xchain.events.LoginEvent")]
+</mx:Metadata>
+<mx:Script>
+    <![CDATA[
+        import mx.rpc.events.ResultEvent;
+        import mx.controls.Alert;
+        import com.xchain.events.LoginEvent;
+
+        private function handleLoginClicked(event:MouseEvent):void {
+			svcAccountLogin.send({login: "muppet", password: "sesame"});
+                
+        }
+
+        private function handleAccountLoginResult(event:ResultEvent):void {
+            var result:Object = event.result;
+            if (result == "badlogin") {
+                Alert.show("Login failed.");
+            } else {
+                dispatchEvent(new LoginEvent(XML(result)));
+            }
+        }
+    ]]>
+</mx:Script>
+    <mx:HTTPService
+        id="svcAccountLogin"
+        url="http://localhost:3000/account/login_xml"
+        resultFormat="e4x"
+        useProxy="false"
+        method="POST"
+        result="handleAccountLoginResult(event)"/>
+    <mx:Form>
+        <mx:FormItem required="true" label="Username">
+            <mx:TextInput id="loginTI"/>
+        </mx:FormItem>
+        <mx:FormItem required="true" label="Password">
+            <mx:TextInput id="passwordTI" displayAsPassword="true"/>
+        </mx:FormItem>
+        <mx:FormItem label="">
+            <mx:Button id="submitLoginBtn" label="Login" click="handleLoginClicked(event)"/>
+        </mx:FormItem>
+    </mx:Form>
+</mx:Panel>

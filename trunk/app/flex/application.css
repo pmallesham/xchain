@@ -1,0 +1,77 @@
+/* CSS file */
+Application {
+   backgroundColor: #cccccc;
+   backgroundGradientColors: #666666, #999999;
+   backgroundGradientAlphas: 1, 1;
+   themeColor: #A65904;
+   color: #000000;   
+   fontFamily: Arial;
+   fontSize: 11;
+}
+DataGrid {
+   backgroundAlpha: 1;
+   horizontalGridLines: true;
+   horizontalGridLineColor: #999999;
+   verticalGridLines: false;
+   useRollOver: true;
+   borderThickness: 0;
+   color: #000000;
+   dropShadowEnabled: false;
+   fontSize: 10;
+
+}
+TitleWindow 
+{
+	borderAlpha: 0.9;
+	borderColor:#cccccc;
+	backgroundAlpha: 1; 	
+}
+.header 
+{
+	fontSize:18;
+	fontFamily: 'Trebuchet MS', arial;
+	fontWeight:bold;	
+}
+Form {
+	textAlign: left;
+}
+.storeControlBar
+{
+    fillAlphas: 			.60, .40;
+    fillColors: 			#8F8879, #BCB29F;
+    highlightAlphas:		.05, .25;
+    cornerRadius: 			3;
+	shadowDistance:         4;
+	paddingLeft:            0;
+	paddingRight:           0;
+	paddingTop:             0;
+	paddingBottom:          0;
+	horizontalGap:          0;
+	height:					30;
+}
+
+.storeButtonBar
+{
+    cornerRadius:           0;
+    buttonStyleName:        "storeButton";
+    themeColor:             #A65904;
+}
+
+.glassPods {
+    borderStyle: applicationControlBar;
+    fillColors: #FFFFFF, #FFFFFF;
+    fillAlphas: 0, 0.25;
+    highlightAlphas: 0, 0;
+    backgroundColor: #ffffff;
+    backgroundAlpha: .2;
+    borderThickness: 0;
+    dropShadowEnabled: true;
+    cornerRadius: 8;
+    paddingRight: 0;
+    paddingLeft: 0;
+    paddingTop: 0;
+    paddingBottom: 0;
+    horizontalScrollBarStyleName: fseVerticalScrollBar;
+    verticalScrollBarStyleName: fseVerticalScrollBar;
+}
+
