@@ -3,7 +3,7 @@
     xmlns:mx="http://www.adobe.com/2006/mxml"
     layout="vertical"
     width="100%"
-    height="100%" xmlns:xc="com.xchain.components.*">
+    height="100%" xmlns:xc="com.xchain.components.*" creationComplete="initApp()">
     <mx:Style source="application.css" />
 <mx:Script>
     <![CDATA[
@@ -20,6 +20,11 @@
 
         [Bindable]
         private var _user:XML;
+		
+		private function initApp():void 
+		{
+			//mainStack.selectedChild = appBox; 
+		}
 		
 		private function getAppVersion():String {
 			var clean_version:String = _app_version.replace('$LastChangedRevision: ', '');

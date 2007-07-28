@@ -2,6 +2,8 @@
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" label="View Order"  paddingLeft="10" paddingRight="10" verticalGap="0" creationComplete="checkOrderNew()" initialize="initOrderViewTab()">
 <mx:Script>
     <![CDATA[
+    	import mx.events.DataGridEvent;
+    	import mx.controls.dataGridClasses.DataGridItemRenderer;
     	import mx.states.RemoveChild;
     	import mx.controls.Button;
     	import mx.states.AddChild;
@@ -25,40 +27,29 @@
         private function initOrderViewTab():void
         {
         	this.addEventListener(StateChangeEvent.CURRENT_STATE_CHANGING, checkStateChange);  
+        	dgOrderLines.addEventListener(DataGridEvent.ITEM_EDIT_END, checkDataChange, false, -50);
         }
         
         private function checkStateChange(event:StateChangeEvent):void
         {
-        	
-        	// First we setup the items we're going to change about our repeater grid. 
-        	if ( repeaterGridItems.length == 0 ) {
-        		var button:Button = new Button(); 
-        		button.label = 'Test1'; 
-        		repeaterGridItems.push(button); 
-        		var button2:Button = new Button(); 
-        		button2.label = 'Test2'; 
-        		repeaterGridItems.push(button); 
-        	}
-        	if ( event.newState == 'orderEdit') 
+        	if ( event.newState == 'orderEdit' ) 
         	{
-        		Alert.show('changing to edit mode'); 
-        		var children:Array = new Array; 
-        		for each (var uItem:* in repeaterGridItems) {
-        			var addChild:AddChild = new AddChild(); 
-        			addChild.target = uItem; 
-        			addChild.relativeTo = addControls; 
-        			odrState.overrides.push(addChild); 
-        			 
-        		}	
-        	} else if ( event.newState == '' ) {
-        		//Alert.show(this.states[0].overrides.length);
-        		//var removeChild = new RemoveChild(); 
-        		//removeChild.target = button; 
-        		//this.states[0].overrides.push( 
-        	} 
-        	
-        	
+        		dgOrderLines.rowHeight = 25; 
+        	    dgcQty.itemRenderer = new ClassFactory(mx.controls.TextInput);	 
+        	    
+        	} else 
+        	{
+        	   dgcQty.itemRenderer = new ClassFactory(mx.controls.dataGridClasses.DataGridItemRenderer); 
+        	   dgOrderLines.rowHeight = 20; 
+        	}
+ 
         }
+        
+        private function checkDataChange(event:DataGridEvent):void
+        {
+        	trace('chng'); 
+        }
+        
         
         private function checkOrderNew():void
         {
@@ -131,7 +122,7 @@
 		</mx:AddChild>
 				
 		<mx:RemoveChild target="{lbShippingCity}"/>
-		<mx:AddChild relativeTo="{fiShippingCity}">
+		<mx:AddChild relativeTo="{fiShippingCity}">	
 			<mx:TextInput id="tiShippingCity" text="{_selectedOrder.shipping_city}" width="100%"/>
 		</mx:AddChild>
 		<mx:RemoveChild target="{lbShippingCountry}" />
@@ -162,6 +153,7 @@
 			<mx:Validator source="{tiBillingAddress}" property="text" />
 			
 		</mx:AddChild>
+		
 		
 	</mx:State>
 </mx:states>
@@ -197,22 +189,15 @@
 		<mx:Label text="Line Items: " fontSize="11" fontWeight="bold" color="#FFFFFF"/>
 	</mx:HBox>
 	<mx:HRule width="100%" strokeWidth="1" strokeColor="#000000" />
-	
-	<mx:HBox id="header">
-		<mx:Label text="Item" fontWeight="bold" width="396" />
-		<mx:Label text="Qty" fontWeight="bold" width="62" />
-		<mx:Label text="Unit Price" fontWeight="bold" width="75" />
-		<mx:Label text="Line Total" fontWeight="bold" width="75" />						
-	</mx:HBox>
+	<mx:DataGrid id="dgOrderLines" dataProvider="{_selectedOrder.order_lines.children()}" width="100%" height="97" editable="true" rowHeight="20">
+		 <mx:columns>
+             <mx:DataGridColumn headerText="Description" dataField="description" paddingLeft="2" paddingRight="2" editable="false"/>
+             <mx:DataGridColumn id="dgcQty" headerText="Qty" width="85"  dataField="qty_ordered" paddingLeft="2" paddingRight="2" editable="true"/>
+             <mx:DataGridColumn headerText="Unit Price" width="85"  dataField="price_as_ordered" editable="false" />
+             <mx:DataGridColumn headerText="Line Total" width="85" dataField="price_as_ordered" editable="false" />
+         </mx:columns>
+	</mx:DataGrid>
 
-	<mx:Repeater id="rptOrderLinesView" dataProvider="{_selectedOrder.order_lines.children()}" width="100%" maxHeight="8">
-		<mx:HBox paddingBottom="0" paddingTop="0" horizontalGap="0" borderStyle="none" borderThickness="1" borderColor="#f03162">
-			<mx:Text text="{rptOrderLinesView.currentItem.description}" width="403" height="16"/>
-			<mx:Text text="{rptOrderLinesView.currentItem.qty_ordered}" width="67" height="16" textAlign="left"/>
-			<mx:Text text="${rptOrderLinesView.currentItem.price_as_ordered}" width="85" height="16" textAlign="left"/>
-			<mx:Text text="${Math.round(rptOrderLinesView.currentItem.price_as_ordered * rptOrderLinesView.currentItem.qty_ordered)}" width="75" height="16" textAlign="left"/>
-		</mx:HBox>
-	</mx:Repeater>	
 	<mx:HBox id="addControls">
 		
 	</mx:HBox>
