@@ -3,7 +3,13 @@
     xmlns:mx="http://www.adobe.com/2006/mxml"
     layout="vertical"
     width="100%"
-    height="100%" xmlns:xc="com.xchain.components.*" creationComplete="initApp()">
+    height="100%" 
+    xmlns:xc="com.xchain.components.*" 
+    xmlns:business="com.rh.xchain.business.*" 
+    xmlns:control="com.rh.xchain.control.*" 
+    xmlns:view="com.rh.view.*"
+    
+    creationComplete="initApp()">
     <mx:Style source="application.css" />
 <mx:Script>
     <![CDATA[
