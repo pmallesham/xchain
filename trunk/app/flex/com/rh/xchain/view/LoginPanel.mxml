@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:view="com.rh.xchain.view.*"
+	title="Please login"
+	layout="absolute" 
+	width="400" 
+	height="300">
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.cairngorm.control.CairngormEventDispatcher;
+			import com.rh.xchain.control.LoginEvent; 
+		]]>
+	</mx:Script>
+	<mx:Form>
+    	<mx:FormItem required="true" label="Username">
+        	<mx:TextInput id="login"/>
+        </mx:FormItem>
+        <mx:FormItem required="true" label="Password">
+            <mx:TextInput id="password" displayAsPassword="true"/>
+        </mx:FormItem>
+        <mx:FormItem label="">
+            <mx:Button id="btnLogin" label="Login" click=""/>
+        </mx:FormItem>
+    </mx:Form>
+</mx:Panel>
