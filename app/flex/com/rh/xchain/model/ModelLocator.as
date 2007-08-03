@@ -26,17 +26,17 @@ package com.rh.xchain.model
 		}
         
         public var login : Login = new Login();
-        public var mainWorkflowState : Number;
-		/*
-		mainWorkfowStates
-		*/
+        public var securityState : Number;
         public static const VIEWING_LOGIN_SCREEN : Number = 1;
-        public static const VIEWING_DASHBOARD : Number = 3;
-        public static const VIEWING_ORDERS : Number = 4;
-        public static const VIEWING_CUSTOMERS : Number = 5;
-        public static const VIEWING_INVENTORY : Number = 6;
-        public static const VIEWING_REPORTS : Number = 7;
-        public static const VIEWING_ADMIN : Number = 8;
+        public static const VIEWING_LOGGED_IN : Number = 2;
+        
+        
+        public var mainWorkflowState : Number; 
+        public static const VIEWING_ORDERS : Number = 1;
+        public static const VIEWING_CUSTOMERS : Number = 2;
+        public static const VIEWING_INVENTORY : Number = 3;
+        public static const VIEWING_REPORTS : Number = 4;
+        public static const VIEWING_ADMIN : Number = 5;
         
     }    
 }
