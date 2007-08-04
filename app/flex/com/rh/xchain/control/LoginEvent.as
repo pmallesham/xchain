@@ -20,6 +20,7 @@ package com.rh.xchain.control
         {
             super( LoginControl.EVENT_LOGIN );
             this.loginVO = loginVO;
+            trace('Login event instantiated'); 
         }
     }    
 }

@@ -8,19 +8,40 @@
 	height="300">
 	<mx:Script>
 		<![CDATA[
-			import com.adobe.cairngorm.control.CairngormEventDispatcher;
-			import com.rh.xchain.control.LoginEvent; 
+		   	import com.adobe.cairngorm.control.CairngormEventDispatcher;
+		   	import com.rh.xchain.control.LoginEvent; 
+			import com.rh.xchain.model.Login;
+        	import com.rh.xchain.vo.LoginVO;
+        
+			
+		   [Bindable]
+	       public var login : Login;
+	              
+	       public function loginUser() : void
+	       {
+	          var loginVO : LoginVO = new LoginVO();
+	          loginVO.username = tiLogin.text;
+	          loginVO.password = tiPassword.text;
+	            
+	          trace('Login Clicked'); 
+	          
+	          var levent:LoginEvent = new LoginEvent( loginVO );
+	          trace(levent.loginVO.username); 
+	          levent.dispatch(); 
+	          //CairngormEventDispatcher.getInstance().dispatchEvent( event );
+	       }
+       
 		]]>
 	</mx:Script>
 	<mx:Form>
     	<mx:FormItem required="true" label="Username">
-        	<mx:TextInput id="login"/>
+        	<mx:TextInput id="tiLogin"/>
         </mx:FormItem>
         <mx:FormItem required="true" label="Password">
-            <mx:TextInput id="password" displayAsPassword="true"/>
+            <mx:TextInput id="tiPassword" displayAsPassword="true"/>
         </mx:FormItem>
         <mx:FormItem label="">
-            <mx:Button id="btnLogin" label="Login" click=""/>
+            <mx:Button id="btnLogin" label="Login" click="loginUser()"/>
         </mx:FormItem>
     </mx:Form>
 </mx:Panel>

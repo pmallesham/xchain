@@ -7,7 +7,7 @@
     xmlns:xc="com.xchain.components.*" 
     xmlns:business="com.rh.xchain.business.*" 
     xmlns:control="com.rh.xchain.control.*" 
-    xmlns:view="com.rh.view.*"
+    xmlns:view="com.rh.xchain.view.*"
     
     creationComplete="initApp()">
     <mx:Style source="application.css" />
@@ -21,7 +21,14 @@
         import mx.controls.Alert;
         import com.xchain.components.*;
         import com.xchain.events.*;
-
+        
+        // Cairngorm improts
+        import mx.core.Container;
+        import com.rh.xchain.model.ModelLocator;    
+        
+        [Bindable]
+        public var model : ModelLocator = ModelLocator.getInstance();
+        
 		private var _app_version:String = '$LastChangedRevision: 61 $';
 
         [Bindable]
@@ -42,25 +49,28 @@
             mainStack.selectedChild = appBox;
             //ordersStack.showList();
         }
-        
-        // Event handler for the MenuBar control's itemClick event.
-        private function menuHandler(event:MenuEvent):void  {
-            Alert.show("Label: " + event.item.@label + "\n" + 
-                "Data: " + event.item.@data, "Clicked menu item");
-        }        
-        
-        private function handleAppStackShow(event: Event):void {
-        	//appStack.selectedChild = ordersList2;
-        	//Alert.show('test');
-        	//svcOrdersList.send();
+
+             
+        public function getView( workflowState : Number ) : Container
+         {
+            if( model.securityState == ModelLocator.LOGGED_IN )
+            {
+                return appBox;
+            }
+            else
+            {
+                return splashBox;    
+            }
         }
+        
       
     ]]>
 </mx:Script>
 
-	    <mx:ViewStack id="mainStack" width="100%" height="100%">
+	  <mx:ViewStack id="mainStack" width="100%" height="100%" selectedChild="{ getView( model.securityState ) }">
 	        <mx:VBox id="splashBox" horizontalAlign="center" verticalAlign="middle" width="100%" height="100%">
 	            <mx:HBox>
+	               <view:LoginPanel id="login" login="{ model.login }"/>
 	               <xc:LoginPanel login="showAppForUser(event.user)"/>
 	            </mx:HBox>
 	        </mx:VBox>
@@ -76,7 +86,7 @@
 
 			</mx:HBox>
 
-        	<mx:ViewStack id="appStack" width="100%" height="100%" initialize="handleAppStackShow(event)">
+        	<mx:ViewStack id="appStack" width="100%" height="100%">
         		<mx:VBox id="dashboard" label="Dashboard">
         			<mx:Panel label="Dashboard" height="100%" width="100%">
         				<mx:HBox height="100%" width="100%">

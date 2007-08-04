@@ -22,6 +22,7 @@ package com.rh.xchain.business
         
         public function login( loginVO : LoginVO ): void
         {
+        	trace('logindelegate login called'); 
             //var token : AsyncToken = service.login( loginVO );
             //token.resultHandler = responder.onResult;
             //token.faultHandler = responder.onFault;

@@ -26,28 +26,36 @@
         }
         private function initOrderViewTab():void
         {
-        	this.addEventListener(StateChangeEvent.CURRENT_STATE_CHANGING, checkStateChange);  
-        	dgOrderLines.addEventListener(DataGridEvent.ITEM_EDIT_END, checkDataChange, false, -50);
+        	//this.addEventListener(StateChangeEvent.CURRENT_STATE_CHANGING, checkStateChange);  
+        	//dgOrderLines.addEventListener(DataGridEvent.ITEM_EDIT_END, checkDataChange);
+        	//dgOrderLines.addEventListener(DataGridEvent.ITEM_EDIT_END, checkDataChange, false, -50);
+        	
         }
         
         private function checkStateChange(event:StateChangeEvent):void
         {
         	if ( event.newState == 'orderEdit' ) 
         	{
-        		dgOrderLines.rowHeight = 25; 
+        		dgOrderLines.rowHeight = 75; 
         	    dgcQty.itemRenderer = new ClassFactory(mx.controls.TextInput);	 
         	    
         	} else 
         	{
         	   dgcQty.itemRenderer = new ClassFactory(mx.controls.dataGridClasses.DataGridItemRenderer); 
-        	   dgOrderLines.rowHeight = 20; 
+        	   dgOrderLines.rowHeight = 40; 
         	}
  
         }
         
         private function checkDataChange(event:DataGridEvent):void
         {
-        	trace('chng'); 
+        //	if ( Number(TextInput(dgOrderLines.itemEditorInstance).text) < 100 ) 
+       // 	{
+       // 	  	event.preventDefault(); 
+       // 	  	Alert.show("Must be greater than 100"); 
+       // 	}
+        //	trace('chng'+String(event.target.valueOf())); event.dataField = "qty_ordered"
+       // 	trace('ci'+String(dgOrderLines.selectedItem.qty_ordered)); 
         }
         
         
@@ -189,11 +197,12 @@
 		<mx:Label text="Line Items: " fontSize="11" fontWeight="bold" color="#FFFFFF"/>
 	</mx:HBox>
 	<mx:HRule width="100%" strokeWidth="1" strokeColor="#000000" />
-	<mx:DataGrid id="dgOrderLines" dataProvider="{_selectedOrder.order_lines.children()}" width="100%" height="97" editable="true" rowHeight="20">
+	<mx:DataGrid id="dgOrderLines" dataProvider="{_selectedOrder.order_lines.children()}" itemEditEnd="checkDataChange(event)" width="100%" height="97" editable="true" rowHeight="30">
 		 <mx:columns>
              <mx:DataGridColumn headerText="Description" dataField="description" paddingLeft="2" paddingRight="2" editable="false"/>
              <mx:DataGridColumn id="dgcQty" headerText="Qty" width="85"  dataField="qty_ordered" paddingLeft="2" paddingRight="2" editable="true"/>
-             <mx:DataGridColumn headerText="Unit Price" width="85"  dataField="price_as_ordered" editable="false" />
+             <mx:DataGridColumn headerText="Unit Price" width="250"  dataField="price_as_ordered" itemEditor="com.xchain.components.PhoneValidator"
+                editorDataField="returnPN"/>
              <mx:DataGridColumn headerText="Line Total" width="85" dataField="price_as_ordered" editable="false" />
          </mx:columns>
 	</mx:DataGrid>

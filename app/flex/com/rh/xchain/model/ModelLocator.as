@@ -19,7 +19,7 @@ package com.rh.xchain.model
        
 		public function ModelLocator() 
 		{
-			if ( com.adobe.cairngorm.samples.login.model.ModelLocator.modelLocator != null )
+			if ( com.rh.xchain.model.ModelLocator.modelLocator != null )
 			{
                 throw new Error( "Only one ModelLocator instance should be instantiated" ); 
    			}   
@@ -27,8 +27,8 @@ package com.rh.xchain.model
         
         public var login : Login = new Login();
         public var securityState : Number;
-        public static const VIEWING_LOGIN_SCREEN : Number = 1;
-        public static const VIEWING_LOGGED_IN : Number = 2;
+        public static const LOGGED_OUT : Number = 1;
+        public static const LOGGED_IN : Number = 2;
         
         
         public var mainWorkflowState : Number; 
