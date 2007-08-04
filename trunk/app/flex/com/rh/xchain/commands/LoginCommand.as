@@ -15,6 +15,7 @@ package com.rh.xchain.commands
        
         public function execute( event : CairngormEvent ) : void
         {
+        	trace('LoginCommand.execute called'); 
             model.login.isPending = true;
             
             var delegate : LoginDelegate = new LoginDelegate( this );   
@@ -28,7 +29,7 @@ package com.rh.xchain.commands
             model.login.loginVO = LoginVO( event );
             model.login.isPending = false;
             
-            model.workflowState = ModelLocator.VIEWING_LOGGED_IN_SCREEN;
+            model.securityState = ModelLocator.LOGGED_IN
         }
                 
         public function onFault( event : * = null ) : void
