@@ -7,4 +7,5 @@ class Customer < ActiveRecord::Base
   belongs_to  :customer_status
   belongs_to  :price_type
   belongs_to  :country
+  
 end

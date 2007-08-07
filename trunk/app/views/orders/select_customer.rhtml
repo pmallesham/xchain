@@ -1,0 +1,27 @@
+<div id="wrapper">
+	<div id="content" style="width:950px;min-height:600px">	
+				<p><strong>Orders > New Order</strong></p>
+		<div id="selectCustomer" style="float:left;width:49%;margin-top:9px;border:1px solid #ccc">
+		<p>
+		<form action="/orders/new" method="put">
+			Filter customers by:
+			<select style="width:100%">
+				<option>Austria</option>
+			</select>
+			Select customer:
+			<select size="10" style="width:100%">
+				<%= options_from_collection_for_select @customers, 'id', 'name' %>
+			</select>
+			<input type="submit" value="Create Order">
+		</form>
+		</p>
+		</div>
+		<div id="newCustomer" style="float:right;width:49%;margin-top:9px;border:1px solid #D0A825;background-color:#E8CA95">
+			<p><strong>Create New Customer</strong></p>
+			<% form_for Customer, Customer.new do |f| %>
+				
+			
+			<% end %>
+		</div>
+	</div>
+</div>

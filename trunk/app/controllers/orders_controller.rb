@@ -10,7 +10,7 @@
 # To review an order 
 
 class OrdersController < ApplicationController
-  before_filter :login_required
+  #before_filter :login_required
   before_filter :load_order_object, :except => ['index', 'select_customer', 'new', 'create']
 
   # GET /orders
@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
   
   def select_customer
     @order      = Order.new
-    @customers  = Customer.find(:all,:select => "customers.id, customers.name, countries.name as country_name", :include => :country, :order => 'name ASC')
+    @customers  = Customer.find(:all,:select => "customers.id, customers.name, countries.name as country_name", :include => :country, :order => 'customers.name ASC')
     respond_to do |format|
       format.xml { render :xml => @customers.to_xml(:dasherize => false) }
       format.html { render :action => 'select_customer'}

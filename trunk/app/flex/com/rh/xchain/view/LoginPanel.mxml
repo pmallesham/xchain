@@ -27,8 +27,7 @@
 	          
 	          var levent:LoginEvent = new LoginEvent( loginVO );
 	          trace(levent.loginVO.username); 
-	          levent.dispatch(); 
-	          //CairngormEventDispatcher.getInstance().dispatchEvent( event );
+	          levent.dispatch(); 	
 	       }
        
 		]]>

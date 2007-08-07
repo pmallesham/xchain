@@ -23,8 +23,13 @@ class Order < ActiveRecord::Base
   
   def prefill_address(customer)
     self.customer_id = customer.id
-    self.billing_address_1    = customer.billing_address_1
-    self.shipping_address_1   = customer.shipping_address_1
+    
+    billing_address       = customer.addresses.default_billing
+    self.billing_address  = billing_address.address
+    self.billing_city     = billing_address.city
+    self.billing_postcode = billing_address.postcode
+    
+    
   end
   
   def auto_calculate

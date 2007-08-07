@@ -37,10 +37,12 @@
         	if ( event.newState == 'orderEdit' ) 
         	{
         		dgOrderLines.rowHeight = 75; 
+        		dgcQty.editable = true; 
         	    dgcQty.itemRenderer = new ClassFactory(mx.controls.TextInput);	 
         	    
         	} else 
         	{
+        	   dgcQty.editable = false; 
         	   dgcQty.itemRenderer = new ClassFactory(mx.controls.dataGridClasses.DataGridItemRenderer); 
         	   dgOrderLines.rowHeight = 40; 
         	}
@@ -83,6 +85,11 @@
         	
         }
 
+		private function calculateGridHeight():Number
+		{
+			return _selectedOrder.order_lines.count * 15 ; 
+		}
+
     ]]>
 </mx:Script>
 <mx:states>
@@ -103,7 +110,7 @@
 		
 		<mx:RemoveChild target="{lbBillingAddress}" />
 		<mx:AddChild relativeTo="{fiBillingAddress}" >
-			<mx:TextArea id="tiBillingAddress" text="{_selectedOrder.billing_address_1}"  width="100%"/>
+			<mx:TextArea id="tiBillingAddress" text="{_selectedOrder.billing_address}"  width="100%"/>
 		</mx:AddChild>
 				
 		<mx:RemoveChild target="{lbBillingCity}"/>
@@ -126,7 +133,7 @@
 		
 		<mx:RemoveChild target="{lbShippingAddress}" />
 		<mx:AddChild relativeTo="{fiShippingAddress}" >
-			<mx:TextArea id="tiShippingAddress" text="{_selectedOrder.shipping_address_1}"  width="100%"/>
+			<mx:TextArea id="tiShippingAddress" text="{_selectedOrder.shipping_address}"  width="100%"/>
 		</mx:AddChild>
 				
 		<mx:RemoveChild target="{lbShippingCity}"/>
@@ -178,7 +185,7 @@
 	<mx:HBox width="100%" horizontalGap="1">
 		<mx:Form verticalGap="1" paddingLeft="0" label="BillAddress" width="50%" paddingTop="0">
 			<mx:FormItem id="fiPurchaseOrder" label="Purchase Order Number" fontWeight="bold"><mx:Text id="lbPurchaseOrderNumber" text="{_selectedOrder.purchase_order_number}" /></mx:FormItem>
-			<mx:FormItem id="fiBillingAddress" label="Address" fontWeight="bold"><mx:Text  id="lbBillingAddress" text="{_selectedOrder.billing_address_1} {_selectedOrder.billing_address_2}" fontWeight="normal"/></mx:FormItem>
+			<mx:FormItem id="fiBillingAddress" label="Address" fontWeight="bold"><mx:Text  id="lbBillingAddress" text="{_selectedOrder.billing_address}" fontWeight="normal"/></mx:FormItem>
 			<mx:FormItem id="fiBillingCity" label="City" fontWeight="bold" width="100%"><mx:Label id="lbBillingCity" text="{_selectedOrder.billing_city}"  fontWeight="normal" width="100%"/></mx:FormItem>
 			<mx:FormItem id="fiBillingCountry" label="Country" fontWeight="bold" width="100%"><mx:Label id="lbBillingCountry" text="{_selectedOrder.billing_city}" fontWeight="normal"/></mx:FormItem>
 			<mx:FormItem id="fiBillingContact" label="Contact" fontWeight="bold" width="100%"><mx:Label id="lbBillingContact" text="{_selectedOrder.billing_city}" fontWeight="normal"/></mx:FormItem>
@@ -186,7 +193,7 @@
 		</mx:Form>
 		<mx:Form horizontalGap="0" verticalGap="1" width="50%" paddingLeft="0" paddingTop="0">
 			<mx:FormItem id="fiShipVia" label="Ship via" fontWeight="bold" paddingTop="0"><mx:Label text="" /></mx:FormItem>
-			<mx:FormItem id="fiShippingAddress" label="Address" fontWeight="bold"><mx:Label id="lbShippingAddress" text="{_selectedOrder.shipping_address_1}" fontWeight="normal"/></mx:FormItem>
+			<mx:FormItem id="fiShippingAddress" label="Address" fontWeight="bold"><mx:Label id="lbShippingAddress" text="{_selectedOrder.shipping_address}" fontWeight="normal"/></mx:FormItem>
 			<mx:FormItem id="fiShippingCity" label="City" fontWeight="bold"><mx:Label id="lbShippingCity" text="{_selectedOrder.shipping_city}" fontWeight="normal"/></mx:FormItem>
 			<mx:FormItem id="fiShippingCountry" label="Country" fontWeight="bold"><mx:Label id="lbShippingCountry" text="{_selectedOrder.shipping_country_id}" fontWeight="normal" paddingBottom="0" paddingRight="0" paddingTop="0" paddingLeft="0"/></mx:FormItem>
 			<mx:FormItem id="fiShippingContact" label="Contact" fontWeight="bold"><mx:Label id="lbShippingContact" text="{_selectedOrder.shipping_contact}" fontWeight="normal" /></mx:FormItem>
@@ -197,10 +204,10 @@
 		<mx:Label text="Line Items: " fontSize="11" fontWeight="bold" color="#FFFFFF"/>
 	</mx:HBox>
 	<mx:HRule width="100%" strokeWidth="1" strokeColor="#000000" />
-	<mx:DataGrid id="dgOrderLines" dataProvider="{_selectedOrder.order_lines.children()}" itemEditEnd="checkDataChange(event)" width="100%" height="97" editable="true" rowHeight="30">
+	<mx:DataGrid id="dgOrderLines" dataProvider="{_selectedOrder.order_lines.children()}" itemEditEnd="checkDataChange(event)" width="100%" height="{calculateGridHeight()}" editable="true" rowHeight="30">
 		 <mx:columns>
              <mx:DataGridColumn headerText="Description" dataField="description" paddingLeft="2" paddingRight="2" editable="false"/>
-             <mx:DataGridColumn id="dgcQty" headerText="Qty" width="85"  dataField="qty_ordered" paddingLeft="2" paddingRight="2" editable="true"/>
+             <mx:DataGridColumn id="dgcQty" headerText="Qty" width="85"  dataField="qty_ordered" paddingLeft="2" paddingRight="2" editable="false"/>
              <mx:DataGridColumn headerText="Unit Price" width="250"  dataField="price_as_ordered" itemEditor="com.xchain.components.PhoneValidator"
                 editorDataField="returnPN"/>
              <mx:DataGridColumn headerText="Line Total" width="85" dataField="price_as_ordered" editable="false" />

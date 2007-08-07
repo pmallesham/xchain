@@ -4,7 +4,7 @@ class LoadDatabase < ActiveRecord::Migration
   	create_table "addresses", :force => true do |t|
   	  t.column "address", :text 
   	  t.column "city", :string
-  	  t.column "post_code", :string
+  	  t.column "postcode", :string
   	  t.column "state", :string
   	  t.column "country_id", :integer
   	  t.column "phone", :string
@@ -134,9 +134,11 @@ class LoadDatabase < ActiveRecord::Migration
       t.column "created_at",                 :datetime
       t.column "customer_id",                :integer
       t.column "price_type_id",              :integer,                                                :default => 1,   :null => false
-      t.column "billing_address_1",          :text
-      t.column "shipping_address_1",         :text
-      t.column "shipping_address_2",         :string,   :limit => 50
+      t.column "billing_address",          :text
+      t.column "billing_city",                :string
+      t.column "billing_postcode",          :string
+      t.column "shipping_address",         :text
+      t.column "shipping_address",         :string,   :limit => 50
       t.column "shipping_city",              :string,   :limit => 20
       t.column "shipping_postcode_at_order", :string,   :limit => 10,                                 :default => "",  :null => false
       t.column "notes",                      :text
