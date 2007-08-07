@@ -12,4 +12,5 @@
         fault="event.token.faultHandler( event );">
     </mx:RemoteObject>         
     -->
+    <mx:HTTPService id="loginService" destination="loginService" showBusyCursor="true" result="event.token.resultHandler(event);" fault="event.token.faultHandler( event );" />
 </cairngorm:ServiceLocator>

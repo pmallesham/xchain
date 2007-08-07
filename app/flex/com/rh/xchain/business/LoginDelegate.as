@@ -16,19 +16,19 @@ package com.rh.xchain.business
                 
         public function LoginDelegate( responder : Responder )
         {
-            //this.service = ServiceLocator.getInstance().getService( "loginService" );
+            this.service = ServiceLocator.getInstance().getService( "loginService" );
             this.responder = responder;
         }
         
         public function login( loginVO : LoginVO ): void
         {
         	trace('logindelegate login called'); 
-            //var token : AsyncToken = service.login( loginVO );
-            //token.resultHandler = responder.onResult;
-            //token.faultHandler = responder.onFault;
+            var token : AsyncToken = service.login( loginVO );
+            token.resultHandler = responder.onResult;
+            token.faultHandler = responder.onFault;
             
             //for demo purpose: simulate remote service result
-            setTimeout( loginResult, 1000, loginVO );
+            //setTimeout( loginResult, 1000, loginVO );
         }
         
         private function loginResult( loginVO : LoginVO ): void

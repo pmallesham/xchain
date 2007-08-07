@@ -7,6 +7,10 @@ Application {
    color: #000000;   
    fontFamily: Arial;
    fontSize: 11;
+   paddingTop: 0; 
+   paddingLeft: 0; 
+   paddingRight: 0; 
+   paddingBottom: 0; 
 }
 DataGrid {
    backgroundAlpha: 1;

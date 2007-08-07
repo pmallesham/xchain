@@ -2,6 +2,7 @@
 package com.rh.xchain.model 
 {
 	import com.adobe.cairngorm.model.ModelLocator;
+	import mx.collections.XMLListCollection;
 
 	[Bindable]
 	public class ModelLocator implements com.adobe.cairngorm.model.ModelLocator
@@ -24,6 +25,8 @@ package com.rh.xchain.model
                 throw new Error( "Only one ModelLocator instance should be instantiated" ); 
    			}   
 		}
+        
+        public var countries:XMLListCollection = new XMLListCollection(); 
         
         public var login : Login = new Login();
         public var securityState : Number;

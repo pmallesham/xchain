@@ -78,21 +78,38 @@
 </mx:Script>
 <mx:HTTPService id="svcGetCustomers" url="http://localhost:3000/orders/new.xml;select_customer" resultFormat="e4x" useProxy="false" method="GET" result="onSvcGetCustomersResult()" />
 <mx:XMLListCollection id="xlcCustomers" source="{XMLList(svcGetCustomers.lastResult.children())}" />
-	<mx:VBox width="100%" height="100%">
-		<mx:HBox width="100%">
-			<mx:Label text="Filter by country:" /><mx:ComboBox id="cbxCustomersFilter" rowCount="15" dataProvider="{countryArray}" change="filterCustomersGrid()"  width="180"/>
-		</mx:HBox>
-		<mx:DataGrid id="customersList" dataProvider="{xlcCustomers}" width="100%" height="100%">
-			<mx:columns>
-				<mx:DataGridColumn headerText="Acc #" dataField="id" width="50" />
-				<mx:DataGridColumn headerText="Name" dataField="name" />
-			</mx:columns>
-		</mx:DataGrid>
-	</mx:VBox>
+	<mx:ViewStack id="custPopupStack" >
+		<mx:VBox width="100%" height="100%" id="customerList">
+			<mx:HBox width="100%">
+				<mx:Label text="Filter by country:" /><mx:ComboBox id="cbxCustomersFilter" rowCount="15" dataProvider="{countryArray}" change="filterCustomersGrid()"  width="180"/>
+			</mx:HBox>
+			<mx:DataGrid id="customersList" dataProvider="{xlcCustomers}" width="100%" height="100%">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Acc #" dataField="id" width="50" />
+					<mx:DataGridColumn headerText="Name" dataField="name" />
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:VBox>
+		<mx:VBox width="100%" height="100%" id="newCustomer">
+			<mx:Form width="100%">
+				<mx:FormHeading label="New Customer" />
+				<mx:FormItem label="Company Name">
+					<mx:TextInput id="tiCompanyName" />
+				</mx:FormItem>
+				<mx:FormItem label="Alternate Name">
+					<mx:TextInput id="tiAlternateName" />
+				</mx:FormItem>
+				<mx:FormItem label="Country" >
+					<mx:ComboBox id="cbxCountryList"/>
+				</mx:FormItem>
+			</mx:Form>
+		</mx:VBox>
+	</mx:ViewStack>
+
 
 
 	<mx:ControlBar>
-		<mx:Button label="New Customer" click="{svcGetCustomers.send()}" />
+		<mx:Button label="New Customer" click="{custPopupStack.selectedChild = newCustomer}" />
 		<mx:Spacer width="100%" />
 		<mx:Button label="OK" click="onOkClick()" />
 		<mx:Button label="Cancel"/>

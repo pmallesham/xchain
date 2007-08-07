@@ -1,0 +1,134 @@
+/* @override 
+	http://localhost:3000/stylesheets/xchain2.css?1186415654
+	http://localhost:3000/stylesheets/xchain2.css?1186415857
+*/
+
+html,body{
+	margin:0;
+	padding:0;
+	background-color:#ccc;
+}
+body{
+	font: 80% arial,sans-serif;
+	text-align:center
+}
+p{
+	margin:4px
+}
+a{
+	color: #981793;}
+div#topbar {
+	text-align:right;
+	color: #666;
+	padding: 5px;
+	font-size: 0.85em;
+	background-color:white;
+}
+div#topbar a{
+	color: #666;
+}
+div#header {
+	background: ;
+	min-height: 10px;
+	
+	background-color:white;
+}
+
+/*  TOP NAVIGATION BAR   */
+
+div#navbar {
+	font-weight: bold;
+	
+	background-color:white;
+	
+	
+}
+#navbar ul
+{
+padding-left: 0;
+margin-left: 0;
+background-color: white;
+float: left;
+width: 100%;
+border: 1px solid #ccc;
+}
+
+#navbar ul li { display: inline; }
+
+#navbar ul li a
+{
+padding: 0.2em 1em;
+background-color: ;
+text-decoration: none;
+float: left;
+color: black;
+border-right: 1px solid #ccc;
+}
+
+#navbar ul li a:hover
+{
+background-color: #ccc;
+color: #black;
+}
+
+
+
+
+div#container{
+	text-align:left;
+	
+	background-color:white;
+	padding:4px;
+	}
+div#content p{
+	line-height:1.4
+	}
+div#navigation{
+	width: 100%;
+	margin-top: 5px;
+	font-size: 0.9em;
+	min-height: 600px;
+}
+div#navBox {
+	background:#E8E595; 
+	border: 1px solid #D0A825;
+}
+
+div#extra{
+	background:#FF8539
+}
+div#footer{
+	border-top: 1px solid #666;
+	color: black;
+}
+div#footer p{
+	margin:0;
+	padding:5px 10px;
+	font-size: 0.9em;
+}
+div#footer a{
+	color: #666;
+}
+div#container{width:950px;margin:0 auto}
+div#content{float:left;width:750px}
+div#navigation{float:right;width:200px}
+div#extra{clear:both;width:100%}
+div .dataTable{
+	padding: 5px;
+}
+.data {
+	border-collapse:collapse;
+	font-size: 0.85em;
+	border: 1px solid #ccc;
+}
+.data th {
+	padding: 5px;
+	background-color: lightgrey;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	vertical-align:bottom;
+}
+.data td {
+	padding: 5px;
+	border-bottom: 1px solid #ccc;
+}

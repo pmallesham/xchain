@@ -2,6 +2,12 @@
 addressables_001: 
   is_default: "1"
   address_type: "0"
-  id: "2"
+  id: "1"
   customer_id: "1"
-  address_id: "2"
+  address_id: "1"
+addressables_002: 
+    is_default: "1"
+    address_type: "1"
+    id: "2"
+    customer_id: "1"
+    address_id: "1"

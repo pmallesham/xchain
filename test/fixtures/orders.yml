@@ -2,7 +2,6 @@
 orders_001: 
   airway_bill_number: 1Z2340
   payment_is_received: "1"
-  shipping_address_2: SA2
   payment_received_date: 2007-01-02 00:00:00
   weight: "4"
   invoice_text: ""
@@ -22,21 +21,19 @@ orders_001:
   order_status_id: "1"
   id: "1"
   shipping_city: SC
-  billing_address_1: BA1
+  billing_address: BA1
   customer_id: "1"
-  billing_address_2: BA2
   tax_type: ""
   shipping_phone: ""
   shipping_postcode_at_order: SPC
   previous_order_status_id: "2"
   shipping_method_id: "1"
   shipping_country_id: "1"
-  shipping_address_1: SA1
+  shipping_address: SA1
   created_at: 2007-01-01 00:00:00
 orders_002: 
   airway_bill_number: 
   payment_is_received: 
-  shipping_address_2: 
   payment_received_date: 
   weight: "0"
   invoice_text: ""
@@ -56,14 +53,13 @@ orders_002:
   order_status_id: 
   id: "2"
   shipping_city: 
-  billing_address_1: 
+  billing_address: 
   customer_id: 
-  billing_address_2: 
   tax_type: 
   shipping_phone: 
   shipping_postcode_at_order: ""
   previous_order_status_id: 
   shipping_method_id: 
   shipping_country_id: "0"
-  shipping_address_1: 
+  shipping_address: 
   created_at: 
