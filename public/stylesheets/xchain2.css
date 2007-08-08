@@ -132,3 +132,106 @@ div .dataTable{
 	padding: 5px;
 	border-bottom: 1px solid #ccc;
 }
+
+.actionBox {
+	margin: 5px;
+	width: 48%;
+	font-size: 0.9em;
+	display:block;
+	float:right;
+	min-height:200px;
+}
+.abHeader {
+	display:block;
+	font-size:1.1em;
+	font-weight:bold;
+	padding:5px;
+}
+.actionBox hr {
+	height:1px;
+	border:0pt none;
+}
+
+.actionBox td a {
+	font-weight:bold;
+	color: black;
+}
+.actionBox table {
+	padding: 5px;
+	width: 100%;
+}
+
+
+.dashbox {
+	margin: 5px;
+	width: 48%;
+	font-size: 0.85em;
+	display:block;
+	float:right;
+	min-height:200px;
+}
+.dbHeader {
+	display:block;
+	font-size:1.1em;
+	font-weight:bold;
+	padding:5px;
+}
+.dashbox hr {
+	height:1px;
+	border:0pt none;
+}
+
+.dashbox td a {
+	font-weight:bold;
+	color: black;
+}
+.dashbox table {
+	padding: 5px;
+	width: 100%;
+}
+
+/* Colour selectors */
+
+.lightOrangeBorder {
+	border: 1px solid #D0A825;
+}
+.lightOrangeBack {
+	background-color: #DFC66F;
+}
+.lightOrangeBackBrder {
+	background-color: #DFC66F;
+	border: 1px solid #D0A825;
+}
+
+.lightYellowBorder {
+	border: 1px solid #BFBA3B;
+}
+.lightYellowBack {
+	background-color: #E8E595;
+}
+.lightYellowBackBorder {
+	border-bottom: 1px solid #BFBA3B;
+	background-color: #E8E595;			
+}
+
+.cyanBorder {
+	border: 1px solid #299EDF;
+}
+.cyanBack {
+	background-color: #A4D4EF;
+}
+.cyanBackBorder {
+	border-bottom: 1px solid #299EDF;
+	background-color: #A4D4EF;			
+}
+
+.greenBorder {
+	border: 1px solid #23BF2A;
+}
+.greenBack {
+	background-color: #95E899;
+}
+.greenBackBorder {
+	border-bottom: 1px solid #23BF2A;
+	background-color:#95E899;			
+}

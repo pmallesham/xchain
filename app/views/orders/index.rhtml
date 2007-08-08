@@ -8,7 +8,7 @@
 			</tr>
 			<% for order in @orders %>
 			<tr>
-				<td><%= order.id %></td><td><%= order.created_at %></td><td><%= order.customer.name %></td><td>Netherlands</td><td><%= order.total_amount_payable %></td>
+				<td><%= link_to order.id, :action => 'show', :id => order %></td><td><%= order.created_at %></td><td><%= order.customer.name %></td><td>Netherlands</td><td><%= order.total_amount_payable %></td>
 			</tr>
 			<% end %>
 			<!--
@@ -35,14 +35,11 @@
 	</div>
 </div>
 <div id="navigation">
-	<div style="width:98%;border:1px solid #D0A825;background-color:#E8E595">
-		<p><strong>Actions</strong></p>
+	<div class="actionBox lightYellowBorder" style="width:200px">
+		<span class="abHeader lightYellowBack"><strong>Actions</strong></span>
 		<p><A href="/orders/new;select_customer"><img src="/images/magic-wand.png" border="0" />New order</a></p>
 		<p><img src="/images/view.png" />Search Orders</p>
 	</div>
 	
-	<div style="width:98%;margin-top:9px;border:1px solid #D0A825;background-color:#E8CA95">
-		<p><strong>Search Orders</strong></p>
-		<p>lorem ipsum decorum</p>
-	</div>
+
 </div>

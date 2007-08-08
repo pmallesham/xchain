@@ -1,0 +1,24 @@
+<div id="wrapper">
+	<div id="content" style="min-height:600px">	
+		<p><strong>Orders > View Order</strong></p>
+		<div class="dataTable" style="min-height:500px;">
+		<table width="720" class="data" style="font-size:0.9em">
+			<tr>
+				<th colspan="2">Order Details</th>
+			</tr>
+			<tr>
+				<td valign="top"><%= render :partial => 'order' %></td>
+			</tr>
+		</table>
+		</div>
+	</div>
+</div>
+<div id="navigation">
+	<div class="actionBox lightYellowBorder" style="width:200px">
+		<span class="abHeader lightYellowBack"><strong>Actions</strong></span>
+		<p><A href="/orders/new;select_customer"><img src="/images/magic-wand.png" border="0" />New order</a></p>
+		<p><img src="/images/view.png" />Search Orders</p>
+	</div>
+	
+
+</div>
