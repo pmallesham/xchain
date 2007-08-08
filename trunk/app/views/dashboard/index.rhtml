@@ -1,57 +1,40 @@
 <div id="wrapper">
-	<style lang="text/css">
-		.dashbox {
-			border: 1px solid #D0A825;
-			margin: 5px;
-			width: 400px;
-		}
-		.dbHeader {
-			display:block;
-			background-color: #E8E595;
-			border-bottom: 1px solid #D0A825;
-			font-size:1.1em;
-			font-weight:bold;
-			padding:5px;
-		}
-		.dashbox hr {
-			background-color:#D0A825;
-			height:1px;
-			border:0pt none;
-		}
-		
-		.dashbox {
-			border: 1px solid #D0A825;
-			margin: 5px;
-			width: 400px;
-		}
-		.dbHeader {
-			display:block;
-			background-color: #E8E595;
-			border-bottom: 1px solid #D0A825;
-			font-size:1.1em;
-			font-weight:bold;
-			padding:5px;
-		}
-		.dashbox hr {
-			background-color:#D0A825;
-			height:1px;
-			border:0pt none;
-		}
-	</style>
 	<div id="content" style="width:950px">	
-		<div class="dashbox">
-			<span class="dbHeader">Sales Forecast</span>
+		<div class="dashbox greenBorder">
+			<span class="dbHeader greenBackBorder">Customer Communications</span>
+			<p>The following are the latest customer communication</p>
+			<hr class="greenBack">
+			<p><span style="font-size:1.5em">14.5</span> days from Manufacturing to Shipping</p>
+			<p><span style="font-size:1.5em">0</span> Orders</p>
+			<p><span style="font-size:1.5em">2</span> Orders from A Clients</p>
+		</div>
+		<div class="dashbox cyanBorder">
+			<span class="dbHeader cyanBackBorder">Metrics</span>
+			<p>The following are key metrics for the system</p>
+			<hr class="cyanBack">
+			<p><span style="font-size:1.5em">14.5</span> days from Manufacturing to Shipping</p>
+			<p><span style="font-size:1.5em">0</span> Orders</p>
+			<p><span style="font-size:1.5em">2</span> Orders from A Clients</p>
+		</div>
+		<div class="dashbox lightYellowBorder">
+			<span class="dbHeader lightYellowBackBorder">Sales Forecast</span>
 			<p>Lorem ipsum decorum Lorem ipsum decorum Lorem ipsum decorum Lorem ipsum decorum Lorem ipsum decorum </p>
-			<hr>
-			<p><span style="font-size:1.5em">$14'5000</span> of Draft</p>
+			<hr class="lightYellowBack">
+			<p><span style="font-size:1.5em">$14'5000</span></p>
 			<p><span style="font-size:1.5em">23</span> Orders</p>
 			<p><span style="font-size:1.5em">2</span> Orders from A Clients</p>
 		</div>
-		<div class="dashbox">
-			<span class="dbHeader">Order Activity</span>
+		<div class="dashbox lightOrangeBorder">
+			<span class="dbHeader lightOrangeBackBrder">Order Activity</span>
 			<p>Orders with activity in the last 5 days </p>
-			<hr>
+			<hr class="lightOrangeBack">
 			<table>
+				<tr>
+					<td><a href="#">1145</a></td>
+					<td>CST Machinery</td>
+					<td>NZD $1145.00</td>
+					<td style="color:darkgreen">Approved</td>
+				</tr>
 				<tr>
 					<td><a href="#">1145</a></td>
 					<td>CST Machinery</td>
