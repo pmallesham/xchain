@@ -2,12 +2,12 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 
 describe Order, "when creating a new order" do 
-  fixtures :orders, :order_lines, :customers, :addresses, :addressables, :products
+  fixtures :orders, :order_lines, :customers, :addresses, :addressables, :products, :price_types, :pricing
   
   it "should be able to instantiate" do 
     @order = Order.new
   end
-
+  
   it "should default to draft status" do 
     @order = Order.new
     @order.order_status_id.should == 10
@@ -52,13 +52,48 @@ describe Order, "when creating a new order" do
     @order = Order.new
     @order.prefill_address(Customer.find(1))
     @order.order_lines.create(:qty_ordered => 1, :product => Product.find(1))
-    @order.order_lines.size.should eql(1)
+    @order.calculate.should eql(1.23)
+    @order.total_amount_payable.should eql(1.23)
+  end
+
+end
+
+context Order, "with a single, invalid order line added " do 
+  fixtures :orders, :order_lines, :customers, :addresses, :addressables, :products, :price_types, :pricing
+  before(:each) do 
+     @order = Order.new
+     @order.prefill_address(Customer.find(1))
+     @order.order_lines.create(:qty_ordered => 1, :product => Product.find(1))
+     @order.purchase_order_number = "PO-001"
+  end
+  
+  it "should calculate to a correct amount" do 
     @order.calculate.should eql(1.23)
     @order.total_amount_payable.should eql(1.23)
   end
   
+  it "should not be able to be saved as it has incorrect quantity" do 
+    @order.save.should == false
+    @order.should have(1).errors_on(:order_lines)
+  end
+  
+  it "should after changing the quantity be able to be saved " do 
+    @order.order_lines.first.qty_ordered = 12
+    @order.save.should == true
+    @order.id.should > 0
+    @order.total_amount_payable.to_s.should == 14.76.to_s  #if these are left as floats it fails, there must be some weird equality wonkiness
+    # puts 'debugging float amount'
+    #   puts @order.total_amount_payable.class
+    #   puts @order.total_amount_payable.public_methods.join ', '
+    #   puts 14.76.class
+    #   @order.total_amount_payable.should eql(14.76)
+    #   
+    
+  end
+  
   
 end
+
 
 describe Order, "when finding existing order" do
   fixtures :orders, :order_lines, :customers

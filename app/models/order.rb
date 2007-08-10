@@ -12,7 +12,6 @@ class Order < ActiveRecord::Base
   before_save   :auto_calculate
  
   validates_presence_of :purchase_order_number
-  validates_associated :order_lines
   
   def initialize
     super
@@ -64,12 +63,11 @@ class Order < ActiveRecord::Base
       for ol in self.order_lines  
         @order_lines_amount += ol.get_price(self.customer.price_type)
       end
-      self.sub_total = @order_lines_amount
-      self.shipping_amount = tmp_shipment_amount
-      self.shipping_weight = self.shipping_weight
-      self.total_amount_payable = @order_lines_amount
-      
-    end
+     self.sub_total = @order_lines_amount
+     self.shipping_amount = tmp_shipment_amount
+     self.shipping_weight = self.shipping_weight
+     self.total_amount_payable = @order_lines_amount
+     end
   end
   
   def sub_total
