@@ -1,0 +1,11 @@
+--- 
+addresses_001: 
+  city: Acmetowan
+  contact_person: Bob
+  country_id: "1"
+  postcode: "1001"
+  id: "1"
+  fax: 400 600 9001
+  phone: 400 600 9003
+  address: 103 Dynamite
+  state: "ON"
