@@ -10,11 +10,15 @@ class Order < ActiveRecord::Base
   belongs_to :previous_status, :class_name => 'OrderStatus', :foreign_key => 'previous_order_status_id'
 
   before_save   :auto_calculate
-  before_create :set_draft_status
-  
+ 
   validates_presence_of :purchase_order_number
   validates_associated :order_lines
-
+  
+  def initialize
+    super
+    self.order_status_id = 10 
+  end
+  
   def validate
     if self.order_lines.size == 0 
       errors.add_to_base 'You must have at least one line item'
@@ -23,13 +27,16 @@ class Order < ActiveRecord::Base
   
   def prefill_address(customer)
     self.customer_id = customer.id
-    
     billing_address       = customer.addresses.default_billing
+    shipping_address       = customer.addresses.default_shipping
+    
     self.billing_address  = billing_address.address
     self.billing_city     = billing_address.city
     self.billing_postcode = billing_address.postcode
-    
-    
+    self.shipping_address  = shipping_address.address
+    self.shipping_city     = shipping_address.city
+    self.shipping_postcode = shipping_address.postcode
+  
   end
   
   def auto_calculate
@@ -51,13 +58,14 @@ class Order < ActiveRecord::Base
    # rescue
    #   return false
     #end
+    tmp_shipment_amount = 0
     self.transaction do 
       @order_lines_amount = 0.00
       for ol in self.order_lines  
         @order_lines_amount += ol.get_price(self.customer.price_type)
       end
       self.sub_total = @order_lines_amount
-      self.shipping_total = tmp_shipment_amount
+      self.shipping_amount = tmp_shipment_amount
       self.shipping_weight = self.shipping_weight
       self.total_amount_payable = @order_lines_amount
       

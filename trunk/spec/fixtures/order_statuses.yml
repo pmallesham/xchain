@@ -1,0 +1,171 @@
+--- 
+order_statuses_016: 
+  notify_office: "0"
+  name: Archived
+  notify_customer: "0"
+  sort_order: "20"
+  notify_shipping: "0"
+  flow_next: 
+  id: "100"
+  notification_message: 
+  notify_manufacturing: "0"
+order_statuses_005: 
+  notify_office: "1"
+  name: Submitted - Pending Payment
+  notify_customer: "0"
+  sort_order: "2"
+  notify_shipping: "0"
+  flow_next: 
+  id: "20"
+  notification_message: 
+  notify_manufacturing: "0"
+order_statuses_017: 
+  notify_office: "0"
+  name: Cancelled
+  notify_customer: "0"
+  sort_order: "30"
+  notify_shipping: "0"
+  flow_next: 
+  id: "110"
+  notification_message: 
+  notify_manufacturing: "0"
+order_statuses_006: 
+  notify_office: "0"
+  name: Submitted - Payment Sent
+  notify_customer: "0"
+  sort_order: "3"
+  notify_shipping: "0"
+  flow_next: 
+  id: "22"
+  notification_message: 
+  notify_manufacturing: "0"
+order_statuses_007: 
+  notify_office: "1"
+  name: Submitted - Payment Received
+  notify_customer: "0"
+  sort_order: "4"
+  notify_shipping: "0"
+  flow_next: 
+  id: "24"
+  notification_message: 
+  notify_manufacturing: "0"
+order_statuses_008: 
+  notify_office: "0"
+  name: Approved
+  notify_customer: "0"
+  sort_order: "5"
+  notify_shipping: "0"
+  flow_next: 
+  id: "30"
+  notification_message: 
+  notify_manufacturing: "0"
+order_statuses_009: 
+  notify_office: "0"
+  name: Sent to Warehouse
+  notify_customer: "0"
+  sort_order: "6"
+  notify_shipping: "0"
+  flow_next: "41,42"
+  id: "40"
+  notification_message: 
+  notify_manufacturing: "1"
+order_statuses_010: 
+  notify_office: "1"
+  name: Waiting For Parts
+  notify_customer: "0"
+  sort_order: "7"
+  notify_shipping: "0"
+  flow_next: 
+  id: "41"
+  notification_message: 
+  notify_manufacturing: "0"
+order_statuses_011: 
+  notify_office: "1"
+  name: In Assembly
+  notify_customer: "0"
+  sort_order: "9"
+  notify_shipping: "0"
+  flow_next: 
+  id: "42"
+  notification_message: 
+  notify_manufacturing: "0"
+order_statuses_012: 
+  notify_office: "0"
+  name: Ready for Shipping
+  notify_customer: "0"
+  sort_order: "11"
+  notify_shipping: "1"
+  flow_next: 
+  id: "44"
+  notification_message: 
+  notify_manufacturing: "0"
+order_statuses_001: 
+  notify_office: "0"
+  name: Draft
+  notify_customer: "0"
+  sort_order: "1"
+  notify_shipping: "0"
+  flow_next: 
+  id: "10"
+  notification_message: 
+  notify_manufacturing: "0"
+order_statuses_013: 
+  notify_office: "1"
+  name: Shipped
+  notify_customer: "1"
+  sort_order: "13"
+  notify_shipping: "0"
+  flow_next: 
+  id: "50"
+  notification_message: 
+  notify_manufacturing: "1"
+order_statuses_002: 
+  notify_office: "1"
+  name: Order Pending Review
+  notify_customer: "0"
+  sort_order: "1"
+  notify_shipping: "0"
+  flow_next: 
+  id: "12"
+  notification_message: 
+  notify_manufacturing: "0"
+order_statuses_014: 
+  notify_office: "1"
+  name: Received
+  notify_customer: "0"
+  sort_order: "15"
+  notify_shipping: "0"
+  flow_next: 
+  id: "52"
+  notification_message: 
+  notify_manufacturing: "0"
+order_statuses_003: 
+  notify_office: "0"
+  name: Order Reviewed - send Payment
+  notify_customer: "0"
+  sort_order: "1"
+  notify_shipping: "0"
+  flow_next: 
+  id: "14"
+  notification_message: 
+  notify_manufacturing: "0"
+order_statuses_015: 
+  notify_office: "0"
+  name: Received waiting payment
+  notify_customer: "0"
+  sort_order: "16"
+  notify_shipping: "0"
+  flow_next: 
+  id: "54"
+  notification_message: 
+  notify_manufacturing: "0"
+order_statuses_004: 
+  notify_office: "0"
+  name: Order Placed - Pending Payment Selection
+  notify_customer: "0"
+  sort_order: "1"
+  notify_shipping: "0"
+  flow_next: 
+  id: "19"
+  notification_message: 
+  notify_manufacturing: "0"

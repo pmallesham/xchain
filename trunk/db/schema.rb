@@ -131,39 +131,41 @@ ActiveRecord::Schema.define(:version => 1) do
   end
 
   create_table "orders", :force => true do |t|
-    t.column "purchase_order_number",      :string,   :limit => 100
-    t.column "order_status_id",            :integer
-    t.column "created_by_id",              :integer
-    t.column "created_at",                 :datetime
-    t.column "customer_id",                :integer
-    t.column "price_type_id",              :integer,                                                :default => 1,   :null => false
-    t.column "billing_address",            :text
-    t.column "billing_city",               :string
-    t.column "billing_postcode",           :string
-    t.column "shipping_address",           :text
-    t.column "shipping_city",              :string,   :limit => 20
-    t.column "shipping_postcode_at_order", :string,   :limit => 10,                                 :default => "",  :null => false
-    t.column "notes",                      :text
-    t.column "payment_method_id",          :integer
-    t.column "payment_is_received",        :integer
-    t.column "payment_received_date",      :datetime
-    t.column "total_amount_payable",       :decimal,                 :precision => 11, :scale => 2
-    t.column "total_amount_pay_online",    :decimal,                 :precision => 11, :scale => 2, :default => 0.0, :null => false
-    t.column "shipping_amount",            :decimal,                 :precision => 11, :scale => 2
-    t.column "shipping_method_id",         :integer
-    t.column "airway_bill_number",         :string,   :limit => 150
-    t.column "tracking_response",          :string,   :limit => 150
-    t.column "last_tracking_update_time",  :datetime
-    t.column "shipping_contact",           :string,   :limit => 50
-    t.column "shipping_phone",             :string,   :limit => 50
-    t.column "tax_type",                   :string,   :limit => 20
-    t.column "tax_amount",                 :decimal,                 :precision => 11, :scale => 2
-    t.column "invoice_text",               :text,                                                   :default => "",  :null => false
-    t.column "invoice_pdf",                :binary,                                                 :default => "",  :null => false
-    t.column "weight",                     :float,                                                  :default => 0.0, :null => false
-    t.column "shipping_country_id",        :integer,  :limit => 3,                                  :default => 0,   :null => false
-    t.column "billing_address_2",          :string
-    t.column "previous_order_status_id",   :integer
+    t.column "purchase_order_number",     :string,   :limit => 100
+    t.column "order_status_id",           :integer
+    t.column "created_by_id",             :integer
+    t.column "created_at",                :datetime
+    t.column "customer_id",               :integer
+    t.column "price_type_id",             :integer,                                                :default => 1,   :null => false
+    t.column "billing_address",           :text
+    t.column "billing_city",              :string
+    t.column "billing_postcode",          :string
+    t.column "shipping_address",          :text
+    t.column "shipping_city",             :string,   :limit => 20
+    t.column "shipping_postcode",         :string,   :limit => 10,                                 :default => "",  :null => false
+    t.column "notes",                     :text
+    t.column "payment_method_id",         :integer
+    t.column "payment_is_received",       :integer
+    t.column "payment_received_date",     :datetime
+    t.column "total_amount_payable",      :decimal,                 :precision => 11, :scale => 2
+    t.column "total_amount_pay_online",   :decimal,                 :precision => 11, :scale => 2, :default => 0.0, :null => false
+    t.column "shipping_amount",           :decimal,                 :precision => 11, :scale => 2
+    t.column "shipping_weight",           :decimal,                 :precision => 11, :scale => 2
+    t.column "shipping_method_id",        :integer
+    t.column "airway_bill_number",        :string,   :limit => 150
+    t.column "tracking_response",         :string,   :limit => 150
+    t.column "last_tracking_update_time", :datetime
+    t.column "shipping_contact",          :string,   :limit => 50
+    t.column "shipping_phone",            :string,   :limit => 50
+    t.column "tax_type",                  :string,   :limit => 20
+    t.column "tax_amount",                :decimal,                 :precision => 11, :scale => 2
+    t.column "sub_total",                 :decimal,                 :precision => 11, :scale => 2
+    t.column "invoice_text",              :text,                                                   :default => "",  :null => false
+    t.column "invoice_pdf",               :binary,                                                 :default => "",  :null => false
+    t.column "weight",                    :float,                                                  :default => 0.0, :null => false
+    t.column "shipping_country_id",       :integer,  :limit => 3,                                  :default => 0,   :null => false
+    t.column "billing_address_2",         :string
+    t.column "previous_order_status_id",  :integer
   end
 
   add_index "orders", ["id"], :name => "order_id", :unique => true

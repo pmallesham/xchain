@@ -1,0 +1,13 @@
+--- 
+customer_statuses_001: 
+  name: Active
+  sort_order: "1"
+  id: "1"
+customer_statuses_002: 
+  name: Prospect
+  sort_order: "2"
+  id: "2"
+customer_statuses_003: 
+  name: Deleted
+  sort_order: "4"
+  id: "3"

@@ -1,0 +1,31 @@
+--- 
+products_001: 
+  commission: "0"
+  qty_per_box: "100"
+  visible: "1"
+  shipping_weight_per_box: "1"
+  order_min_quantity: "100"
+  title: Widget 001
+  code: WID-001
+  id: "1"
+  sell_price: "1.00"
+products_002: 
+  commission: "0"
+  qty_per_box: "100"
+  visible: "1"
+  shipping_weight_per_box: "1"
+  order_min_quantity: "100"
+  title: Widget 002
+  code: WID-002
+  id: "2"
+  sell_price: "1.00"
+products_003: 
+  commission: "0"
+  qty_per_box: "100"
+  visible: "1"
+  shipping_weight_per_box: "1"
+  order_min_quantity: "50"
+  title: Widget 003
+  code: WID-003
+  id: "3"
+  sell_price: "1.50"
