@@ -145,7 +145,7 @@ class LoadDatabase < ActiveRecord::Migration
       t.column "payment_method_id",          :integer
       t.column "payment_is_received",        :integer
       t.column "payment_received_date",      :datetime
-      t.column "total_amount_payable",       :decimal,                 :precision => 11, :scale => 2
+      t.column "total_amount_payable",       :float;
       t.column "total_amount_pay_online",    :decimal,                 :precision => 11, :scale => 2, :default => 0.0, :null => false
       t.column "shipping_amount",            :decimal,                 :precision => 11, :scale => 2
       t.column "shipping_weight",            :decimal,                 :precision => 11, :scale => 2
