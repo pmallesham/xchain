@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 
 describe Order, "when creating a new order" do 
-  fixtures :orders, :order_lines, :customers, :addresses, :addressables
+  fixtures :orders, :order_lines, :customers, :addresses, :addressables, :products
   
   it "should be able to instantiate" do 
     @order = Order.new
@@ -34,7 +34,8 @@ describe Order, "when creating a new order" do
     @order = Order.new
     @order.prefill_address(Customer.find(1))
     @order.calculate
-    @order.total_amount_payable.should eql(0)
+    #@order.tax_amount.should eql(0)  @todo
+    @order.total_amount_payable.should eql(0.0)
   end
   
   it "should throw an error that it doesn't have line items" do 
@@ -43,10 +44,24 @@ describe Order, "when creating a new order" do
     @order.should have(1).errors_on(:base)
   end
   
+  it "should be able to be edited" do 
+    
+  end
+  
+  it "should be able to have an order line added" do 
+    @order = Order.new
+    @order.prefill_address(Customer.find(1))
+    @order.order_lines.create(:qty_ordered => 1, :product => Product.find(1))
+    @order.order_lines.size.should eql(1)
+    @order.calculate.should eql(1.23)
+    @order.total_amount_payable.should eql(1.23)
+  end
+  
+  
 end
 
 describe Order, "when finding existing order" do
-  fixtures :orders, :order_lines
+  fixtures :orders, :order_lines, :customers
   before(:each) do
     @order = Order.find(1)
   end
@@ -68,6 +83,11 @@ describe Order, "when finding existing order" do
     @order.billing_city.should == 'Acmeville'
     @order.billing_postcode.should == 'AM1001'
   end
+  
+  it "should have a customer" do 
+    @order.customer.name.should == 'Acme Corp'
+  end
+  
   
 end
 
