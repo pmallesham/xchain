@@ -27,7 +27,10 @@ describe Order, "when creating a new order" do
   end
   
   it "should have a default price type matching customer price type" do 
-    
+    @customer = Customer.find(1)
+    @order = Order.new
+    @order.should respond_to(:prefill_address)
+    @order.prefill_address(Customer.find(1))
   end
   
   it "should calculate return 0 dollars" do 
@@ -44,9 +47,6 @@ describe Order, "when creating a new order" do
     @order.should have(1).errors_on(:base)
   end
   
-  it "should be able to be edited" do 
-    
-  end
   
   it "should be able to have an order line added" do 
     @order = Order.new
@@ -56,7 +56,64 @@ describe Order, "when creating a new order" do
     @order.total_amount_payable.should eql(1.23)
   end
 
+  it "should when valid and saved, have one order status history item" do 
+    @order = Order.new
+    @order.prefill_address(Customer.find(1))
+    @order.purchase_order_number = 'PO-001'
+    @order.order_lines.create(:qty_ordered => 20, :product => Product.find(:first))
+    @order.save.should == true
+    @order.order_status_histories.count.should == 1
+  end
+  
+  
 end
+
+context Order, "new draft order" do 
+  fixtures :orders, :order_lines, :order_statuses, :customers, :addresses, :addressables, :products, :price_types, :pricing, :users
+  before(:each) do 
+    @order = Order.new :customer => Customer.find(1), :created_by => User.find(1)
+    @order.purchase_order_number = 'NDO-001'
+    @order.order_lines.create(:qty_ordered => 20, :product => Product.find(:first))
+    @order.save.should == true
+  end
+  
+  
+  it "should be able to be changed to a new status" do 
+    @order.set_status(OrderStatus.find(12), 'Ready to order')
+    @order.order_status_histories.count.should == 2
+    @order.order_status_id.should == 12
+  end
+  
+  it "should be able to have it's address changed" do 
+    address = '10023 Acmetown Rd'
+    city = "Acmeville 2"
+    postcode = 'AM10023'
+    @order.billing_address = address
+    @order.billing_city = city
+    @order.billing_postcode = postcode
+    @order.save
+    check_id = @order.id
+
+    @order = Order.find(check_id)
+    @order.billing_address.should == address
+    @order.billing_city.should == city
+    @order.billing_postcode.should == postcode
+  end
+  
+  it "should have an associated user who created it" do 
+    @order.created_by.should == User.find(1)
+  end
+  
+  it "should belong to the correct customer" do 
+    @order.customer.should == Customer.find(1)
+  end
+  
+  it "should be in the order collection list" do 
+    check_id = @order.id
+    Order.find(:all).include?(Order.find(check_id)).should == true
+  end
+end
+
 
 context Order, "with a single, invalid order line added " do 
   fixtures :orders, :order_lines, :customers, :addresses, :addressables, :products, :price_types, :pricing
@@ -88,11 +145,11 @@ context Order, "with a single, invalid order line added " do
     #   puts 14.76.class
     #   @order.total_amount_payable.should eql(14.76)
     #   
-    
   end
-  
-  
 end
+
+
+
 
 
 describe Order, "when finding existing order" do
