@@ -5,17 +5,19 @@ class Order < ActiveRecord::Base
   belongs_to :order_status
   belongs_to :customer
   belongs_to :price_type
+  belongs_to :created_by, :class_name => 'User', :foreign_key => 'created_by_user_id'
   
   belongs_to :current_status, :class_name => 'OrderStatus', :foreign_key => 'order_status_id'
   belongs_to :previous_status, :class_name => 'OrderStatus', :foreign_key => 'previous_order_status_id'
 
   before_save   :auto_calculate
- 
+  
   validates_presence_of :purchase_order_number
   
-  def initialize
+  def initialize(args = {})
     super
     self.order_status_id = 10 
+    self.order_status_histories.create(:order_status_id => 10, :comment => 'Created new order')
   end
   
   def validate
@@ -65,9 +67,10 @@ class Order < ActiveRecord::Base
       end
      self.sub_total = @order_lines_amount
      self.shipping_amount = tmp_shipment_amount
-     self.shipping_weight = self.shipping_weight
+     self.shipping_weight = self.shipping_weight + 1
      self.total_amount_payable = @order_lines_amount
      end
+
   end
   
   def sub_total
