@@ -19,5 +19,14 @@ namespace :db do
         end
       end
     end
+
   end
+  task :recreate => :environment do
+    ActiveRecord::Base.establish_connection(:development)
+    ActiveRecord::Base.connection.execute "DROP DATABASE xchain"
+    ActiveRecord::Base.connection.execute "CREATE DATABASE xchain"
+    ActiveRecord::Base.connection.execute "USE xchain"
+  end
+  task :refresh => ['db:recreate', 'db:migrate', 'db:fixtures:load']
+
 end
