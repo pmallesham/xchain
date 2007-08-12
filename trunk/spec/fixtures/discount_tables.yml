@@ -1,0 +1,16 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+  qty: 10
+  discount_applied: 1.5
+  discount_id: 1
+two:
+  id: 2
+  qty: 50
+  discount_applied: 1.0
+  discount_id: 1
+three: 
+  id: 3
+  qty: 100
+  discount_applied: 0.25
+  discount_id: 1

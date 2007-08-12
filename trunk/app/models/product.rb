@@ -2,6 +2,7 @@ class Product < ActiveRecord::Base
   has_many :pricings
   has_many :price_types, :through => :pricings
   belongs_to :order_line
+  belongs_to :discount
   
   #used to return the price of the product, pass in PriceType, get out price value
   #called in OrderLine calculation
