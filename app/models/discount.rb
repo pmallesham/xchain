@@ -1,5 +1,4 @@
 class Discount < ActiveRecord::Base
-  has_many :products
   has_many :pricing
   has_many :discount_tables, :order => "qty ASC"
   
