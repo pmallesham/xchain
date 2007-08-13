@@ -12,5 +12,5 @@ two:
 three: 
   id: 3
   qty: 100
-  discount_applied: 0.25
+  discount_applied: 0.75
   discount_id: 1

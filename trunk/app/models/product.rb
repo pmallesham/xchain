@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
   
   #used to return the price of the product, pass in PriceType, get out price value
   #called in OrderLine calculation
-  def get_price(price_type)
-    pricings.find(:first, :conditions => ['price_type_id = ?', price_type.id] ).price
+  def get_pricing(price_type)
+    pricings.find(:first, :conditions => ['price_type_id = ?', price_type.id] )
   end
 end

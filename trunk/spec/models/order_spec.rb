@@ -2,8 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 
 describe Order, "when creating a new order" do 
-  fixtures :orders, :order_lines, :customers, :addresses, :addressables, :products, :price_types, :pricing
-  
+ 
   it "should be able to instantiate" do 
     @order = Order.new
   end
@@ -52,8 +51,8 @@ describe Order, "when creating a new order" do
     @order = Order.new
     @order.prefill_address(Customer.find(1))
     @order.order_lines.create(:qty_ordered => 1, :product => Product.find(1))
-    @order.calculate.should eql(1.23)
-    @order.total_amount_payable.should eql(1.23)
+    @order.calculate.should eql(1.845)
+    @order.total_amount_payable.should eql(1.845)
   end
 
   it "should when valid and saved, have one order status history item" do 
@@ -69,7 +68,6 @@ describe Order, "when creating a new order" do
 end
 
 context Order, "new draft order" do 
-  fixtures :orders, :order_lines, :order_statuses, :customers, :addresses, :addressables, :products, :price_types, :pricing, :users
   before(:each) do 
     @order = Order.new :customer => Customer.find(1), :created_by => User.find(1)
     @order.purchase_order_number = 'NDO-001'
@@ -116,7 +114,6 @@ end
 
 
 context Order, "with a single, invalid order line added " do 
-  fixtures :orders, :order_lines, :customers, :addresses, :addressables, :products, :price_types, :pricing
   before(:each) do 
      @order = Order.new
      @order.prefill_address(Customer.find(1))
@@ -125,8 +122,8 @@ context Order, "with a single, invalid order line added " do
   end
   
   it "should calculate to a correct amount" do 
-    @order.calculate.should eql(1.23)
-    @order.total_amount_payable.should eql(1.23)
+    @order.calculate.should eql(1.845)
+    @order.total_amount_payable.should eql(1.845)
   end
   
   it "should not be able to be saved as it has incorrect quantity" do 
@@ -153,7 +150,6 @@ end
 
 
 describe Order, "when finding existing order" do
-  fixtures :orders, :order_lines, :customers
   before(:each) do
     @order = Order.find(1)
   end

@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 1) do
+ActiveRecord::Schema.define(:version => 3) do
 
   create_table "addressables", :force => true do |t|
     t.column "address_id",   :integer
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(:version => 1) do
   end
 
   add_index "customers", ["id"], :name => "customer_id", :unique => true
+
+  create_table "discount_tables", :force => true do |t|
+    t.column "qty",              :integer
+    t.column "discount_applied", :float
+    t.column "discount_id",      :integer
+  end
+
+  create_table "discounts", :force => true do |t|
+    t.column "rule_name", :string
+  end
 
   create_table "failed_ups_requests", :id => false, :force => true do |t|
     t.column "failure_id",   :integer,                                                :null => false
@@ -194,6 +204,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.column "product_id",    :integer, :limit => 10,                               :default => 0, :null => false
     t.column "price_type_id", :integer, :limit => 10,                               :default => 0, :null => false
     t.column "price",         :decimal,               :precision => 5, :scale => 2
+    t.column "discount_id",   :integer
   end
 
   create_table "products", :force => true do |t|

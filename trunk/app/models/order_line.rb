@@ -10,7 +10,20 @@ class OrderLine < ActiveRecord::Base
     end
   end 
   
+  # We need to determine the pricing model for the order (taken from price type)
+  # then look up the unit price for the product according to the price type
+  # finally get the discount for the volume at that price type. 
   def get_price(price_type)
-    self.price_as_ordered = self.product.get_price(price_type) * self.qty_ordered
+    @pricing = product.get_pricing(price_type)
+    price_as_ordered = ( get_unit_price * qty_ordered ) * get_discount
+  end
+  
+  protected
+  def get_unit_price
+    @pricing.get_unit_price()
+  end
+  
+  def get_discount
+    @pricing.discount.get_discount(self.qty_ordered)
   end
 end

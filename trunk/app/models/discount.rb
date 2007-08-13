@@ -7,6 +7,7 @@ class Discount < ActiveRecord::Base
     discount_tables.each do |dt|
       return dt.discount_applied if qty <= dt.qty 
     end
+    return discount_tables.last.discount_applied
   end
 end
 
