@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe OrderStatus do
-  fixtures :orders, :order_statuses
-    
+  
   before(:each) do
     @order_status = OrderStatus.new
   end
