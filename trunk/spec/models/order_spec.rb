@@ -61,8 +61,38 @@ describe Order, "when creating a new order" do
     @order.purchase_order_number = 'PO-001'
     @order.order_lines.create(:qty_ordered => 20, :product => Product.find(:first))
     @order.save.should == true
+    puts 
     @order.order_status_histories.count.should == 1
   end
+  
+  it "should when changing to a large quantity, change discount %age" do
+    @order = Order.new
+    @order.prefill_address(Customer.find(1))
+    @order.purchase_order_number = 'PO-001'
+    @order.order_lines.create(:qty_ordered => 2000, :product => Product.find(:first))
+    @order.save.should == true
+    @order.total_amount_payable.to_i.to_s.should == 1845.to_s   #not happy, need to tidy up
+  end
+  
+  it "should have a tax amount of 0 for an export order " do 
+    @order = Order.new
+    @order.prefill_address(Customer.find(1))
+    @order.purchase_order_number = 'PO-001'
+    @order.order_lines.create(:qty_ordered => 20, :product => Product.find(:first))
+    @order.save.should == true
+    @order.total_amount_payable.to_s.should == 24.6.to_s  #again issues with flaots equality. 
+  end
+  
+  it "should have an additional tax of 12.5% for a local (New Zealand) order" do 
+    @order = Order.new
+    @order.prefill_address(Customer.find(1))
+    @order.purchase_order_number = 'PO-001'
+    @order.order_lines.create(:qty_ordered => 20, :product => Product.find(:first))
+    @order.billing_country_id = 2  #set to NZ. 
+    @order.save.should == true
+    @order.total_amount_payable.to_s.should == 27.675.to_s  #issues with float equality. 
+  end
+  
   
   
 end
