@@ -28,12 +28,12 @@ class Order < ActiveRecord::Base
   
   def prefill_address(customer)
     self.customer_id = customer.id
-    billing_address       = customer.addresses.default_billing
-    shipping_address       = customer.addresses.default_shipping
+    billing_address         = customer.addresses.default_billing
+    shipping_address        = customer.addresses.default_shipping
     
-    self.billing_address  = billing_address.address
-    self.billing_city     = billing_address.city
-    self.billing_postcode = billing_address.postcode
+    self.billing_address    = billing_address.address
+    self.billing_city       = billing_address.city
+    self.billing_postcode   = billing_address.postcode
     self.shipping_address  = shipping_address.address
     self.shipping_city     = shipping_address.city
     self.shipping_postcode = shipping_address.postcode
@@ -45,44 +45,30 @@ class Order < ActiveRecord::Base
   end
   
   def calculate
-  
-  
-    #we get the shipping amount before doing the transaction so we can log any failures. 
-    #begin 
-  #    shipment             = Shipment.new
-  #    tmp_shipment_amount  = shipment.get_shipping_amount(
-  #                           :weight => self.shipping_weight,
-  #                           :dest_city => self.shipping_city,
-  #                           :dest_postal_code => self.shipping_postcode,
-  #                           :dest_country => self.shipping_country.code
-  #                           )
-   # rescue
-   #   return false
-    #end
     tmp_shipment_amount = 0
+    self.shipping_weight = 0
+    
+    # must do this in a transaction, otherwise karma and bad things will bite us in the ass
     self.transaction do 
-      @order_lines_amount = 0.00
-      for ol in self.order_lines  
-        @order_lines_amount += ol.get_price(self.customer.price_type)
-      end
-     self.sub_total = @order_lines_amount
-     self.shipping_amount = tmp_shipment_amount
-     self.shipping_weight = self.shipping_weight + 1
-     self.total_amount_payable = @order_lines_amount
+       @order_lines_amount = 0.00
+       for ol in self.order_lines  
+         @order_lines_amount += ol.get_price(self.customer.price_type)
+       end
+       self.sub_total             = @order_lines_amount
+       self.shipping_amount       = tmp_shipment_amount
+       self.tax_amount            = get_tax_amount
+       self.shipping_weight       = self.shipping_weight + 1
+       self.total_amount_payable  = @order_lines_amount + self.shipping_amount + self.tax_amount 
      end
 
   end
-  
-  def sub_total
-    sub_total = 0
-    for ol in self.order_lines 
-      sub_total = ol.qty_ordered * ol.price_as_ordered
+
+  def get_tax_amount
+    if self.billing_country_id == 2 
+      tax_amount = ( self.sub_total + self.shipping_amount ) * 0.125
+    else 
+      tax_amount = 0
     end
-    sub_total
-  end
-  
-  def shipping_weight
-    return 12.0
   end
   
   def set_draft_status
@@ -118,14 +104,12 @@ class Order < ActiveRecord::Base
   
   def additional_xml
   	next_statuses
-  	#super
-  	
   end
   
- # def next_statuses
- # 	
- # 	self.next = self.order_status.find_next_available_statuses()
- # end
+  protected
+
+
+
   
   
 end
