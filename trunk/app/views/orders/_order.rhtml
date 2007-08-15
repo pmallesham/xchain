@@ -3,15 +3,26 @@
 	border-collapse: collapse;
 	width: 100%;
 }
+.fieldHeading {
+	font-weight:bold;
+	vertical-align:top;
+}
+.fieldValue {
+	vertical-align:top;
+	line-height: 1.6em;
+}
 </style>
 
 <table class="orderPad">
 		<tr><td class="fieldSeparator" colspan="4">Order Details #1414</td>
 		</tr>
 		<tr>
-			<td class="fieldHeading" width="15%">Label:</td>
-			<td class="fieldValue">Value</td>
-			<td class="fieldHeading" width="15%">Label:</td>
-			<td class="fieldValue">Value</td>
+			<td class="fieldHeading" width="15%">Billing Address:</td>
+			<td class="fieldValue"><%= @order.billing_address %><br>
+								    <%= @order.billing_city %><br>
+								    <%= @order.billing_postcode %><br>
+								<%= @order.billing_country.name %></td>
+			<td class="fieldHeading" width="15%">Address:</td>
+			<td class="fieldValue"><%= @order.shipping_address %><br /><%= @order.shipping_city %><Br /><%= @order.shipping_postcode%></td>
 		</tr>
 </table>
