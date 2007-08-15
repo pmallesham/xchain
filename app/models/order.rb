@@ -6,7 +6,8 @@ class Order < ActiveRecord::Base
   belongs_to :customer
   belongs_to :price_type
   belongs_to :created_by, :class_name => 'User', :foreign_key => 'created_by_user_id'
-  
+  belongs_to :billing_country, :class_name => 'Country', :foreign_key => 'billing_country_id'
+  belongs_to :shipping_country, :class_name => 'Country', :foreign_key => 'shipping_country_id'
   belongs_to :current_status, :class_name => 'OrderStatus', :foreign_key => 'order_status_id'
   belongs_to :previous_status, :class_name => 'OrderStatus', :foreign_key => 'previous_order_status_id'
 
@@ -34,9 +35,11 @@ class Order < ActiveRecord::Base
     self.billing_address    = billing_address.address
     self.billing_city       = billing_address.city
     self.billing_postcode   = billing_address.postcode
+    self.billing_country_id = billing_address.country_id
     self.shipping_address  = shipping_address.address
     self.shipping_city     = shipping_address.city
     self.shipping_postcode = shipping_address.postcode
+    self.shipping_country_id = shipping_address.country_id
   
   end
   
