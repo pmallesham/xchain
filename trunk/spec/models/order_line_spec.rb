@@ -14,7 +14,7 @@ describe OrderLine, "with valid order line " do
   end 
   
   it "should return a price of for x price type and y qty with a non-discountable price type " do 
-    @order_line.get_price(PriceType.find(1)).should == 92.25
+    @order_line.get_price(PriceType.find(1)).should == 123.00
   end
   
   it "should return a price of for x price type and y qty with a discountable price type " do 
@@ -22,7 +22,10 @@ describe OrderLine, "with valid order line " do
   end
   
   
-  it "should after changing qty return a different price"
+  it "should after changing qty return a different price" do
+    @order_line.qty_ordered = 200
+    @order_line.get_price(PriceType.find(1)).should == 184.5
+  end
   
   it "should return correct discount levels"
 
