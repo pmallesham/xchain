@@ -25,7 +25,7 @@ orders_001:
   customer_id: "1"
   tax_type: ""
   shipping_phone: ""
-  shipping_postcode_at_order: SPC
+  shipping_postcode: SPC
   previous_order_status_id: "2"
   shipping_method_id: "1"
   shipping_country_id: "1"
@@ -57,7 +57,7 @@ orders_002:
   customer_id: 
   tax_type: 
   shipping_phone: 
-  shipping_postcode_at_order: ""
+  shipping_postcode: ""
   previous_order_status_id: 
   shipping_method_id: 
   shipping_country_id: "0"

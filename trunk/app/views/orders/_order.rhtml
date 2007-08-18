@@ -1,11 +1,11 @@
 <style lang="text/css">
 .orderPad {
-	border-collapse: collapse;
-	width: 100%;
+
 }
 .fieldHeading {
 	font-weight:bold;
 	vertical-align:top;
+	text-align:left;
 }
 .fieldValue {
 	vertical-align:top;
@@ -13,16 +13,80 @@
 }
 </style>
 
-<table class="orderPad">
-		<tr><td class="fieldSeparator" colspan="4">Order Details #1414</td>
+<table class="full" style="margin-bottom:0px">
+		<thead>
+		<tr>
+			<th colspan="2">Order Details #1414</th>
+		</tr>
+		</thead>
+		<tr>
+			<th class="sub" colspan="2">Addresses</th>
 		</tr>
 		<tr>
-			<td class="fieldHeading" width="15%">Billing Address:</td>
-			<td class="fieldValue"><%= @order.billing_address %><br>
-								    <%= @order.billing_city %><br>
-								    <%= @order.billing_postcode %><br>
-								<%= @order.billing_country.name %></td>
-			<td class="fieldHeading" width="15%">Address:</td>
-			<td class="fieldValue"><%= @order.shipping_address %><br /><%= @order.shipping_city %><Br /><%= @order.shipping_postcode%></td>
+			<td class="fieldValue" width="50%">
+				<strong>Billing Address:</strong><br />
+				<%= @order.billing_address %><br>
+				<%= @order.billing_city %><br>
+				<%= @order.billing_postcode %><br>
+				{billing_country.name}<br>
+				<strong>Contact</strong>
+				{contact name}, {contact_number} </td>
+			<td class="fieldValue">
+				<strong>Shipping Address:</strong><br />
+				<%= @order.shipping_address %><br />
+				<%= @order.shipping_city %><Br />
+				<%= @order.shipping_postcode %><Br />
+				{billing_country.name}<br>
+				<strong>Contact</strong>
+				{contact name}, {contact_number}
+			</td>
+		</tr>
+	
+</table>
+<table class="full" style="margin-bottom:0px">
+		<tr>
+			<th class="sub" colspan="4">Shipping details</th>
+		</tr>
+		<tr>
+			<td><strong>Ship Via:</strong><br>{own | UPS | Fedex}</td>
+			<td><strong>Airway Bill #:</strong><br>{1Z234234123123}</td>
+			<td><strong>Current Status:</strong><br>{<span style="color:orange;font-weight:bold">Not yet shipped</span>}</td>
+		</tr>
+</table>
+<table class="full" style="margin-bottom:0px">
+		<tr>
+			<th class="sub">Notes</th>
+		</tr>
+		<tr>
+			<td><%= @order.notes %></td>
+		</tr>
+</table>
+<table class="full" style="margin-bottom:0px">
+		<tr>
+			<th class="sub" colspan="4">Order Lines</th>
+		</tr>
+		<% for order_line in @order.order_lines %>
+		<tr>
+			<td width="70%"><%= order_line.description %></td>
+			<td><%= order_line.qty_ordered %></td>
+			<td><%= order_line.price_as_ordered %></td>
+			<td><%= @order.price_type.dollar_sign %><%= order_line.qty_ordered * order_line.price_as_ordered %></td>
+		</tr>
+		<% end %>
+		<tr>
+			<td colspan="3" class="total_header">Sub Total</td>
+			<td><%= @order.price_type.dollar_sign %><%= @order.sub_total %></td>
+		</tr>
+		<tr>
+			<td colspan="3" class="total_header">Shipping</td>
+			<td><%= @order.price_type.dollar_sign %><%= @order.shipping_amount %></td>
+		</tr>
+		<tr>
+			<td colspan="3" class="total_header">Tax</td>
+			<td><%= @order.price_type.dollar_sign %><%= @order.tax_amount %></td>
+		</tr>
+		<tr>
+			<td colspan="3" class="total_header" style="font-size: 130%">Total (<%= @order.price_type.symbol %>)</td>
+			<td  style="font-size: 130%"><%= @order.price_type.dollar_sign %><%= @order.total_amount_payable %></td>
 		</tr>
 </table>
