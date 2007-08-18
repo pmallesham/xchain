@@ -1,34 +1,42 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<title>Fastmount</title>
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
-<meta name="generator" content="HAPedit 3.1">
-<%= stylesheet_link_tag 'xchain2' %>
-<style type="text/css">
-
-</style>
+<title>Orders</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="/stylesheets/main_stylesheet.css" rel="stylesheet" type="text/css"/>
+<!--[if lte IE 7]>
+<link href="/stylesheets/patches/patch_2col_right_13.css" rel="stylesheet" type="text/css" />
+<![endif]-->
 </head>
 <body>
-<div id="container">
-<div id="topbar">Signed in as <a href="#">Rowan Hick</a> | <a href="#">Settings</a> | Help | Sign Out </div>
-<div id="header"><img src="/images/logo.jpg"></div>
-<div id="navbar">
-	<ul>
-		<li><a href="/dashboard"><img src="/images/line-chart.png" border="0"> Dashboard</a></li>
-		<li><a href="#"><img src="/images/index.png" border="0"> Catalog</a></li>
-		<li><a href="/orders"><img src="/images/shoppingcart_full.png" border="0"> Orders</a></li>
-		<li><a href="#"><img src="/images/businessman.png" border="0"> Customers</a></li>
-		<li><a href="#"><img src="/images/transform.png" border="0"> Inventory</a></li>
-		<li><a href="#"><img src="/images/pie-chart.png" border="0"> Reports</a></li>
-		<li><a href="#"><img src="/images/data_edit.png" border="0"> Admin</a></li>
-	</ul>
-</div>
-<%= yield %>
-<div id="extra">
-<p></p>
-</div>
-<div id="footer"><p>Copyright &copy; 2007 <a href="http://work.rowanhick.com">RH Consulting</a> | Published under Mozilla Public License 1.1 | Consulting | Help</p></div>
+<div id="page_margins">
+	<div id="page">
+		<div id="header">
+			<div id="topnav">
+				<span>Logged in as <a href="#">Rowan Hick</a> | <a href="#">Settings</a> | <a href="#">Help</a> | <a href="#">Logout</a></span> </div>
+			<h1>XChain</h1>
+			<span><a href="#">Home</a> &rsaquo;&rsaquo; <a href="/orders">Orders</a> &rsaquo;&rsaquo; <a href="#">Active Order List</a></span></div>
+		<!-- begin: main navigation #nav -->
+		<div id="nav"> <a id="navigation" name="navigation"></a>
+			<!-- skiplink anchor: navigation -->
+			<div id="nav_main">
+				<ul>
+					<li><a href="#">Dashboard</a></li>
+					<li><a href="#">Catalog</a></li>
+					<li id="current"><a href="/orders">Orders</a></li>
+					<li><a href="#">Button 4</a></li>
+					<li><a href="#">Button 5</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- end: main navigation -->
+		<%= yield %>
+		<!-- begin: #footer -->
+		<div id="footer">XChain | Copyright &copy; 2007 RH Consulting | Published under Mozilla Public License 1.1<br />
+Layout based on <a href="http://www.yaml.de/">YAML</a></div>
+		<!-- end: #footer -->
+	</div>
 </div>
 </body>
 </html>

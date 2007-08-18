@@ -1,24 +1,26 @@
-<div id="wrapper">
-	<div id="content" style="min-height:600px">	
-		<p><strong>Orders > View Order</strong></p>
-		<div class="dataTable" style="min-height:500px;">
-		<table width="720" class="data" style="font-size:0.9em">
-			<tr>
-				<th colspan="2">Order Details</th>
-			</tr>
-			<tr>
-				<td valign="top"><%= render :partial => 'order' %></td>
-			</tr>
-		</table>
+<!-- begin: main content area #main -->
+<div id="main">
+	<!-- begin: #col1 - first float column -->
+	<div id="col1">
+		<div id="col1_content" class="clearfix"> <a id="content" name="content"></a>
+			<!-- skiplink anchor: Content -->
+<%= render :partial => 'order' %>
 		</div>
 	</div>
-</div>
-<div id="navigation">
-	<div class="actionBox lightYellowBorder" style="width:200px">
-		<span class="abHeader lightYellowBack"><strong>Actions</strong></span>
-		<p><A href="/orders/new;select_customer"><img src="/images/magic-wand.png" border="0" />New order</a></p>
-		<p><img src="/images/view.png" />Search Orders</p>
+	<!-- end: #col1 -->
+	<!-- begin: #col3 static column -->
+	<div id="col3">
+		<div id="col3_content" class="clearfix">
+			<ul id="submenu">
+				<li id="title">Actions</li>
+				<li><a href="#"><img src="/images/view.png" /> &nbsp;Edit Order</a></li>
+				<li><a href="#"><img src="/images/transform.png" /> &nbsp;Change Status</a></li>
+				<li><a href="#"><img src="/images/view.png" /> &nbsp;Lookup Shipping</a></li>
+			</ul>
+		</div>
+		<div id="ie_clearing">&nbsp;</div>
+		<!-- End: IE Column Clearing -->
 	</div>
-	
-
+	<!-- end: #col3 -->
 </div>
+<!-- end: #main -->

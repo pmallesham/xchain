@@ -1,45 +1,52 @@
-<div id="wrapper">
-	<div id="content">	
-		<p><strong>Orders > Active Orders</strong></p>
-		<div class="dataTable" style="min-height:500px;">
-		<table width="98%" class="data">
-			<tr>
-				<th>ID</th><th>Date Created <img src="/images/sort_ascending.png"></th><th>Customer </th><th>Country</th><th>Amount</th>
-			</tr>
-			<% for order in @orders %>
-			<tr>
-				<td><%= link_to order.id, :action => 'show', :id => order %></td><td><%= order.created_at %></td><td><%= order.customer.name %></td><td>Netherlands</td><td><%= order.total_amount_payable %></td>
-			</tr>
-			<% end %>
-			<!--
-			<tr>
-				<td>1001</td><td>July 1st</td><td>Vanderwalt</td><td>Netherlands</td><td>NZD $123.00</td>
-			</tr>
-			<tr>
-				<td colspan="5" style="background-color:#E8E595"><strong>Shipping</strong></td>
-			</tr>
-	
-			<tr>
-				<td>1001</td><td>July 1st</td><td>Vanderwalt</td><td>Netherlands</td><td>NZD $123.00</td>
-			</tr>
-			<tr>
-				<td>1001</td><td>July 1st</td><td>Vanderwalt</td><td>Netherlands</td><td>NZD $123.00</td>
-			</tr>
-			<tr>
-				<td>1001</td><td>July 1st</td><td>Vanderwalt</td><td>Netherlands</td><td>NZD $123.00</td>
-			</tr-->
-		</table>
-		</div>
-		</p>
-		<p>&nbsp;</p>
-	</div>
-</div>
-<div id="navigation">
-	<div class="actionBox lightYellowBorder" style="width:200px">
-		<span class="abHeader lightYellowBack"><strong>Actions</strong></span>
-		<p><A href="/orders/new;select_customer"><img src="/images/magic-wand.png" border="0" />New order</a></p>
-		<p><img src="/images/view.png" />Search Orders</p>
-	</div>
-	
+<!-- begin: main content area #main -->
+<div id="main">
+	<!-- begin: #col1 - first float column -->
+	<div id="col1">
+		<div id="col1_content" class="clearfix"> <a id="content" name="content"></a>
+			<!-- skiplink anchor: Content -->
+			<table class="full">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Date</th>
+						<th>Customer</th>
+						<th>Amount</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th colspan="5">Draft</th>
+					</tr>
+					<% for order in @orders %>
+					<tr>
+						<td><a href="/orders/<%= order.id %>"><%= order.id %></a></td>
+						<td><%= order.created_at %></td>
+						<td>Veryon Corp</td>
+						<td>$USD 1200.00</td>
+						<td style="color:green">Shipped</td>
+					</tr>
+					<% end %>
+				</tbody>
 
+			</table>
+		</div>
+	</div>
+	<!-- end: #col1 -->
+	<!-- begin: #col3 static column -->
+	<div id="col3">
+		<div id="col3_content" class="clearfix">
+			<ul id="submenu">
+				<li id="title">Actions</li>
+				<li><a href="#">View current active</a></li>
+				<li><a href="#">View archived</a></li>
+				<li><a href="#">Search Orders</a></li>
+				<li><a href="#">Create New Order</a></li>
+			</ul>
+		</div>
+		<div id="ie_clearing">&nbsp;</div>
+		<!-- End: IE Column Clearing -->
+	</div>
+	<!-- end: #col3 -->
 </div>
+<!-- end: #main -->
