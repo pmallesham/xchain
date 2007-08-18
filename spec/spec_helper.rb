@@ -19,7 +19,7 @@ Spec::Runner.configure do |config|
   # Alternatively, if you prefer to declare them only once, you can
   # do so here, like so ...
   #
-  config.global_fixtures = :products, :orders, :order_lines, :customers , :pricing, :price_types, :discounts, :discount_tables, :addresses, :addressables, :users, :order_statuses
+  config.global_fixtures = :products, :orders, :order_lines, :customers , :pricing, :price_types, :payment_terms, :discounts, :discount_tables, :addresses, :addressables, :users, :order_statuses
   #
   # If you declare global fixtures, be aware that they will be declared
   # for all of your examples, even those that don't use them.

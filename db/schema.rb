@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 5) do
+ActiveRecord::Schema.define(:version => 6) do
 
   create_table "addressables", :force => true do |t|
     t.column "address_id",   :integer
@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(:version => 5) do
     t.column "billing_address_2",         :string
     t.column "previous_order_status_id",  :integer
     t.column "billing_country_id",        :integer
+    t.column "payment_term_id",           :integer
   end
 
   add_index "orders", ["id"], :name => "order_id", :unique => true

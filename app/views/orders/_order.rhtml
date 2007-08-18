@@ -13,12 +13,14 @@
 }
 </style>
 
-<table class="full" style="margin-bottom:0px">
+<table class="full continuous">
 		<thead>
 		<tr>
-			<th colspan="2">Order Details #1414</th>
+			<th>ORDER DETAILS #1414 - <em style="color:#9FFFAC">Waiting for parts</em></th>
 		</tr>
 		</thead>
+</table>
+<table class="full continuous">
 		<tr>
 			<th class="sub" colspan="2">Addresses</th>
 		</tr>
@@ -43,17 +45,17 @@
 		</tr>
 	
 </table>
-<table class="full" style="margin-bottom:0px">
+<table class="full continuous">
 		<tr>
 			<th class="sub" colspan="4">Shipping details</th>
 		</tr>
 		<tr>
 			<td><strong>Ship Via:</strong><br>{own | UPS | Fedex}</td>
-			<td><strong>Airway Bill #:</strong><br>{1Z234234123123}</td>
-			<td><strong>Current Status:</strong><br>{<span style="color:orange;font-weight:bold">Not yet shipped</span>}</td>
+			<td><strong>Airway Bill #:</strong><br><%= @order.airway_bill_number %></td>
+			<td><strong>Current Status:</strong><br><span style="color:orange;font-weight:bold">Not yet shipped</span></td>
 		</tr>
 </table>
-<table class="full" style="margin-bottom:0px">
+<table class="full continuous">
 		<tr>
 			<th class="sub">Notes</th>
 		</tr>
@@ -61,13 +63,13 @@
 			<td><%= @order.notes %></td>
 		</tr>
 </table>
-<table class="full" style="margin-bottom:0px">
+<table class="full continuous">
 		<tr>
 			<th class="sub" colspan="4">Order Lines</th>
 		</tr>
 		<% for order_line in @order.order_lines %>
-		<tr>
-			<td width="70%"><%= order_line.description %></td>
+		<tr class="dataRow">
+			<td width="70%"><%= order_line.description %>  <% if order_line.id == 1 %><span style="color:red">! out of stock</span><% end %></td>
 			<td><%= order_line.qty_ordered %></td>
 			<td><%= order_line.price_as_ordered %></td>
 			<td><%= @order.price_type.dollar_sign %><%= order_line.qty_ordered * order_line.price_as_ordered %></td>
@@ -88,5 +90,29 @@
 		<tr>
 			<td colspan="3" class="total_header" style="font-size: 130%">Total (<%= @order.price_type.symbol %>)</td>
 			<td  style="font-size: 130%"><%= @order.price_type.dollar_sign %><%= @order.total_amount_payable %></td>
+		</tr>
+</table>
+<table class="full continous">
+		<tr>
+			<th class="sub" colspan="3">Pricing Details  <em style="color:orange">Admin Only</em></th>
+		</tr>
+		<tr>
+			<td><strong>Price Type:</strong><br><%= @order.price_type.title %></td>
+			<td><strong>Discounts Applied:</strong><br>{ yes | no }</td>
+			<td><strong>Discounts Table:</strong><br>{ table name }</td>
+		</tr>
+		<tr>
+			<td colspan="3"><strong>Invoice Notes:</strong><br><%= @order.price_type.invoice_line_1 %><Br><%= @order.price_type.invoice_line_2 %></td>
+		</tr>
+		<tr>
+			<th class="sub" colspan="3">Payment Details</th>
+		</tr>
+		<tr>
+			<td><strong>Payment Via:</strong><br>{Credit Card | Transfer | Other}</td>
+			<td><strong>Total Amount Paid to date:</strong><br>{$0.00} <a href="#">[+]</a></td>
+			<td><strong>Payment Reference(s):</strong><br>{$0.00} <a href="#">[+]</a></td>
+		</tr>
+		<tr>
+			<td colspan="3"><strong>Payment Terms:</strong><br><%= @order.payment_term.terms_text %></td>
 		</tr>
 </table>

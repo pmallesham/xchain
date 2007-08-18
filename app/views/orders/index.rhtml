@@ -10,21 +10,23 @@
 						<th>ID</th>
 						<th>Date</th>
 						<th>Customer</th>
+						<th>Country</th>
 						<th>Amount</th>
 						<th>Status</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th colspan="5">Draft</th>
+						<th colspan="6">Draft</th>
 					</tr>
 					<% for order in @orders %>
 					<tr>
 						<td><a href="/orders/<%= order.id %>"><%= order.id %></a></td>
 						<td><%= order.created_at %></td>
-						<td>Veryon Corp</td>
+						<td><%= order.customer.name %></td>
+						<td>{billing_country}</td>
 						<td>$USD 1200.00</td>
-						<td style="color:green">Shipped</td>
+						<td style="color:grey">Draft</td>
 					</tr>
 					<% end %>
 				</tbody>

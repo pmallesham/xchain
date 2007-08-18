@@ -33,35 +33,8 @@ orders_001:
   shipping_country_id: "1"
   shipping_address: SA1
   created_at: 2007-01-01 00:00:00
-orders_002: 
-  airway_bill_number: 
-  payment_is_received: 
-  payment_received_date: 
-  weight: "0"
-  invoice_text: ""
-  tracking_response: 
-  shipping_amount: 
-  purchase_order_number: 
-  price_type_id: "1"
-  invoice_pdf: ""
-  shipping_contact: 
-  last_tracking_update_time: 
-  total_amount_pay_online: "0.00"
-  total_amount_payable: 
-  payment_method_id: 
-  tax_amount: 
-  notes: 
-  created_by_id: 
-  order_status_id: 
-  id: "2"
-  shipping_city: 
-  billing_address: 
-  customer_id: 
-  tax_type: 
-  shipping_phone: 
-  shipping_postcode: ""
-  previous_order_status_id: 
-  shipping_method_id: 
-  shipping_country_id: "0"
-  shipping_address: 
-  created_at: 
+  payment_term_id: 1
+
+
+
+      

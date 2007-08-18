@@ -10,6 +10,7 @@ class Order < ActiveRecord::Base
   belongs_to :shipping_country, :class_name => 'Country', :foreign_key => 'shipping_country_id'
   belongs_to :current_status, :class_name => 'OrderStatus', :foreign_key => 'order_status_id'
   belongs_to :previous_status, :class_name => 'OrderStatus', :foreign_key => 'previous_order_status_id'
+  belongs_to :payment_term
 
   before_save   :auto_calculate
   
@@ -19,6 +20,9 @@ class Order < ActiveRecord::Base
     super
     self.order_status_id = 10 
     self.order_status_histories.create(:order_status_id => 10, :comment => 'Created new order')
+    if customer 
+      self.payment_term_id = customer.payment_term_id
+    end
   end
   
   def validate

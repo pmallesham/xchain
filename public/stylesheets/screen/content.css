@@ -159,14 +159,16 @@
 
   table { width: auto; border-collapse:collapse; margin-bottom: 0.5em; font-size:95%; color:black;}
   table.full { width: 100%; }
+  table.continuous { margin-bottom: 0px;}
   table.fixed { table-layout:fixed }
 
-  th,td { padding: 0.4em; border-bottom: 1px dotted #ccc; }
+  th,td { padding: 0.4em;}
+  tr.dataRow { border-bottom: 1px dotted #ccc; }
   thead th { background: #444; color: #fff }
   tbody th { background: #ccc; color: #333 }
   tbody th.sub { background: #ddd; color: #333 }
 
-  tbody th.sub { background: #EFEFEF; color: #333; border-top: 2px solid #ccc; }
+  tbody th.sub { background: #EFEFEF; color: #333; border-top: 2px solid #ccc; border-bottom: 1px dotted #ccc; }
   tbody td.total_header { text-align: right; font-weight: bold;}
   
   /**

@@ -105,6 +105,9 @@ context Order, "new draft order" do
     @order.save.should == true
   end
   
+  it "should have a set of default payment terms" do 
+    @order.payment_term_id.should == 1
+  end
   
   it "should be able to be changed to a new status" do 
     @order.set_status(OrderStatus.find(12), 'Ready to order')
