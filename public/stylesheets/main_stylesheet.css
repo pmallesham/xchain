@@ -29,5 +29,5 @@
 @import url(/stylesheets/yaml/patches/patch_nav_vlist.css); /* Box Model Corrections */
 
 /* import print layout | Druck-Layout einbinden */
-@import url(../../yaml/print/print_100_draft.css);
+@import url(/stylesheets/yaml/print/print_100_draft.css);
 

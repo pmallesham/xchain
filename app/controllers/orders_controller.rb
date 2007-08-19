@@ -186,7 +186,7 @@ class OrdersController < ApplicationController
   
   private
   def load_order_object
-    @order = Order.find(params[:id], :include => [:order_status_histories, :order_lines, :customer])
+    @order = Order.find(params[:id], :include => [:order_status_histories, :order_lines, :customer, :billing_country, :shipping_country, :price_type, :payment_term])
   end
   
   
