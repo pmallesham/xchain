@@ -30,7 +30,7 @@
 				<%= @order.billing_address %><br>
 				<%= @order.billing_city %><br>
 				<%= @order.billing_postcode %><br>
-				{billing_country.name}<br>
+				<%= @order.billing_country.name %><br>
 				<strong>Contact</strong>
 				{contact name}, {contact_number} </td>
 			<td class="fieldValue">
@@ -38,9 +38,9 @@
 				<%= @order.shipping_address %><br />
 				<%= @order.shipping_city %><Br />
 				<%= @order.shipping_postcode %><Br />
-				{billing_country.name}<br>
-				<strong>Contact</strong>
-				{contact name}, {contact_number}
+				<%= @order.shipping_country.name %><br>
+				<strong>Contact:</strong><br />
+				<%= @order.shipping_contact %>, <%= @order.shipping_phone %>
 			</td>
 		</tr>
 	
@@ -115,4 +115,20 @@
 		<tr>
 			<td colspan="3"><strong>Payment Terms:</strong><br><%= @order.payment_term.terms_text %></td>
 		</tr>
+</table>
+<table class="full">
+		<tr>
+			<th class="sub" colspan="4">Order History</th>
+		</tr>
+		<tr>
+			<td><strong>Date:</strong></td>
+			<td><strong>User:</strong></td>
+			<td><strong>To Status:</strong></td>
+			<td><strong>Comment:</strong></td>
+		</tr>
+		<% for status in @order.order_status_histories %>
+			<tr>
+				<td><%= debug @order %></td>
+			</tr>	
+		<% end %>
 </table>
