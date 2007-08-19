@@ -1,0 +1,32 @@
+@charset "UTF-8";
+/**
+ * "Yet Another Multicolumn Layout" - (X)HTML/CSS Framework
+ *
+ * (en) central stylesheet - layout example "grids"
+ * (de) Zentrales Stylesheet - Beispiellayout "grids"
+ *
+ * @copyright       Copyright 2005-2007, Dirk Jesse
+ * @license         CC-A 2.0 (http://creativecommons.org/licenses/by/2.0/),
+ *                  YAML-C (http://www.yaml.de/en/license/license-conditions.html)
+ * @link            http://www.yaml.de
+ * @package         yaml
+ * @version         3.0.2
+ * @revision        $Revision: 107 $
+ * @lastmodified    $Date: 2007-08-01 18:27:14 +0200 (Mi, 01 Aug 2007) $
+ */
+
+/* import core styles | Basis-Stylesheets einbinden */
+@import url(/stylesheets/yaml/core/base.css);
+
+/* import screen layout | Screen-Layout einbinden */
+@import url(/stylesheets/yaml/navigation/nav_shinybuttons.css);
+@import url(/stylesheets/yaml/navigation/nav_vlist.css);
+@import url(screen/basemod.css);
+@import url(screen/basemod_grids.css);
+@import url(screen/content.css);
+
+@import url(/stylesheets/yaml/core/iehacks.css);
+@import url(/stylesheets/yaml/patches/patch_nav_vlist.css); /* Box Model Corrections */
+
+/* import print layout | Druck-Layout einbinden */
+@import url(/stylesheets/yaml/print/print_100_draft.css);
