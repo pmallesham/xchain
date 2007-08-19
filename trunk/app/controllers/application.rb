@@ -483,7 +483,13 @@
 
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
-  #before_filter :login_from_cookie
-  # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_xchain_session_id'
+  before_filter :setup_view_properties
+
+  protected
+  def setup_view_properties
+    @controller_name = params[:controller]
+  end
+  
+
 end
