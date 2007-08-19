@@ -24,6 +24,7 @@ orders_001:
   billing_address: 1001 Acmeville Rd, Acme Industry Centre
   billing_city: Acmeville
   billing_postcode: AM1001
+  billing_country_id: 1
   customer_id: "1"
   tax_type: ""
   shipping_phone: ""
