@@ -164,9 +164,9 @@
 
   th,td { padding: 0.4em;}
   tr.dataRow { border-bottom: 1px dotted #ccc; }
-  thead th { background: #444; color: #fff }
+  thead th { background: #444; color: #fff; text-align:left;}
   tbody th { background: #ccc; color: #333 }
-  tbody th.sub { background: #ddd; color: #333 }
+  tbody th.sub { background: #ddd; color: #333; text-align:left;}
 
   tbody th.sub { background: #EFEFEF; color: #333; border-top: 2px solid #ccc; border-bottom: 1px dotted #ccc; }
   tbody td.total_header { text-align: right; font-weight: bold;}
