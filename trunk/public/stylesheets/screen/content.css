@@ -185,5 +185,8 @@
     border:0;
     border-bottom: 1px #eee solid;
   }
+  
+  .activityFeed a { text-decoration:underline; color:darkgreen; }
+  
 }
 
