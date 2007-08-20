@@ -1,0 +1,90 @@
+<style lang="text/css">
+.orderPad {
+
+}
+.fieldHeading {
+	font-weight:bold;
+	vertical-align:top;
+	text-align:left;
+}
+.fieldValue {
+	vertical-align:top;
+	line-height: 1.6em;
+}
+</style>
+
+<table class="full continuous">
+		<thead>
+		<tr>
+			<th>CUSTOMER DETAILS #<%= @customer.id %> - <%= @customer.name %></th>
+		</tr>
+		</thead>
+</table>
+<table class="full continuous">
+		<tr>
+			<th class="sub" colspan="3">General Details</th>
+		</tr>
+		<tr>
+			<td class="fieldValue">
+				<strong>Country</strong><br />
+				 <img src="/flag_icons/<%= @customer.country.iso_code %>.gif"> <%= @customer.country.name %>
+			</td>
+			<td class="fieldValue">
+				<strong>Status</strong><br />
+				<strong style="color:green">Active</strong>
+			</td>
+		</tr>
+	</table>
+	<table class="full continuous">
+			<tr>
+				<th class="sub" colspan="2">Pricing Details</th>
+			</tr>
+		<tr>
+			<td class="fieldValue">
+				<strong>Price Type</strong><br />
+				<%= @customer.price_type.title %>
+			</td>
+			<td class="fieldValue">
+				<strong>Payment Terms</strong><br />
+				<%= @customer.payment_term.terms_text %>
+			</td>
+		</tr>
+	
+</table>
+<table class="full continuous">
+		<tr>
+			<th class="sub">Addresses</th>
+		</tr>
+		<tr>
+			<td class="fieldValue" width="50%">
+				<% @customer.addressables.each do |a| %>
+				  <div class="addressBlock" style="border:1px solid #ccc;float:left;margin-right:2px;padding:5px">
+					<strong>Address: </strong><br />
+					<%= a.address.address %><br />
+					<strong>City:</strong><br />
+					<%= a.address.city %><br />
+					<strong>Province / Postcode:</strong><br />
+					<%= a.address.postcode %><br />
+					<strong>Country:</strong><br />
+					<%= a.address.country.name %><br />
+					<% if a.is_default? %>
+						<strong style="color:green">Default <%= a.type %> address</strong>
+					<% end %>
+				  </div>
+				
+				<% end %>
+			</td>
+		</tr>
+	
+</table>
+<table class="full continuous">
+		<tr>
+			<th class="sub">Latest Orders</th>
+		</tr>
+		<tr>
+			<td class="fieldValue" width="50%">
+				<%= debug @customer.orders %>
+			</td>
+		</tr>
+	
+</table>
