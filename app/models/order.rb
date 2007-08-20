@@ -25,6 +25,8 @@ class Order < ActiveRecord::Base
     end
   end
   
+  
+  
   def validate
     if self.order_lines.size == 0 
       errors.add_to_base 'You must have at least one line item'
