@@ -22,16 +22,43 @@
 </table>
 <table class="full continuous">
 		<tr>
-			<th class="sub" colspan="3">General Details</th>
+			<th class="sub" colspan="4">General Details</th>
 		</tr>
 		<tr>
+			<td class="fieldValue">
+				<strong>Company Name</strong><br />
+				<%= @customer.name %>
+			</td>
+			<td class="fieldValue">
+				<strong>Alternate Name</strong><br />
+				<%= @customer.alternate_name %>
+			</td>
 			<td class="fieldValue">
 				<strong>Country</strong><br />
 				 <img src="/flag_icons/<%= @customer.country.iso_code %>.gif"> <%= @customer.country.name %>
 			</td>
+
 			<td class="fieldValue">
 				<strong>Status</strong><br />
 				<strong style="color:green">Active</strong>
+			</td>
+		</tr>
+		<tr>
+			<td class="fieldValue">
+				<strong>Phone</strong><br />
+				<%= @customer.phone %>
+			</td>
+			<td class="fieldValue">
+				<strong>Fax</strong><br />
+				<%= @customer.fax %>
+			</td>
+			<td class="fieldValue">
+				<strong>Email</strong><br />
+				<%= @customer.email %>
+			</td>
+			<td class="fieldValue">
+				<strong>Website</strong><br />
+				<%= @customer.website_url %>
 			</td>
 		</tr>
 	</table>
@@ -48,6 +75,10 @@
 				<strong>Payment Terms</strong><br />
 				<%= @customer.payment_term.terms_text %>
 			</td>
+			<td class="fieldValue">
+				<strong>Agent(s)</strong><br />
+				<%= @customer.agents.join(', ') %>
+			</td>
 		</tr>
 	
 </table>
@@ -58,7 +89,7 @@
 		<tr>
 			<td class="fieldValue" width="50%">
 				<% @customer.addressables.each do |a| %>
-				  <div class="addressBlock" style="border:1px solid #ccc;float:left;margin-right:2px;padding:5px">
+				  <div class="addressBlock" style="width:30%;border:1px solid #ccc;float:left;margin-right:2px;padding:5px">
 					<strong>Address: </strong><br />
 					<%= a.address.address %><br />
 					<strong>City:</strong><br />
@@ -79,11 +110,11 @@
 </table>
 <table class="full continuous">
 		<tr>
-			<th class="sub">Latest Orders</th>
+			<th class="sub">Users</th>
 		</tr>
 		<tr>
 			<td class="fieldValue" width="50%">
-				<%= debug @customer.orders %>
+				<%= debug @customer.users %>
 			</td>
 		</tr>
 	

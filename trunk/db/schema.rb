@@ -2,7 +2,18 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 6) do
+ActiveRecord::Schema.define(:version => 10) do
+
+  create_table "activities", :force => true do |t|
+    t.column "activity_type_id", :integer
+    t.column "detail",           :string
+    t.column "created_at",       :datetime
+  end
+
+  create_table "activity_types", :force => true do |t|
+    t.column "name",      :string
+    t.column "icon_name", :string
+  end
 
   create_table "addressables", :force => true do |t|
     t.column "address_id",   :integer
@@ -63,6 +74,7 @@ ActiveRecord::Schema.define(:version => 6) do
     t.column "price_type_id",     :integer,                :default => 1, :null => false
     t.column "payment_term_id",   :integer,                :default => 1, :null => false
     t.column "billing_address_2", :string
+    t.column "type",              :string
   end
 
   add_index "customers", ["id"], :name => "customer_id", :unique => true
@@ -170,8 +182,8 @@ ActiveRecord::Schema.define(:version => 6) do
     t.column "tax_type",                  :string,   :limit => 20
     t.column "tax_amount",                :decimal,                 :precision => 11, :scale => 2
     t.column "sub_total",                 :decimal,                 :precision => 11, :scale => 2
-    t.column "invoice_text",              :text,                                                   :default => "",  :null => false
-    t.column "invoice_pdf",               :binary,                                                 :default => "",  :null => false
+    t.column "invoice_text",              :text
+    t.column "invoice_pdf",               :binary
     t.column "weight",                    :float,                                                  :default => 0.0, :null => false
     t.column "shipping_country_id",       :integer,  :limit => 3,                                  :default => 0,   :null => false
     t.column "billing_address_2",         :string
@@ -229,6 +241,12 @@ ActiveRecord::Schema.define(:version => 6) do
     t.column "commission",              :integer, :limit => 2,                                 :default => 1, :null => false
   end
 
+  create_table "representation", :force => true do |t|
+    t.column "customer_id", :integer
+    t.column "agent_id",    :integer
+    t.column "created_at",  :datetime
+  end
+
   create_table "role", :force => true do |t|
     t.column "name",                         :string,  :limit => 30, :default => "0", :null => false
     t.column "can_view_orders",              :integer, :limit => 1,  :default => 0,   :null => false
@@ -278,6 +296,7 @@ ActiveRecord::Schema.define(:version => 6) do
     t.column "updated_at",                :datetime
     t.column "remember_token",            :string
     t.column "remember_token_expires_at", :datetime
+    t.column "customer_id",               :integer
   end
 
 end
