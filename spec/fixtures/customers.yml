@@ -41,3 +41,18 @@ customers_003:
   alternate_name: ""
   is_agent: "0"
   email: 
+agents_001: 
+  name: Agent A
+  payment_term_id: "1"
+  price_type_id: "1"
+  website_url: www.myagent.com
+  country_id: "43"
+  id: "4"
+  billing_address_2: 
+  fax: 
+  phone: 
+  status_id: "1"
+  alternate_name: ""
+  is_agent: "0"
+  email: 
+  type: Agent
