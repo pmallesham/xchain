@@ -11,4 +11,6 @@ class Customer < ActiveRecord::Base
   belongs_to  :country
   belongs_to  :payment_term
   
+  validates_presence_of :name, :alternate_name, :phone, :fax
+  
 end

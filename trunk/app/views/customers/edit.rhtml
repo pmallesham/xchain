@@ -1,0 +1,154 @@
+<!-- begin: main content area #main -->
+<div id="main">
+	<!-- begin: #col1 - first float column -->
+	<div id="col1">
+		<div id="col1_content" class="clearfix"> <a id="content" name="content"></a>
+			<!-- skiplink anchor: Content -->
+			<style lang="text/css">
+			.orderPad {
+
+			}
+			.fieldHeading {
+				font-weight:bold;
+				vertical-align:top;
+				text-align:left;
+			}
+			.fieldValue {
+				vertical-align:top;
+				line-height: 1.6em;
+				background-color:#EFEFEF;
+			}
+			input {
+				border: 1px solid black;
+				background:white;
+				height: 20px;
+				width:100%;
+				font-size:110%;
+			}
+			.fieldWithErrors input {
+				border: 1px solid red;
+			}
+			</style>
+			
+			<form action="/customers/<%= @customer.id %>" method="POST">
+			<input type="hidden" name="_method" value="PUT">
+			<table class="full continuous">
+					<thead>
+					<tr>
+						<th>CUSTOMER DETAILS #<%= @customer.id %> - <%= @customer.name %></th>
+					</tr>
+					</thead>
+			</table>
+			<table class="full continuous">
+					<tr>
+						<th class="sub" colspan="4"></th>
+					</tr>
+					<tr>
+						<th class="sub" colspan="4">General Details</th>
+					</tr>
+					<tr>
+						<td class="fieldValue" width="25%">
+							<strong>Company Name</strong><br />
+							<%= text_field "customer", "name" %>
+						</td>
+						<td class="fieldValue"  width="25%">
+							<strong>Alternate Name</strong><br />
+							<%= text_field "customer", "alternate_name" %>
+						</td>
+						<td class="fieldValue">
+							<strong>Country</strong><br />
+							<select name=""><option>{Some value}</option></select>
+						</td>
+
+						<td class="fieldValue">
+							<strong>Status</strong><br />
+							<select name=""><option>{Some value}</option></select>
+						</td>
+					</tr>
+					<tr>
+						<td class="fieldValue">
+							<strong>Phone</strong><br />
+							<%= text_field "customer", "phone" %>
+						</td>
+						<td class="fieldValue">
+							<strong>Fax</strong><br />
+							<%= text_field "customer", "fax" %>
+						</td>
+						<td class="fieldValue">
+							<strong>Email</strong><br />
+							<%= text_field "customer", "email" %>
+						</td>
+						<td class="fieldValue">
+							<strong>Website</strong><br />
+							<%= text_field "customer", "website_url" %>
+						</td>
+					</tr>
+				</table>
+				<table class="full continuous">
+						<tr>
+							<th class="sub" colspan="3">Pricing Details</th>
+						</tr>
+					<tr>
+						<td class="fieldValue">
+							<strong>Price Type</strong><br />
+							<select name=""><option>{Some value}</option></select>
+						</td>
+						<td class="fieldValue">
+							<strong>Payment Terms</strong><br />
+							<select name=""><option>{Some value}</option></select>
+						</td>
+						<td class="fieldValue">
+							<strong>Agent(s)</strong><br />
+							<%= @customer.agents.collect {|a| "<a href='/customers/#{a.id}'>#{a.name}</a>"}.join(', ') %>
+						</td>
+					</tr>
+
+			</table>
+			<table class="full continuous">
+					<tr>
+						<th class="sub">Addresses</th>
+					</tr>
+					<tr>
+						<td class="fieldValue">
+							<% @customer.addressables.each do |a| %>
+							  <div class="addressBlock" style="width:30%;border:1px solid #ccc;float:left;margin-right:2px;padding:5px">
+								<strong>Address: </strong><br />
+								<%= a.address.address %><br />
+								<strong>City:</strong><br />
+								<%= a.address.city %><br />
+								<strong>Province / Postcode:</strong><br />
+								<%= a.address.postcode %><br />
+								<strong>Country:</strong><br />
+								<%= a.address.country.name %><br />
+								<% if a.is_default? %>
+									<strong style="color:green">Default <%= a.type %> address</strong>
+								<% end %>
+							  </div>
+
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<td valign="right"><%= submit_tag %></td>
+					</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+	<!-- end: #col1 -->
+	<!-- begin: #col3 static column -->
+	<div id="col3">
+		<div id="col3_content" class="clearfix">
+			<ul id="submenu">
+				<li id="title">Actions</li>
+				<li><a href="#"> &nbsp;Edit Customer</a></li>
+				<li><a href="#"> &nbsp;View Sales Report</a></li>
+				
+			</ul>
+		</div>
+		<div id="ie_clearing">&nbsp;</div>
+		<!-- End: IE Column Clearing -->
+	</div>
+	<!-- end: #col3 -->
+</div>
+<!-- end: #main -->
