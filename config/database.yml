@@ -15,7 +15,7 @@ development:
   adapter: mysql
   database: xchain_test
   username: root
-  password: toor    
+  password: toor
   socket: /tmp/mysql.sock
 
 # Warning: The database defined as 'test' will be erased and
@@ -30,7 +30,7 @@ test:
 
 production:
   adapter: mysql
-  database: myapp_production
+  database: xchain_test
   username: root
-  password: 
+  password: toor
   socket: /tmp/mysql.sock
