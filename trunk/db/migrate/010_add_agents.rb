@@ -1,6 +1,6 @@
 class AddAgents < ActiveRecord::Migration
   def self.up
-  	create_table :representation do |r|
+  	create_table :representations do |r|
   		r.column :customer_id, :integer
   		r.column :agent_id, :integer
   		r.column :created_at, :datetime

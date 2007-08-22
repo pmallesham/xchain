@@ -241,7 +241,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.column "commission",              :integer, :limit => 2,                                 :default => 1, :null => false
   end
 
-  create_table "representation", :force => true do |t|
+  create_table "representations", :force => true do |t|
     t.column "customer_id", :integer
     t.column "agent_id",    :integer
     t.column "created_at",  :datetime
