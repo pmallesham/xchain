@@ -64,7 +64,7 @@
 	</table>
 	<table class="full continuous">
 			<tr>
-				<th class="sub" colspan="2">Pricing Details</th>
+				<th class="sub" colspan="3">Pricing Details</th>
 			</tr>
 		<tr>
 			<td class="fieldValue">
@@ -77,7 +77,7 @@
 			</td>
 			<td class="fieldValue">
 				<strong>Agent(s)</strong><br />
-				<%= @customer.agents.join(', ') %>
+				<%= @customer.agents.collect {|a| "<a href='/customers/#{a.id}'>#{a.name}</a>"}.join(', ') %>
 			</td>
 		</tr>
 	
