@@ -20,7 +20,7 @@
 					<tr>
 						<td><a href="/customers/<%= customer.id %>"><%= customer.id %></a></td>
 						<td><a href="/customers/<%= customer.id %>"><%= customer.name %></a></td>
-						<td><a href="/customers/<%= customer.id %>"><%= customer.country.name %></a></td>
+						<td><a href="/customers/<%= customer.id %>"><img src="/flag_icons/<%= customer.country.iso_code %>.gif"> <%= customer.country.name %></a></td>
 					</tr>
 					<% end %>
 				</tbody>
@@ -37,7 +37,7 @@
 				<li><a href="#">View current active</a></li>
 				<li><a href="#">View inactive</a></li>
 				<li><a href="#">Search Customers</a></li>
-				<li><a href="#">Create New Customer</a></li>
+				<li><a href="/customers/new"><img src="/icons/user_add.png">&nbsp; Create New Customer</a></li>
 			</ul>
 		</div>
 		<div id="ie_clearing">&nbsp;</div>

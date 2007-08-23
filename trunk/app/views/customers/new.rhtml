@@ -42,8 +42,8 @@
 			
 			</style>
 			
-			<form action="/customers/<%= @customer.id %>" method="POST">
-			<input type="hidden" name="_method" value="PUT">
+			<form action="/customers" method="POST">
+			<input type="hidden" name="_method" value="POST">
 			<table class="full continuous">
 					<thead>
 					<tr>
@@ -70,7 +70,7 @@
 						</td>
 						</td>
 
-						<td class="fieldValue"  width="25%">
+						<td class="fieldValue">
 							<strong>Status</strong><br />
 							<select name="customer[status_id]" style="width:100%"><%= options_from_collection_for_select(CustomerStatus.find(:all), "id", "name", @customer.status_id) %></select>
 						</td>

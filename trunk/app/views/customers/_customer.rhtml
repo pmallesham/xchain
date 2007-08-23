@@ -25,20 +25,20 @@
 			<th class="sub" colspan="4">General Details</th>
 		</tr>
 		<tr>
-			<td class="fieldValue">
+			<td class="fieldValue" width="25%">
 				<strong>Company Name</strong><br />
 				<%= @customer.name %>
 			</td>
-			<td class="fieldValue">
+			<td class="fieldValue" width="25%">
 				<strong>Alternate Name</strong><br />
 				<%= @customer.alternate_name %>
 			</td>
-			<td class="fieldValue">
+			<td class="fieldValue" width="25%">
 				<strong>Country</strong><br />
 				 <img src="/flag_icons/<%= @customer.country.iso_code %>.gif"> <%= @customer.country.name %>
 			</td>
 
-			<td class="fieldValue">
+			<td class="fieldValue" width="25%">
 				<strong>Status</strong><br />
 				<strong style="color:green"><%= @customer.status.name %></strong>
 			</td>
