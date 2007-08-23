@@ -121,26 +121,11 @@
 			</table>
 			<table class="full continuous">
 					<tr>
-						<th class="sub">Addresses</th>
+						<th class="sub">Notes</th>
 					</tr>
 					<tr>
 						<td class="fieldValue">
-							<% @customer.addressables.each do |a| %>
-							  <div class="addressBlock" style="width:30%;border:1px solid #ccc;float:left;margin-right:2px;padding:5px">
-								<strong>Address: </strong><br />
-								<%= a.address.address %><br />
-								<strong>City:</strong><br />
-								<%= a.address.city %><br />
-								<strong>Province / Postcode:</strong><br />
-								<%= a.address.postcode %><br />
-								<strong>Country:</strong><br />
-								<%= a.address.country.name %><br />
-								<% if a.is_default? %>
-									<strong style="color:green">Default <%= a.type %> address</strong>
-								<% end %>
-							  </div>
-
-							<% end %>
+							<textarea name="customer[notes]" style="width:100%;height:100px"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -150,7 +135,7 @@
 						</th>
 					</tr>
 					<tr>
-						<td valign="right"><input type="submit" value="Save Changes" class="bigButton"></td>
+						<td valign="right"><input type="submit" value="Save Changes" class="bigButton" onMouseover="Alert('hello')">&nbsp;<input type="reset" value="Cancel Edit" class="bigButton"></td>
 					</tr>
 			</table>
 			</form>

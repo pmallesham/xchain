@@ -9,18 +9,21 @@
 					<tr>
 						<th>ID</th>
 						<th>Customer Name</th>
+						<th>Phone</th>
+						<th>Email</th>
 						<th>Country</th>
+						<th>Status</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th colspan="6">Draft</th>
-					</tr>
 					<% for customer in @customers %>
-					<tr>
+					<tr class="dataRow">
 						<td><a href="/customers/<%= customer.id %>"><%= customer.id %></a></td>
 						<td><a href="/customers/<%= customer.id %>"><%= customer.name %></a></td>
+						<td><%= customer.phone %></td>
+						<td><%= customer.email %></td>
 						<td><a href="/customers/<%= customer.id %>"><img src="/flag_icons/<%= customer.country.iso_code %>.gif"> <%= customer.country.name %></a></td>
+						<td><%= customer.status.name %></td>
 					</tr>
 					<% end %>
 				</tbody>

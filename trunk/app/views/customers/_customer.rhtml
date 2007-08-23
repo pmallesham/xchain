@@ -84,13 +84,24 @@
 </table>
 <table class="full continuous">
 		<tr>
-			<th class="sub">Addresses</th>
+			<th class="sub">Notes</th>
 		</tr>
 		<tr>
-			<td class="fieldValue" width="50%">
+			<td class="fieldValue" width="100%">
+				{Notes}
+			</td>
+		</tr>
+	
+</table>
+<table class="full continuous">
+		<tr>
+			<th class="sub"><a href=""><img src="/icons/table_add.png" align="right"></a>Addresses</th>
+		</tr>
+		<tr>
+			<td class="fieldValue" width="100%">
 				<% @customer.addressables.each do |a| %>
 				  <div class="addressBlock" style="width:30%;border:1px solid #ccc;float:left;margin-right:2px;padding:5px">
-					<strong>Address: </strong><br />
+					<a href=""><img src="/icons/table_delete.png" align="right"></a><a href=""><img src="/icons/table_edit.png" align="right"></a><strong>Address: </strong><br />
 					<%= a.address.address %><br />
 					<strong>City:</strong><br />
 					<%= a.address.city %><br />
