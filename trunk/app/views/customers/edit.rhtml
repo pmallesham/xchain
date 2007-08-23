@@ -19,14 +19,18 @@
 				background-color:#EFEFEF;
 			}
 			input {
-				border: 1px solid black;
+				border: 1px solid #666;
 				background:white;
-				height: 20px;
+				height:20px; 
 				width:100%;
 				font-size:110%;
 			}
 			.fieldWithErrors input {
 				border: 1px solid red;
+			}
+			.standardCheckBox {
+				width: 15px; 
+				height: 15px;
 			}
 			</style>
 			
@@ -57,12 +61,13 @@
 						</td>
 						<td class="fieldValue">
 							<strong>Country</strong><br />
-							<select name=""><option>{Some value}</option></select>
+							<select name="customer[country_id]"><%= options_from_collection_for_select(Country.find(:all), "id", "name", @customer.country_id) %></select>
+						</td>
 						</td>
 
 						<td class="fieldValue">
 							<strong>Status</strong><br />
-							<select name=""><option>{Some value}</option></select>
+							<select name="customer[status_id]"><%= options_from_collection_for_select(CustomerStatus.find(:all), "id", "name", @customer.status_id) %></select>
 						</td>
 					</tr>
 					<tr>
@@ -89,17 +94,22 @@
 							<th class="sub" colspan="3">Pricing Details</th>
 						</tr>
 					<tr>
-						<td class="fieldValue">
+						<td class="fieldValue" width="33%">
 							<strong>Price Type</strong><br />
-							<select name=""><option>{Some value}</option></select>
+							<select name="customer[price_type_id]"><%= options_from_collection_for_select(PriceType.find(:all), "id", "code", @customer.price_type_id) %></select>
+								
 						</td>
 						<td class="fieldValue">
 							<strong>Payment Terms</strong><br />
-							<select name=""><option>{Some value}</option></select>
+							<select name="customer[payment_term_id]"><%= options_from_collection_for_select(PaymentTerm.find(:all), "id", "terms_text", @customer.payment_term_id) %></select>
 						</td>
-						<td class="fieldValue">
+						<td class="fieldValue" width="33%">
 							<strong>Agent(s)</strong><br />
-							<%= @customer.agents.collect {|a| "<a href='/customers/#{a.id}'>#{a.name}</a>"}.join(', ') %>
+							   <% Agent.find(:all).each do |a| %>
+   								<%= check_box_tag 'customer[agent_ids][]', a.id, @customer.agents.include?(a), :class => 'standardCheckBox' %><%= a.name %><br />
+    							<% end %>
+   							
+   
 						</td>
 					</tr>
 
