@@ -21,7 +21,7 @@
 
   body { background: #DFDFDF; padding: 0px 0; }
 
-  #page_margins { min-width: 960px; max-width: 80em; margin: 0 auto; border: 0px #889 solid; }
+  #page_margins { min-width: 960px; max-width: 80em; margin: 0 auto; border: 0px #889 solid;} 
   #page{ background: #fff; border: 0px #fff solid; }
 
   /* (en) Centering layou in old IE-versions */
@@ -44,7 +44,7 @@
   #nav ul { margin-left: 20px; }
   #nav_main {background-color: #336}
 
-  #main { background: #fff;padding:10px 0; }
+  #main { background: #fff;padding:10px 0; min-height:700px;}
 
   #footer { 
     color:black; 

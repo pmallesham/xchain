@@ -10,6 +10,8 @@ class Customer < ActiveRecord::Base
   belongs_to  :price_type
   belongs_to  :country
   belongs_to  :payment_term
+  before_save :check_agent_type
+  
   
   validates_presence_of :name, :alternate_name, :phone, :fax
   
@@ -18,4 +20,8 @@ class Customer < ActiveRecord::Base
   end
   
   
+  protected
+  def check_agent_type
+    is_agent? ? self.type = 'Agent' : self.type = 'Customer'
+  end
 end
