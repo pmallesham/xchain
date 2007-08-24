@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.xml
   def index
-    @customers = Customer.find(:all)
+    @customers = Customer.find(:all, :include => [:country, :status])
 
     respond_to do |format|
       format.html # index.rhtml
@@ -13,7 +13,7 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.xml
   def show
-    @customer = Customer.find(params[:id], :include => [{ :addressables => :address }, :country])
+    @customer = Customer.find(params[:id], :include => [{ :addressables => :address }, :country ])
 
     respond_to do |format|
       format.html # show.rhtml
@@ -52,17 +52,18 @@ class CustomersController < ApplicationController
   # PUT /customers/1.xml
   def update
     @customer = Customer.find(params[:id])
+    
 
     respond_to do |format|
-      if @customer.update_attributes(params[:customer])
-        flash[:notice] = 'Customer was successfully updated.'
-        format.html { redirect_to customer_url(@customer) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @customer.errors.to_xml }
-      end
-    end
+              if @customer.update_attributes(params[:customer])
+                flash[:notice] = 'Customer was successfully updated.'
+                format.html { redirect_to customer_url(@customer) }
+                format.xml  { head :ok }
+              else
+                format.html { render :action => "edit" }
+                format.xml  { render :xml => @customer.errors.to_xml }
+              end
+   end
   end
 
   # DELETE /customers/1
