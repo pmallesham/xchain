@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+
   # The priority is based upon order of creation: first created -> highest priority.
   
   # Sample of regular route:
@@ -27,6 +28,14 @@ ActionController::Routing::Routes.draw do |map|
                                :awaiting_payment => :get, 
                                :pay_online => :get, 
                                :show_xml => :get }
+                               
+    
+    map.resources(:customers) do |customers|
+      customers.resources :addresses, :name_prefix => "customer_"
+    end
+    
+    map.resources :addresses
+    
 
     map.signup '/signup', :controller => 'users', :action => 'new'
     map.login  '/login', :controller => 'sessions', :action => 'new'

@@ -14,6 +14,8 @@ class Customer < ActiveRecord::Base
   
   
   validates_presence_of :name, :alternate_name, :phone, :fax
+  validates_numericality_of :phone
+  
   
   def agent_ids=(id_list)
   	#@todo fill this bit out
