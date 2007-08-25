@@ -8,5 +8,6 @@ describe Product, " when using Product ID 1 " do
   it "should be valid" do
     @product.should be_valid
   end
-
+  
+  
 end

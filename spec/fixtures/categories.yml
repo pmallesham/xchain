@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+  title: Floorstanding speakers
+  description: For ultimate visual impact, a pair of floorstanders are what every guy craves in the center of their living room. 
+  position: 1
+two:
+  id: 2
+  title: Center channel
+  description: The first thing you should buy in your home theatre setup - 90% of dialog gets pumped through the centre channel 
+  position: 2
+three:
+  id: 3 
+  title: Surround speakers
+  description: 
+  position: 3
+  

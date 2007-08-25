@@ -1,0 +1,12 @@
+<h1>Editing cart</h1>
+
+<%= error_messages_for :cart %>
+
+<% form_for(:cart, :url => cart_path(@cart), :html => { :method => :put }) do |f| %>
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>

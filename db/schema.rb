@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 12) do
+ActiveRecord::Schema.define(:version => 13) do
 
   create_table "activities", :force => true do |t|
     t.column "activity_type_id", :integer
@@ -27,6 +27,33 @@ ActiveRecord::Schema.define(:version => 12) do
     t.column "customer_id",         :integer
     t.column "is_default_billing",  :boolean
     t.column "is_default_shipping", :boolean
+  end
+
+  create_table "cart_line_items", :force => true do |t|
+    t.column "cart_id",    :integer
+    t.column "product_id", :integer
+    t.column "qty",        :integer
+  end
+
+  create_table "carts", :force => true do |t|
+    t.column "user_id",     :integer
+    t.column "session_key", :string
+    t.column "created_at",  :datetime
+    t.column "updated_at",  :datetime
+  end
+
+  create_table "categories", :force => true do |t|
+    t.column "title",              :string
+    t.column "description",        :text
+    t.column "position",           :integer
+    t.column "landing_page_image", :string
+    t.column "created_at",         :datetime
+    t.column "updated_at",         :datetime
+  end
+
+  create_table "category_product_links", :force => true do |t|
+    t.column "product_id",  :integer
+    t.column "category_id", :integer
   end
 
   create_table "cc_gateway_logs", :force => true do |t|
@@ -236,6 +263,7 @@ ActiveRecord::Schema.define(:version => 12) do
     t.column "qty_per_box",             :integer
     t.column "shipping_weight_per_box", :float
     t.column "commission",              :integer, :limit => 2,                                 :default => 1, :null => false
+    t.column "description",             :text
   end
 
   create_table "representations", :force => true do |t|

@@ -5,12 +5,12 @@ describe Customer do
     @customer = Customer.find(1)
   end
 
-  it "should be valid" do
-    @customer.should be_valid
-  end
-  
   it "should have agents" do 
   	@customer.should have(1).agents 
+  end
+  
+  it "should have orders" do 
+  	@customer.should have(1).orders
   end
   	
 end
