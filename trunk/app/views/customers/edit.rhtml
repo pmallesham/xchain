@@ -22,7 +22,7 @@
 				border: 1px solid #666;
 				background:white;
 				height:20px; 
-				width:100%;
+				width:95%;
 				font-size:110%;
 			}
 			.fieldWithErrors input {
@@ -31,6 +31,7 @@
 			.standardCheckBox {
 				width: 15px; 
 				height: 15px;
+				border: 0px;
 			}
 			.bigButton {
 				width: 200px;
@@ -72,7 +73,7 @@
 
 						<td class="fieldValue"  width="25%">
 							<strong>Status</strong><br />
-							<select name="customer[status_id]" style="width:100%"><%= options_from_collection_for_select(CustomerStatus.find(:all), "id", "name", @customer.status_id) %></select>
+							<select name="customer[status_id]" style="width:95%"><%= options_from_collection_for_select(CustomerStatus.find(:all), "id", "name", @customer.status_id) %></select>
 						</td>
 					</tr>
 					<tr>
@@ -101,12 +102,12 @@
 					<tr>
 						<td class="fieldValue" width="33%">
 							<strong>Price Type</strong><br />
-							<select name="customer[price_type_id]"  style="width:100%"><%= options_from_collection_for_select(PriceType.find(:all), "id", "code", @customer.price_type_id) %></select>
+							<select name="customer[price_type_id]"  style="width:95%"><%= options_from_collection_for_select(PriceType.find(:all), "id", "code", @customer.price_type_id) %></select>
 								
 						</td>
 						<td class="fieldValue">
 							<strong>Payment Terms</strong><br />
-							<select name="customer[payment_term_id]"  style="width:100%"><%= options_from_collection_for_select(PaymentTerm.find(:all), "id", "terms_text", @customer.payment_term_id) %></select>
+							<select name="customer[payment_term_id]"  style="width:95%"><%= options_from_collection_for_select(PaymentTerm.find(:all), "id", "terms_text", @customer.payment_term_id) %></select>
 						</td>
 						<td class="fieldValue" width="33%">
 							<strong>Agent(s)</strong><br />

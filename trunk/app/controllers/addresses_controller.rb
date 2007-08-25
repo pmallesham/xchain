@@ -34,7 +34,10 @@ class AddressesController < ApplicationController
 
   # GET /addresses/1;edit
   def edit
-    @address = Address.find(params[:id])
+    @address = @customer.addresses.find(params[:id])
+    render :update do |page|
+      page.replace_html "ab#{@address.id}", :partial => 'form', :locals => { :customer => @customer, :address => @address }
+    end
   end
 
   # POST /addresses
@@ -59,15 +62,8 @@ class AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
 
-    respond_to do |format|
-      if @address.update_attributes(params[:address])
-        flash[:notice] = 'Address was successfully updated.'
-        format.html { redirect_to address_url(@address) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @address.errors.to_xml }
-      end
+     render :update do |page|
+      page.replace_html "ab#{@address.id}", "testing"
     end
   end
 
