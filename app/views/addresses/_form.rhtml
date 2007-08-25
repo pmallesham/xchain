@@ -1,18 +1,21 @@
 <%= form_remote_tag :url => customer_address_url(customer.id, address.id), :method => 'PUT' %>
+<% if address.errors.size > 0 %>
+	<span style="color:red">Required fields need to be filled out below</span>
+<% end %>
 <strong>Address: </strong><br />
-<textarea style="width:100%;height:50px;font-size:110%">
-<%= address.address %>
-</textarea><br />
+<%= text_area 'address', 'address', :style => 'width:95%;height:50px;font-size:120%;font-family:Arial' %><br />
 <strong>City:</strong><br />
-<input type="text" name="address[city]" value="<%= address.city %>" style="width:100%"><br />
-<strong>Province / Postcode:</strong><br />
-<input type="text" name="address[postcode]" value="<%= address.postcode %>" style="width:100%"><br />
-<strong>Country:</strong><br />
-<%= address.country.name %><br />
-<strong>Province / Postcode:</strong><br />
-<%= address.postcode %><br />
-<strong>Country:</strong><br />
-<%= address.country.name %><br />
+<%= text_field 'address', 'city' %><Br />
+<strong>Postcode:</strong><br />
+<%= text_field 'address', 'postcode' %><br />
+<strong>Province / State:</strong><br />
+<%= text_field 'address', 'state' %><br />
+<strong>Country:</strong><br /><select name="address[country_id]" style="width:95%"><%= options_from_collection_for_select(Country.find(:all), "id", "name", address.country_id) %></select><br />
+
+<%= check_box 'address', 'is_default_billing', :style => "display:inline;width:20px" %> Default Billing Address <br />
+<%= check_box 'address', 'is_default_shipping', :style => "display:inline;width:20px" %> Default Shipping Address <br />
+
+<br />
 <input type="submit" style="border:1px solid black">
 
 <%= end_form_tag %>
