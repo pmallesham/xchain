@@ -13,7 +13,7 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.xml
   def show
-    @customer = Customer.find(params[:id], :include => [{ :addressables => :address }, :country ])
+    @customer = Customer.find(params[:id], :include => [ :addresses, :country ])
 
     respond_to do |format|
       format.html # show.rhtml

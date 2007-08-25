@@ -61,9 +61,10 @@ class AddressesController < ApplicationController
   # PUT /addresses/1.xml
   def update
     @address = Address.find(params[:id])
-
-     render :update do |page|
-      page.replace_html "ab#{@address.id}", "testing"
+    if request.xhr? 
+       render :update do |page|
+        page.replace_html "ab#{@address.id}", :partial => 'show', :locals => { :address => @address, :customer => @customer }
+      end
     end
   end
 

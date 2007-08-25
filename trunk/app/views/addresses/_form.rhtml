@@ -4,9 +4,9 @@
 <%= address.address %>
 </textarea><br />
 <strong>City:</strong><br />
-<input type="text" name="" value="<%= address.city %>" style="width:100%"><br />
+<input type="text" name="address[city]" value="<%= address.city %>" style="width:100%"><br />
 <strong>Province / Postcode:</strong><br />
-<%= address.postcode %><br />
+<input type="text" name="address[postcode]" value="<%= address.postcode %>" style="width:100%"><br />
 <strong>Country:</strong><br />
 <%= address.country.name %><br />
 <strong>Province / Postcode:</strong><br />
