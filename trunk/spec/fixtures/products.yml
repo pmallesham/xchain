@@ -29,3 +29,25 @@ products_003:
   code: WID-003
   id: "3"
   sell_price: "1.50"
+products_004: 
+  commission: "0"
+  qty_per_box: "1"
+  visible: "1"
+  shipping_weight_per_box: "50"
+  order_min_quantity: "1"
+  title: Floor Standing Speakers
+  description: Our premium rosewood enclosed floor standing speakers provide a virtual wall of sound
+  code: FS01
+  id: "4"
+  sell_price: "599"
+products_005: 
+  commission: "0"
+  qty_per_box: "1"
+  visible: "1"
+  shipping_weight_per_box: "50"
+  order_min_quantity: "1"
+  title: Floor Standing Speakers
+  code: FS02
+  id: "5"
+  sell_price: "599"
+  
