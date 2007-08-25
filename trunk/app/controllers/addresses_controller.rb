@@ -31,7 +31,8 @@ class AddressesController < ApplicationController
   def new
     @address = Address.new
     render :update do |page|
-	  page.insert_html :bottom, "ab#{@address.id}", :partial => 'new', :locals => { :address => @address, :customer => @customer }
+      page['newAddress'].hide
+	    page.insert_html :bottom, "addressBox", :partial => 'new', :locals => { :address => @address, :customer => @customer }
     end
   end
 
@@ -39,24 +40,23 @@ class AddressesController < ApplicationController
   def edit
     @address = @customer.addresses.find(params[:id])
     render :update do |page|
-      page.replace_html "ab#{@address.id}", :partial => 'form', :locals => { :customer => @customer, :address => @address }
+      page.replace "ab#{@address.id}", :partial => 'form', :locals => { :customer => @customer, :address => @address }
     end
   end
 
   # POST /addresses
   # POST /addresses.xml
   def create
-    @address = Address.new(params[:address])
-
-    respond_to do |format|
-      if @address.save
-        flash[:notice] = 'Address was successfully created.'
-        format.html { redirect_to address_url(@address) }
-        format.xml  { head :created, :location => address_url(@address) }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @address.errors.to_xml }
-      end
+    @address = @customer.addresses.create(params[:address])
+    if @address.save
+	   render :update do |page|
+	     page['newAddress'].show
+	     page.replace "newAddressForm", :partial => 'show', :locals => { :address => @address, :customer => @customer }
+       end
+    else
+	   render :update do |page|	     
+	     page.replace "newAddressForm", :partial => 'new', :locals => { :address => @address, :customer => @customer }
+       end
     end
   end
 
@@ -66,11 +66,11 @@ class AddressesController < ApplicationController
     @address = Address.find(params[:id])
     if @address.update_attributes(params[:address])
 	   render :update do |page|
-	     page.replace_html "ab#{@address.id}", :partial => 'show', :locals => { :address => @address, :customer => @customer }
+	     page.replace "ab#{@address.id}", :partial => 'show', :locals => { :address => @address, :customer => @customer }
        end
     else
 	   render :update do |page|
-	     page.replace_html "ab#{@address.id}", :partial => 'form', :locals => { :address => @address, :customer => @customer }
+	     page.replace "ab#{@address.id}", :partial => 'form', :locals => { :address => @address, :customer => @customer }
        end
     end
   end

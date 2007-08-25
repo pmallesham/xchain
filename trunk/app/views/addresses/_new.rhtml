@@ -1,6 +1,6 @@
-<div id="ab<%= address.id %>"class="addressBlock" style="width:30%;border:1px solid #ccc;float:left;margin-right:2px;padding:5px">
+<div id="newAddressForm"class="addressBlock" style="width:30%;border:1px solid #ccc;float:left;margin-right:2px;padding:5px">
 					
-	<%= form_remote_tag :url => customer_address_url(customer.id, address.id), :method => 'PUT' %>
+	<%= form_remote_tag :url => customer_addresses_url(customer.id), :method => 'POST' %>
 	<% if address.errors.size > 0 %>
 		<span style="color:red">Required fields need to be filled out below</span>
 	<% end %>
