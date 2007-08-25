@@ -1,11 +1,21 @@
-<h1>New addresss</h1>
-
-<%= error_messages_for :addresss %>
-
-<% form_for(:addresss, :url => addressses_path) do |f| %>
-  <p>
-    <%= submit_tag "Create" %>
-  </p>
+<%= form_remote_tag :url => customer_address_url(customer.id, address.id), :method => 'PUT' %>
+<% if address.errors.size > 0 %>
+	<span style="color:red">Required fields need to be filled out below</span>
 <% end %>
+<strong>Address: </strong><br />
+<%= text_area 'address', 'address', :style => 'width:95%;height:50px;font-size:120%;font-family:Arial' %><br />
+<strong>City:</strong><br />
+<%= text_field 'address', 'city' %><Br />
+<strong>Postcode:</strong><br />
+<%= text_field 'address', 'postcode' %><br />
+<strong>Province / State:</strong><br />
+<%= text_field 'address', 'state' %><br />
+<strong>Country:</strong><br /><select name="address[country_id]" style="width:95%"><%= options_from_collection_for_select(Country.find(:all), "id", "name", address.country_id) %></select><br />
 
-<%= link_to 'Back', addressses_path %>
+<%= check_box 'address', 'is_default_billing', :style => "display:inline;width:20px" %> Default Billing Address <br />
+<%= check_box 'address', 'is_default_shipping', :style => "display:inline;width:20px" %> Default Shipping Address <br />
+
+<br />
+<input type="submit" style="border:1px solid black">
+
+<%= end_form_tag %>

@@ -30,6 +30,9 @@ class AddressesController < ApplicationController
   # GET /addresses/new
   def new
     @address = Address.new
+    render :update do |page|
+	  page.insert_html :bottom, "ab#{@address.id}", :partial => 'new', :locals => { :address => @address, :customer => @customer }
+    end
   end
 
   # GET /addresses/1;edit
@@ -61,10 +64,14 @@ class AddressesController < ApplicationController
   # PUT /addresses/1.xml
   def update
     @address = Address.find(params[:id])
-    if request.xhr? 
-       render :update do |page|
-        page.replace_html "ab#{@address.id}", :partial => 'show', :locals => { :address => @address, :customer => @customer }
-      end
+    if @address.update_attributes(params[:address])
+	   render :update do |page|
+	     page.replace_html "ab#{@address.id}", :partial => 'show', :locals => { :address => @address, :customer => @customer }
+       end
+    else
+	   render :update do |page|
+	     page.replace_html "ab#{@address.id}", :partial => 'form', :locals => { :address => @address, :customer => @customer }
+       end
     end
   end
 

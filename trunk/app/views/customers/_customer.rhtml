@@ -109,12 +109,13 @@
 					<%= a.postcode %><br />
 					<strong>Country:</strong><br />
 					<%= a.country.name %><br />
-					<% if a.is_default_shipping?(customer) %>
-						<strong style="color:green">Default shipping address</strong><br />
-					<% end %>
-					<% if a.is_default_billing?(customer) %>
+					<% if a.is_default_billing? %>
 						<strong style="color:green">Default billing address</strong><br />
 					<% end %>
+					<% if a.is_default_shipping? %>
+						<strong style="color:green">Default shipping address</strong><br />
+					<% end %>
+
 					<%= link_to_remote '[Edit via XHR]', :url =>  customer_edit_address_url(@customer.id, a.id), :method => 'GET' %>
 		
 					
