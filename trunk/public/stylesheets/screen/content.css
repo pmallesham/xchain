@@ -222,6 +222,14 @@
 		height: 20px;
 		border: 1px solid black;
 	}			
-  
+  	.fieldHeading {
+		font-weight:bold;
+		vertical-align:top;
+		text-align:left;
+	}
+	.fieldValue {
+		vertical-align:top;
+		line-height: 1.6em;
+	}
 }
 

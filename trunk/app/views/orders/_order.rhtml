@@ -1,25 +1,45 @@
-<style lang="text/css">
-.orderPad {
-
-}
-.fieldHeading {
-	font-weight:bold;
-	vertical-align:top;
-	text-align:left;
-}
-.fieldValue {
-	vertical-align:top;
-	line-height: 1.6em;
-}
-</style>
-
 <table class="full continuous">
 		<thead>
 		<tr>
-			<th>ORDER DETAILS #1414 - <em style="color:#9FFFAC">Waiting for parts</em></th>
+			<th>ORDER DETAILS #1414 - <em style="color:#9FFFAC"><%= @order.order_status.name %></em></th>
 		</tr>
 		</thead>
 </table>
+<form action="<%= update_status_order_path(@order.id) %>" method="POST">
+	<input type="hidden" name="_method" value="POST">
+<table id="orderStatusUpdate" class="full continuous" style="display:none">
+		<thead>
+		<tr>
+			<th colspan="2" style="background-color:#6F6F6F">Change Status</th>
+		</tr>
+		<tr>
+			<td class="fieldValue" style="background-color:#EFEFEF;">
+				New Status 
+			</td>
+			<td class="fieldValue" style="background-color:#EFEFEF;">
+				<select name="order_status_history[order_status_id]" style="width:95%"><%= options_from_collection_for_select(OrderStatus.find(:all), "id", "name", @order.order_status_id) %></select>
+			</td>
+		</tr>
+		<tr>
+			<td class="fieldValue" style="background-color:#EFEFEF;">
+				Comment
+			</td>
+			<td class="fieldValue" style="background-color:#EFEFEF;">
+				<%= text_area "order_status_history", "comment", :style => 'height:50px' %>
+			</td>
+		</tr>
+		<tr>
+			<td class="fieldValue" style="background-color:#EFEFEF;border-bottom:4px solid #6F6F6F">
+				&nbsp;
+			</td>
+			<td class="fieldValue" style="background-color:#EFEFEF;border-bottom:4px solid #6F6F6F">
+				<input type="submit" value="Update Status" style="width:100px"> <input type="reset" value="Cancel"  onClick="Element.hide('orderStatusUpdate')"  style="width:100px">
+				
+			</td>
+		</tr>
+		</thead>
+</table>
+</form>
 <table class="full continuous">
 		<tr>
 			<th class="sub" colspan="2">Addresses</th>
@@ -128,7 +148,11 @@
 		</tr>
 		<% for status in @order.order_status_histories %>
 			<tr>
-				<td><%= debug @order %></td>
+				<td><%= status.created_at %></td>
+				<td>{user}</td>
+				<td><%= status.order_status.name %></td>
+				<td><%= status.comment %></td>
+				
 			</tr>	
 		<% end %>
 </table>

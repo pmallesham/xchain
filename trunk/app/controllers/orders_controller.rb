@@ -15,52 +15,22 @@ class OrdersController < ApplicationController
 
   # GET /orders
   def index
-    
     params[:order_status] ? conditions = ['order_status_id = ?', params[:order_status]] : conditions = 'order_status_id < 100'
     
-    respond_to do |format| 
-     	format.xml do 
-     	  @orders = Order.find(:all, 
-    	  					          :select => "orders.id, orders.created_at, orders.purchase_order_number, customers.name as customer_name, countries.name as country_name, order_statuses.name as order_status_name, order_statuses.id as order_status_id, orders.total_amount_payable, price_types.symbol as price_type_symbol, price_types.dollar_sign as price_type_dollar_sign", 
-    	                      :include => [{:customer => :country}, :order_status, :price_type], 
-    	                      :conditions => conditions, 
-    	                      :order => 'order_statuses.sort_order ASC,order_statuses.id ASC, orders.id DESC')
-    	                      
-     	  render :xml => @orders.to_xml(:dasherize => false) 
-     	end 
-		  format.html do
-		     @orders = Order.find(:all, 
+    @orders = Order.find(:all, 
     	  					            :include => [{:customer => :country}, :order_status, :price_type], 
     	                        :conditions => conditions, 
     	                        :order => 'order_statuses.sort_order ASC,order_statuses.id ASC, orders.id DESC', 
     	                        :limit => 5) 
-		     render :action => 'index'
-		  end
-	  end
   end
   
   # GET /orders/1
   def show
-    @order_status_history = OrderStatusHistory.new
-    respond_to do |format| 
-     	format.xml { render :xml => @order.to_xml(:dasherize => false, :include => [:customer, :order_lines, :order_status_histories, :order_status, :next_statuses, :price_type]) }
-		format.html { render :action => 'show'}
-	end
   end
-  
-  def show_xml
-  	@order.invoice_pdf = nil
-  	render :xml => @order.to_xml(:dasherize => false, :include => [:customer, :order_lines, :order_status_histories, :order_status, :next_statuses, :price_type])
-  end
-  
   
   def select_customer
     @order      = Order.new
     @customers  = Customer.find(:all,:select => "customers.id, customers.name, countries.name as country_name", :include => :country, :order => 'customers.name ASC')
-    respond_to do |format|
-      format.xml { render :xml => @customers.to_xml(:dasherize => false) }
-      format.html { render :action => 'select_customer'}
-    end
   end
   	
   # GET /orders/new?customer_id = 890
@@ -158,16 +128,14 @@ class OrdersController < ApplicationController
     end
   end
   
-  # PUT /orders/1
+  # PUT /orders/1;update_status
   # PUT /orders/1.xml
   def update_status
     if @order_status_history = OrderStatusHistory.create(params[:order_status_history])
       @order.update_status_history(@order_status_history)
-      redirect_to :action => 'show', :id => @order
+      redirect_to order_url(@order.id) and return false
     else
-      respond_to do |format|
-        format.html { render :action => 'show' }
-      end
+      render :action => 'show'
     end
   end
   
