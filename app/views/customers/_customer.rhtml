@@ -112,7 +112,10 @@
 					<% if a.is_default? %>
 						<strong style="color:green">Default <%= a.type %> address</strong>
 					<% end %>
-					<%= link_to_remote '[Edit via XHR]', :url =>  customer_address_url(@customer.id, a.id), :method => 'GET' %>
+					<%= link_to_remote '[Edit via XHR]', :url =>  customer_edit_address_url(@customer.id, a.id), :method => 'GET' %>
+		
+					
+					
 				  </div>
 				
 				<% end %>
