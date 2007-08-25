@@ -9,3 +9,7 @@ addresses_001:
   phone: 400 600 9003
   address: 103 Dynamite
   state: "ON"
+  customer_id: 1
+  is_default_billing: true
+  is_default_shipping: true
+  

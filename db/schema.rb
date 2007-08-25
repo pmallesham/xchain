@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 11) do
+ActiveRecord::Schema.define(:version => 12) do
 
   create_table "activities", :force => true do |t|
     t.column "activity_type_id", :integer
@@ -15,22 +15,18 @@ ActiveRecord::Schema.define(:version => 11) do
     t.column "icon_name", :string
   end
 
-  create_table "addressables", :force => true do |t|
-    t.column "address_id",   :integer
-    t.column "customer_id",  :integer
-    t.column "address_type", :integer
-    t.column "is_default",   :boolean
-  end
-
   create_table "addresses", :force => true do |t|
-    t.column "address",        :text
-    t.column "city",           :string
-    t.column "postcode",       :string
-    t.column "state",          :string
-    t.column "country_id",     :integer
-    t.column "phone",          :string
-    t.column "fax",            :string
-    t.column "contact_person", :string
+    t.column "address",             :text
+    t.column "city",                :string
+    t.column "postcode",            :string
+    t.column "state",               :string
+    t.column "country_id",          :integer
+    t.column "phone",               :string
+    t.column "fax",                 :string
+    t.column "contact_person",      :string
+    t.column "customer_id",         :integer
+    t.column "is_default_billing",  :boolean
+    t.column "is_default_shipping", :boolean
   end
 
   create_table "cc_gateway_logs", :force => true do |t|
