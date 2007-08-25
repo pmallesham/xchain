@@ -88,7 +88,7 @@
 		</tr>
 		<tr>
 			<td class="fieldValue" width="100%">
-				{Notes}
+				<%= @customer.notes %>
 			</td>
 		</tr>
 	
@@ -101,7 +101,7 @@
 		<tr>
 			<td class="fieldValue" width="100%" id="addressBox">
 				<% @customer.addresses.each do |a| %>
-				  <div id="ab<%= a.id %>"class="addressBlock" style="width:30%;border:1px solid #ccc;float:left;margin-right:2px;padding:5px">
+				  <div id="ab<%= a.id %>"class="addressBlock" style="height:300px;width:30%;border:1px solid #ccc;float:left;margin-right:2px;padding:5px">
 					<a href="#"><img src="/icons/table_delete.png" align="right"></a><a href="<%= customer_address_url(@customer.id, a.id) %>"><img src="/icons/table_edit.png" align="right"></a><strong>Address: </strong><br />
 					<%= a.address %><br />
 					<strong>City:</strong><br />

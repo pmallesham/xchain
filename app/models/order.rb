@@ -91,7 +91,7 @@ class Order < ActiveRecord::Base
   
   def update_status_history(status_history)
     self.order_status_histories << status_history
-    self.order_status_id = status_history.id
+    self.order_status_id = status_history.order_status_id
     self.save
   end
   
