@@ -206,8 +206,8 @@ ActiveRecord::Schema.define(:version => 13) do
     t.column "tax_type",                  :string,   :limit => 20
     t.column "tax_amount",                :decimal,                 :precision => 11, :scale => 2
     t.column "sub_total",                 :decimal,                 :precision => 11, :scale => 2
-    t.column "invoice_text",              :text,                                                   :default => "",  :null => false
-    t.column "invoice_pdf",               :binary,                                                 :default => "",  :null => false
+    t.column "invoice_text",              :text
+    t.column "invoice_pdf",               :binary
     t.column "weight",                    :float,                                                  :default => 0.0, :null => false
     t.column "shipping_country_id",       :integer,  :limit => 3,                                  :default => 0,   :null => false
     t.column "billing_address_2",         :string

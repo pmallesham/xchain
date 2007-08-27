@@ -22,7 +22,7 @@ products_002:
 products_003: 
   commission: "0"
   qty_per_box: "100"
-  visible: "1"
+  visible: "0"
   shipping_weight_per_box: "1"
   order_min_quantity: "50"
   title: Widget 003

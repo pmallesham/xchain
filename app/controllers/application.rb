@@ -486,9 +486,20 @@ class ApplicationController < ActionController::Base
   session :session_key => '_xchain_session_id'
   before_filter :setup_view_properties
 
+
   protected
   def setup_view_properties
     @controller_name = params[:controller]
+  end
+  
+  def load_cart
+  	@cart = Cart.find(session['cart_id'], :include => :line_items ) if session['cart_id']
+  end
+  
+  def get_cart
+  	@cart = Cart.new
+  	@cart.save
+  	session['cart_id'] = @cart.id
   end
   
 

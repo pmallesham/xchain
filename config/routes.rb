@@ -43,7 +43,8 @@ ActionController::Routing::Routes.draw do |map|
     categories.resources :products, :name_prefix => "category_"
   end
 
-  map.resources :products
+  map.resources :products, :member => { :add_to_cart => :post }
+
   map.resources :addresses
   
   map.signup '/signup', :controller => 'users', :action => 'new'

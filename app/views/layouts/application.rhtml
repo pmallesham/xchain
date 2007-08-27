@@ -23,7 +23,7 @@
 			<!-- skiplink anchor: navigation -->
 			<div id="nav_main">
 				<ul>
-					<% ['Dashboard', 'Catalog', 'Orders', 'Customers', 'Inventory', 'Reports', 'Admin'].each do |area| 
+					<% ['Dashboard', 'Products', 'Orders', 'Customers', 'Inventory', 'Reports', 'Admin'].each do |area| 
 						  area.downcase == @controller_name  ? current_text = 'id = "current"' : current_text = '' %>
 						  <%= "<li #{current_text.downcase}><a href='/#{area}'>#{area}</a></li>" %>
 					<% end %>					

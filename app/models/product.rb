@@ -10,4 +10,8 @@ class Product < ActiveRecord::Base
   def get_pricing(price_type)
     pricings.find(:first, :conditions => ['price_type_id = ?', price_type.id] )
   end
+  
+  def self.find_visible()
+  	find(:all, :conditions => 'visible = 1')
+  end
 end
