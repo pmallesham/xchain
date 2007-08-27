@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_filter :load_category_if_exists
+  before_filter :load_cart
   
   # GET /products
   # GET /products.xml
@@ -15,6 +16,13 @@ class ProductsController < ApplicationController
   # GET /products/1.xml
   def show
     @product = Product.find(params[:id])
+  end
+  
+  # POST /products/1;add_to_cart
+  def add_to_cart
+  	get_cart if !@cart
+  	@cart.add_product(Product.find(params[:id]))
+  	redirect_to products_path()
   end
 
   # GET /products/new
