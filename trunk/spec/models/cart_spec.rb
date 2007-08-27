@@ -14,22 +14,11 @@ describe Cart, "when starting a new browsing session" do
   	@cart.line_items.size.should == 1
   end
   
-  it "should be return a total item qty" do 
-#  	@cart.qty.should == 1
-  end
- 
-  it "should be not able to create an order without a user" do 
-#    @cart.create_order.should == false
-  end
+  it "should be return a total item qty"
   
-  it "should be able to be associated with a user" do 
-#  	@cart.set_user(User.find(1)).should == true
-#  	@cart.should have(1).user
-  end
+  it "should be able to be associated with a user"
   
-  it "should be able to create an order with a user " do 
-  	
-  end
+  it "should be able to create an order with a user "
   
 end
 

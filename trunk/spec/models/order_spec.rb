@@ -178,6 +178,28 @@ context Order, "with a single, invalid order line added " do
   end
 end
 
+context Order, "when creating from a cart " do 
+  it "should be able to be created with a valid cart"
+  
+  it "should be associated with Customer 1"
+  
+  it "should prefill with Customer 1's address details"
+  
+  it "should have x line items"
+  
+  it "should have the correct product ids"
+  
+  it "should calculate with a sub_total of x"
+  
+  it "should be in Draft status "
+  
+  it "should have a source_id of 1"
+  
+  it "should have in order status history, comment of created from Cart"
+  
+end
+  
+  
 
 
 
