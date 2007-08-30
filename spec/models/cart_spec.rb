@@ -11,6 +11,7 @@ describe Cart, "when starting a new browsing session" do
   
   it "should be able to be filled by products" do 
   	@cart.add_product(Product.find(4)).should == true
+  	@cart.user = User.find(1)
   	@cart.line_items.size.should == 1
   end
   

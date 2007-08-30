@@ -16,6 +16,32 @@ class Order < ActiveRecord::Base
   
   validates_presence_of :purchase_order_number
   
+  # 
+  def self.create_from_cart(cart)
+    raise exception if !cart.user
+    raise exception if cart.line_items.size == 0 
+    customer = cart.customer
+    o = customer.orders.new
+    o.prefill_address(customer)
+    for item in cart.line_items
+      o.order_lines.create(:qty_ordered => item.qty, :product => item.product)
+    end
+    o.order_status_histories.first.comment = "Created from cart"
+    return o
+  end
+  
+  #stubs for other methods of creating orders
+  def self.create_from_email()
+  end
+  
+  def self.create_from_order_pad()
+  end
+  
+  def self.create_from_service()
+  end
+  
+  
+  
   def initialize(args = {})
     super
     self.order_status_id = 10 
@@ -33,6 +59,7 @@ class Order < ActiveRecord::Base
     end
   end
   
+  #todo remove customer assignment, not necessary
   def prefill_address(customer)
     self.customer_id = customer.id
     billing_address         = customer.addresses.default_billing

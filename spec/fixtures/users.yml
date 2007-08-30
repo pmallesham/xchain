@@ -4,3 +4,4 @@ user_001:
   login: muppet
   crypted_password: 4cfd2c20ecde80bc1d7efe664afc20e67c2da148dbe8267848
   email: rowan.hick@gmail.com
+  customer_id: 1

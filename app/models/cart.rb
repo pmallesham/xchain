@@ -7,4 +7,9 @@ class Cart < ActiveRecord::Base
     self.save
     return true
   end
+  
+  #proxy to user.cuustomer
+  def customer
+    user.customer
+  end
 end
