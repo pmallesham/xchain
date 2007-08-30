@@ -179,9 +179,20 @@ context Order, "with a single, invalid order line added " do
 end
 
 context Order, "when creating from a cart " do 
-  it "should be able to be created with a valid cart"
+  before(:each) do 
+    @cart = Cart.new
+    @cart.add_product(Product.find(4))
+    @cart.user = User.find(1)
+    @order = Order.create_from_cart(@cart)
+  end
+
+  it "should be able to be created with a valid cart" do 
+    #@order.should_be valid
+  end
   
-  it "should be associated with Customer 1"
+  it "should be associated with Customer 1" do 
+    @order.customer_id.should == 1
+  end
   
   it "should prefill with Customer 1's address details"
   
