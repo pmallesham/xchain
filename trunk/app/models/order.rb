@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
   has_many :order_status_histories
-  has_many :order_lines, :select => 'id, description', :include => :product, :order => 'products.id ASC'
+  has_many :order_lines
   has_many :next_statuses, :class_name => "OrderStatus", :finder_sql => 'SELECT order_statuses.id as data, order_statuses.name as label FROM order_statuses '
   belongs_to :order_status
   belongs_to :customer
@@ -23,9 +23,10 @@ class Order < ActiveRecord::Base
     o = cart.customer.orders.build(:created_by => cart.user)
     o.prefill_address
     for item in cart.line_items
-      o.order_lines.create(:qty_ordered => item.qty, :product => item.product)
+      o.order_lines.build(:qty_ordered => item.qty, :product => item.product)
     end
     o.order_status_histories.first.comment = "Created from cart"
+    o.purchase_order_number = "Cart"
     return o
   end
   

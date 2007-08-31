@@ -8,10 +8,16 @@ class Product < ActiveRecord::Base
   #used to return the price of the product, pass in PriceType, get out price value
   #called in OrderLine calculation
   def get_pricing(price_type)
-    pricings.find(:first, :conditions => ['price_type_id = ?', price_type.id] )
+    if !pricing = pricings.find(:first, :conditions => ['price_type_id = ?', price_type.id] ) 
+    	raise 'Price for product cannot be found for given price type'
+    end
+    return pricing
   end
   
   def self.find_visible()
-  	find(:all, :conditions => 'visible = 1')
+  	if !f = find(:all, :conditions => 'visible = 1')
+  		raise 'No visible products found'
+  	end
+  	return f
   end
 end

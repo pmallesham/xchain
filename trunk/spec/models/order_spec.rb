@@ -14,8 +14,7 @@ describe Order, "when creating a new order" do
   end
   
   it "should be able to prefill an address" do 
-  	puts @order.billing_address
-    @order.billing_address.should eql(@customer.addresses.default_billing.address)
+  	@order.billing_address.should eql(@customer.addresses.default_billing.address)
     @order.billing_city.should eql(@customer.addresses.default_billing.city)
     @order.billing_postcode.should eql(@customer.addresses.default_billing.postcode)
     @order.shipping_address.should eql(@customer.addresses.default_shipping.address)
@@ -23,7 +22,9 @@ describe Order, "when creating a new order" do
     @order.shipping_postcode.should eql(@customer.addresses.default_shipping.postcode)
   end
   
-  it "should have a default price type matching customer price type"
+  it "should have a default price type matching customer price type" do 
+  	@order.price_type.should eql(@customer.price_type)
+  end
   
   it "should calculate return 0 dollars" do 
     @order.calculate
@@ -160,7 +161,7 @@ end
 context Order, "when creating from a cart " do 
   before(:each) do 
     @cart = Cart.new
-    @cart.add_product(Product.find(4))
+    @cart.add_product(Product.find(4), 10)
     @cart.user = User.find(1)
     @order = Order.create_from_cart(@cart)
   end
@@ -173,13 +174,22 @@ context Order, "when creating from a cart " do
     @order.customer_id.should == 1
   end
   
-  it "should prefill with Customer 1's address details"
+  it "should prefill with Customer 1's address details" do 
+	@order.billing_address.should eql(@cart.customer.addresses.default_billing.address)
+  end	
+	  
+  it "should have 1 line items" do 
+    @order.order_lines.size.should == 1
+  end
   
-  it "should have x line items"
+  it "should have the correct product ids" do 
+  	@order.order_lines.first.product_id.should == 4
+  end
   
-  it "should have the correct product ids"
-  
-  it "should calculate with a sub_total of x"
+  it "should calculate with a sub_total of x" do 
+  	@order.save
+  	@order.sub_total.should == 8985.0
+  end
   
   it "should be in Draft status "
   

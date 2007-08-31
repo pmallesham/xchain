@@ -156,8 +156,8 @@ class LoadDatabase < ActiveRecord::Migration
       t.column "shipping_contact",           :string,   :limit => 50
       t.column "shipping_phone",             :string,   :limit => 50
       t.column "tax_type",                   :string,   :limit => 20
-      t.column "tax_amount",                 :decimal,                 :precision => 11, :scale => 2
-      t.column "sub_total",                 :decimal,                 :precision => 11, :scale => 2
+      t.column "tax_amount",                 :float,                 :precision => 11, :scale => 2
+      t.column "sub_total",                 :float,                 :precision => 11, :scale => 2
       t.column "invoice_text",               :text                                                  
       t.column "invoice_pdf",                :binary                                                 
       t.column "weight",                     :float,    :limit => 6,                                  :default => 0.0, :null => false
@@ -191,7 +191,7 @@ class LoadDatabase < ActiveRecord::Migration
     create_table "pricing", :force => true do |t|
       t.column "product_id",    :integer, :limit => 10,                               :default => 0, :null => false
       t.column "price_type_id", :integer, :limit => 10,                               :default => 0, :null => false
-      t.column "price",         :decimal,               :precision => 5, :scale => 2
+      t.column "price",         :float,               :precision => 5, :scale => 2
     end
 
     create_table "products", :force => true do |t|
