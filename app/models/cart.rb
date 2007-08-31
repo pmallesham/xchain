@@ -8,7 +8,7 @@ class Cart < ActiveRecord::Base
     return true
   end
   
-  #proxy to user.cuustomer
+  #proxy to user.customer
   def customer
     user.customer
   end

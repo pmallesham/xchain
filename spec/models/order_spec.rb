@@ -2,21 +2,19 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 
 describe Order, "when creating a new order" do 
- 
-  it "should be able to instantiate" do 
-    @order = Order.new
+  before(:each) do 
+  	@customer = Customer.find(1)
+    @order = @customer.orders.build
+    @order.prefill_address
   end
+ 
   
   it "should default to draft status" do 
-    @order = Order.new
     @order.order_status_id.should == 10
   end
   
   it "should be able to prefill an address" do 
-    @customer = Customer.find(1)
-    @order = Order.new
-    @order.should respond_to(:prefill_address)
-    @order.prefill_address(Customer.find(1))
+  	puts @order.billing_address
     @order.billing_address.should eql(@customer.addresses.default_billing.address)
     @order.billing_city.should eql(@customer.addresses.default_billing.city)
     @order.billing_postcode.should eql(@customer.addresses.default_billing.postcode)
@@ -25,49 +23,32 @@ describe Order, "when creating a new order" do
     @order.shipping_postcode.should eql(@customer.addresses.default_shipping.postcode)
   end
   
-  it "should have a default price type matching customer price type" do 
-    @customer = Customer.find(1)
-    @order = Order.new
-    @order.should respond_to(:prefill_address)
-    @order.prefill_address(Customer.find(1))
-  end
+  it "should have a default price type matching customer price type"
   
   it "should calculate return 0 dollars" do 
-    @order = Order.new
-    @order.prefill_address(Customer.find(1))
     @order.calculate
-    #@order.tax_amount.should eql(0)  @todo
     @order.total_amount_payable.should eql(0.0)
   end
   
   it "should throw an error that it doesn't have line items" do 
-    @order = Order.new
-    @order.prefill_address(Customer.find(1))
+    @order.save
     @order.should have(1).errors_on(:base)
   end
   
-  
   it "should be able to have an order line added" do 
-    @order = Order.new
-    @order.prefill_address(Customer.find(1))
     @order.order_lines.create(:qty_ordered => 1, :product => Product.find(1))
     @order.calculate.should eql(1.845)
     @order.total_amount_payable.should eql(1.845)
   end
 
   it "should when valid and saved, have one order status history item" do 
-    @order = Order.new
-    @order.prefill_address(Customer.find(1))
     @order.purchase_order_number = 'PO-001'
     @order.order_lines.create(:qty_ordered => 20, :product => Product.find(:first))
     @order.save.should == true
-    puts 
     @order.order_status_histories.count.should == 1
   end
   
   it "should when changing to a large quantity, change discount %age" do
-    @order = Order.new
-    @order.prefill_address(Customer.find(1))
     @order.purchase_order_number = 'PO-001'
     @order.order_lines.create(:qty_ordered => 2000, :product => Product.find(:first))
     @order.save.should == true
@@ -75,8 +56,6 @@ describe Order, "when creating a new order" do
   end
   
   it "should have a tax amount of 0 for an export order " do 
-    @order = Order.new
-    @order.prefill_address(Customer.find(1))
     @order.purchase_order_number = 'PO-001'
     @order.order_lines.create(:qty_ordered => 20, :product => Product.find(:first))
     @order.save.should == true
@@ -84,8 +63,6 @@ describe Order, "when creating a new order" do
   end
   
   it "should have an additional tax of 12.5% for a local (New Zealand) order" do 
-    @order = Order.new
-    @order.prefill_address(Customer.find(1))
     @order.purchase_order_number = 'PO-001'
     @order.order_lines.create(:qty_ordered => 20, :product => Product.find(:first))
     @order.billing_country_id = 2  #set to NZ. 
@@ -99,7 +76,9 @@ end
 
 context Order, "new draft order" do 
   before(:each) do 
-    @order = Order.new :customer => Customer.find(1), :created_by => User.find(1)
+    @customer = Customer.find(1)
+    @order = @customer.orders.build(:created_by => User.find(1))
+    @order.prefill_address
     @order.purchase_order_number = 'NDO-001'
     @order.order_lines.create(:qty_ordered => 20, :product => Product.find(:first))
     @order.save.should == true
@@ -148,8 +127,8 @@ end
 
 context Order, "with a single, invalid order line added " do 
   before(:each) do 
-     @order = Order.new
-     @order.prefill_address(Customer.find(1))
+     @customer = Customer.find(1)
+     @order = @customer.orders.create
      @order.order_lines.create(:qty_ordered => 1, :product => Product.find(1))
      @order.purchase_order_number = "PO-001"
   end

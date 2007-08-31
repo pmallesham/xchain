@@ -1,7 +1,7 @@
 class Customer < ActiveRecord::Base
   has_many    :representations
   has_many    :agents, :through => :representations
-  has_many    :orders, :select => 'orders.id, orders.created_at, orders.total_amount_payable, orders.order_status_id'
+  has_many    :orders
   has_many    :addresses
   has_many 	  :users
  

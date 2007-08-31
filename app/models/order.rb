@@ -16,13 +16,12 @@ class Order < ActiveRecord::Base
   
   validates_presence_of :purchase_order_number
   
-  # 
+  
   def self.create_from_cart(cart)
     raise exception if !cart.user
     raise exception if cart.line_items.size == 0 
-    customer = cart.customer
-    o = customer.orders.new
-    o.prefill_address(customer)
+    o = cart.customer.orders.build(:created_by => cart.user)
+    o.prefill_address
     for item in cart.line_items
       o.order_lines.create(:qty_ordered => item.qty, :product => item.product)
     end
@@ -46,12 +45,7 @@ class Order < ActiveRecord::Base
     super
     self.order_status_id = 10 
     self.order_status_histories.create(:order_status_id => 10, :comment => 'Created new order')
-    if customer 
-      self.payment_term_id = customer.payment_term_id
-    end
   end
-  
-  
   
   def validate
     if self.order_lines.size == 0 
@@ -60,11 +54,12 @@ class Order < ActiveRecord::Base
   end
   
   #todo remove customer assignment, not necessary
-  def prefill_address(customer)
-    self.customer_id = customer.id
+  def prefill_address()
+    raise Exception if !customer.id
+    self.payment_term    		= customer.payment_term
+    self.price_type				= customer.price_type
     billing_address         = customer.addresses.default_billing
     shipping_address        = customer.addresses.default_shipping
-    
     self.billing_address    = billing_address.address
     self.billing_city       = billing_address.city
     self.billing_postcode   = billing_address.postcode
@@ -73,7 +68,6 @@ class Order < ActiveRecord::Base
     self.shipping_city     = shipping_address.city
     self.shipping_postcode = shipping_address.postcode
     self.shipping_country_id = shipping_address.country_id
-  
   end
   
   def auto_calculate

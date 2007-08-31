@@ -28,6 +28,6 @@ describe Cart, "when resuming a browsing session" do
     @cart = Cart.new
   end
    
-  "it should have items from previous session"
+  "it should have items from previous session" 
   
 end
