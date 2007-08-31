@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 13) do
+ActiveRecord::Schema.define(:version => 14) do
 
   create_table "activities", :force => true do |t|
     t.column "activity_type_id", :integer
@@ -204,8 +204,8 @@ ActiveRecord::Schema.define(:version => 13) do
     t.column "shipping_contact",          :string,   :limit => 50
     t.column "shipping_phone",            :string,   :limit => 50
     t.column "tax_type",                  :string,   :limit => 20
-    t.column "tax_amount",                :decimal,                 :precision => 11, :scale => 2
-    t.column "sub_total",                 :decimal,                 :precision => 11, :scale => 2
+    t.column "tax_amount",                :float
+    t.column "sub_total",                 :float
     t.column "invoice_text",              :text
     t.column "invoice_pdf",               :binary
     t.column "weight",                    :float,                                                  :default => 0.0, :null => false
@@ -214,6 +214,7 @@ ActiveRecord::Schema.define(:version => 13) do
     t.column "previous_order_status_id",  :integer
     t.column "billing_country_id",        :integer
     t.column "payment_term_id",           :integer
+    t.column "source_id",                 :integer
   end
 
   add_index "orders", ["id"], :name => "order_id", :unique => true
@@ -248,9 +249,9 @@ ActiveRecord::Schema.define(:version => 13) do
   end
 
   create_table "pricing", :force => true do |t|
-    t.column "product_id",    :integer, :limit => 10,                               :default => 0, :null => false
-    t.column "price_type_id", :integer, :limit => 10,                               :default => 0, :null => false
-    t.column "price",         :decimal,               :precision => 5, :scale => 2
+    t.column "product_id",    :integer, :limit => 10, :default => 0, :null => false
+    t.column "price_type_id", :integer, :limit => 10, :default => 0, :null => false
+    t.column "price",         :float
     t.column "discount_id",   :integer
   end
 

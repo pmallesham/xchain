@@ -2,8 +2,8 @@ class Cart < ActiveRecord::Base
   has_many :line_items, :class_name => 'CartLineItem', :foreign_key => 'cart_id'
   belongs_to :user
   
-  def add_product(product)
-    self.line_items << CartLineItem.create(:qty => 1, :product => product)
+  def add_product(product, qty = 10)
+    self.line_items << CartLineItem.create(:qty => qty, :product => product)
     self.save
     return true
   end

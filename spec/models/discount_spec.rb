@@ -6,7 +6,7 @@ describe Discount, " when loading existing discount" do
   end
 
   it "should belong to a pricing" do
-    @discount.pricing.count.should == 9
+    @discount.pricing.count.should == 10
   end
   
   it "should have a name" do 
