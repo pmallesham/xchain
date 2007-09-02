@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
   	@cart.add_product(Product.find(params[:id]))
   	redirect_to products_path()
   end
+  
 
   # GET /products/new
   def new

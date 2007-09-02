@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
   belongs_to :created_by, :class_name => 'User', :foreign_key => 'created_by_user_id'
   belongs_to :billing_country, :class_name => 'Country', :foreign_key => 'billing_country_id'
   belongs_to :shipping_country, :class_name => 'Country', :foreign_key => 'shipping_country_id'
-  belongs_to :current_status, :class_name => 'OrderStatus', :foreign_key => 'order_status_id'
+  #belongs_to :current_status, :class_name => 'OrderStatus', :foreign_key => 'order_status_id'
   belongs_to :previous_status, :class_name => 'OrderStatus', :foreign_key => 'previous_order_status_id'
   belongs_to :payment_term
 
@@ -16,12 +16,12 @@ class Order < ActiveRecord::Base
   
   validates_presence_of :purchase_order_number
   
-  
   def self.create_from_cart(cart)
     raise exception if !cart.user
     raise exception if cart.line_items.size == 0 
     o = cart.customer.orders.build(:created_by => cart.user)
     o.prefill_address
+    o.source_id = 1
     for item in cart.line_items
       o.order_lines.build(:qty_ordered => item.qty, :product => item.product)
     end
@@ -70,14 +70,20 @@ class Order < ActiveRecord::Base
     self.shipping_postcode = shipping_address.postcode
     self.shipping_country_id = shipping_address.country_id
   end
+
   
   def auto_calculate
     calculate if order_status_id == 10 
   end
-  
+
   def calculate
-    tmp_shipment_amount = 0
-    self.shipping_weight = 0
+  	# there are only two times an order can be calculated, when it's either in draft, or pending review
+  	# in any other situation, you can't change the order amount
+  	raise 'Attempted to calculate at wrong stage' unless ( order_status_id == 10 || order_status_id == 20 ) 
+  	
+  	#holding values until shipping calcs are done
+    tmp_shipment_amount 	= 0
+    self.shipping_weight 	= 0
     
     # must do this in a transaction, otherwise karma and bad things will bite us in the ass
     self.transaction do 
