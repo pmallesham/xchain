@@ -4,14 +4,22 @@
 	<div id="col1">
 		<div id="col1_content" class="clearfix"> <a id="content" name="content"></a>
 			<!-- skiplink anchor: Content -->
-				<% for product in @products %>
-					<div class="productThumb" style="float:left;height:250px;width:200px;border:1px solid silver;margin:3px;padding:6px">
-						<strong><%= product.title %></strong>
-						<div style="height:150px;width:150px;border:1px solid silver">
-						
+				<% 
+				   i = 0;
+				   for product in @products
+				   	i += 1 %>
+					<div class="productThumb" style="text-align:right;float:left;height:250px;width:200px;border:0px solid silver;margin:3px;padding:6px;font-size:90%">
+						<div class="prodTop" style="text-align:left;min-height:230px;width:100%	">
+							<strong><%= link_to product.title, product_url(product) %></strong>
+							<div style="min-height:150px;width:100%">
+							  <img src="/products/p<%= i %>.jpg">
+							</div>
+							<p><%= product.description %></p>						
 						</div>
-						<p><%= product.description %></p>
-						<%= button_to "Add to Cart", add_to_cart_product_path(product), :method => 'POST' %>
+						<form action="<%= add_to_cart_product_path(product) %>" method="POST">
+					 	 <input type="submit" value="Add to Cart" style="width:100px;height:18px">
+					 	 
+					 	</form>
 					</div>
 				<% end %>
 		</div>
@@ -20,8 +28,10 @@
 	<!-- begin: #col3 static column -->
 	<div id="col3">
 		<div id="col3_content" class="clearfix">
+			<h3>{Category}</h3>
+			<p>Proin est libero, condimentum vitae, fringilla eget, varius in, leo. Proin semper lectus a eros. Phasellus luctus mi sed turpis. Curabitur a magna vitae ante sollicitudin ultrices. Sed cursus, odio sed iaculis condimentum, tortor metus semper erat, non nonummy dui enim ut ante. Ut interdum. Curabitur sem neque, ultricies quis, placerat nec, mattis in, dui. Nam laoreet, sem sed viverra posuere, nunc arcu pretium ante, aliquet eleifend dui sapien sit amet sem. Etiam id lorem pharetra lacus tristique imperdiet. In nunc.</p>
 			<% if @cart %>
-				<div style="width:90%;min-height:300px;border-top:4px solid navy;border-bottom:2px solid navy;background-color:#D1DCDF;color:navy;padding:5px">
+				<div style="font-size:90%;width:90%;min-height:300px;border-top:4px solid orange;border-bottom:2px solid orange;background-color:#EFEFEF;padding:5px">
 					<strong>Cart Contents</strong>
 					<form>
 					<p>
@@ -31,7 +41,7 @@
 					<% end %>
 					</p>
 					<P>The sub total is before discounts or shipping has been applied</p>
-					<input type="submit" value="Order >>" style="width:100px">
+					<input type="submit" value="Order Now" style="width:100px">
 					</form>
 				</div>
 			

@@ -15,6 +15,9 @@ describe Cart, "when starting a new browsing session" do
   	@cart.line_items.size.should == 1
   end
   
+  it "should when filling with the same product, never increase in line item count, just qty "
+ 
+  
   it "should be return a total item qty"
   
   it "should be able to be associated with a user"

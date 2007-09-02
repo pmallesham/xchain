@@ -38,8 +38,8 @@ describe Order, "when creating a new order" do
   
   it "should be able to have an order line added" do 
     @order.order_lines.create(:qty_ordered => 1, :product => Product.find(1))
-    @order.calculate.should eql(1.845)
-    @order.total_amount_payable.should eql(1.845)
+    @order.calculate.to_s.should == "1.845"
+    @order.total_amount_payable.to_s.should == "1.845"
   end
 
   it "should when valid and saved, have one order status history item" do 
@@ -53,7 +53,7 @@ describe Order, "when creating a new order" do
     @order.purchase_order_number = 'PO-001'
     @order.order_lines.create(:qty_ordered => 2000, :product => Product.find(:first))
     @order.save.should == true
-    @order.total_amount_payable.to_i.to_s.should == 1845.to_s   #not happy, need to tidy up
+    @order.total_amount_payable.to_i.to_s.should == "1845"   #not happy, need to tidy up
   end
   
   it "should have a tax amount of 0 for an export order " do 
@@ -135,8 +135,8 @@ context Order, "with a single, invalid order line added " do
   end
   
   it "should calculate to a correct amount" do 
-    @order.calculate.should eql(1.845)
-    @order.total_amount_payable.should eql(1.845)
+    @order.calculate.to_s.should == "1.845"
+    @order.total_amount_payable.to_s.should == "1.845"
   end
   
   it "should not be able to be saved as it has incorrect quantity" do 
@@ -182,24 +182,58 @@ context Order, "when creating from a cart " do
     @order.order_lines.size.should == 1
   end
   
-  it "should have the correct product ids" do 
+  it "should have the correct product id" do 
   	@order.order_lines.first.product_id.should == 4
   end
   
-  it "should calculate with a sub_total of x" do 
+  it "should calculate with a sub_total of 8985" do 
   	@order.save
   	@order.sub_total.should == 8985.0
   end
   
-  it "should be in Draft status "
+  it "should be in Draft status " do 
+  	@order.order_status.id.should == 10 
+  end
   
-  it "should have a source_id of 1"
+  it "should have a source_id of 1" do 
+  	@order.source_id.should == 1
+  end
   
-  it "should have in order status history, comment of created from Cart"
-  
+  it "should have in order status history, comment of created from Cart" do 
+  	@order.order_status_histories.first.comment.should == 'Created from cart'
+  end
+  	
 end
+
+
+#
+#
+#
+#
+#
+#
+#
+#
+#
+
+context Order, "Order when verifying status flow" do
+	
+	it "when draft, should not be able to be paid or reviewed"
+	
+	it "when draft, should be able to be checked out if standard shipping "
+	
+	it "when checking out, if custom shipping, should jump to pending review"
+	
+	it "when pending review, should not be able to be paid "
+	
+	it "when any status less than order approved, can not be invoiced"
+	
+	it "when any stage after pending payment, can not be recalculated, or reinvoiced"
   
-  
+    it "when before ready for shipping, cannot have a shipment applied to it"
+    
+    
+end
 
 
 

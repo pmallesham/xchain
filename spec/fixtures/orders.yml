@@ -18,7 +18,7 @@ orders_001:
   tax_amount: "1.20"
   notes: "NO"
   created_by_id: "1"
-  order_status_id: "1"
+  order_status_id: "10"
   id: "1"
   shipping_city: SC
   billing_address: 1001 Acmeville Rd, Acme Industry Centre
