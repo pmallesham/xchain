@@ -1,4 +1,10 @@
 class Order < ActiveRecord::Base
+  DRAFT              = 10 
+  PENDING_REVIEW     = 12
+  PAYMENT_SELECTION  = 19
+  FINALISED          = 25
+  
+  
   has_many :order_status_histories
   has_many :order_lines
   has_many :next_statuses, :class_name => "OrderStatus", :finder_sql => 'SELECT order_statuses.id as data, order_statuses.name as label FROM order_statuses '
@@ -40,8 +46,6 @@ class Order < ActiveRecord::Base
   def self.create_from_service()
   end
   
-  
-  
   def initialize(args = {})
     super
     self.order_status_id = 10 
@@ -53,6 +57,17 @@ class Order < ActiveRecord::Base
       errors.add_to_base 'You must have at least one line item'
     end
   end
+
+
+  # Workflow management 
+  def place_order
+    self.shipping_method.name == 'Custom' ? set_status(PENDING_REVIEW) : set_status(PAYMENT_SELECTION)
+  end
+  
+  def order_reviewed(comment = '')
+    set_status(PAYMENT_SELECTION, comment)
+  end
+  
   
   #todo remove customer assignment, not necessary
   def prefill_address()
