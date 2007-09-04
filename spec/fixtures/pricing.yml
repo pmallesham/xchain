@@ -59,3 +59,9 @@ pricing_010:
   product_id: "4"
   id: "10"
   discount_id: "1"
+pricing_005: 
+  price: "650.00"
+  price_type_id: "2"
+  product_id: "1"
+  id: "5"
+  discount_id: "1"

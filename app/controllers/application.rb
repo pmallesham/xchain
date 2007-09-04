@@ -498,9 +498,16 @@ class ApplicationController < ActionController::Base
   
   def get_cart
   	@cart = Cart.new
+  	@cart.user = current_user
   	@cart.save
   	session['cart_id'] = @cart.id
   end
+  
+  def current_user
+  	User.find(1)
+  end
+  
+  
   
 
 end

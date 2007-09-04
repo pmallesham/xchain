@@ -11,11 +11,27 @@
 	<!-- begin: #col3 static column -->
 	<div id="col3">
 		<div id="col3_content" class="clearfix">
+			<p><strong>{Draft Order}</strong></p>
+			<p>{This order is draft, it will not be processed until payment is made. This order will be saved until you edit it, place it, or cancel it}</p>
 			<ul id="submenu">
 				<li id="title">Actions</li>
-				<li><a href="#"> &nbsp;Edit Order</a></li>
+				<li><a href="#"><img src="/icons/accept.png">&nbsp; Place Order</a></li>
+				<li><a href="#"><img src="/icons/creditcards.png">&nbsp; Pay Order</a></li>
+				
+				<li><a href="#"><img src="/icons/cart_edit.png">&nbsp; Change Order</a></li>
+				<li><a href="#"><img src="/icons/error_go.png">&nbsp; Review Order</a></li>
+				
+				<li><a href="#"><img src="/icons/arrow_divide.png">&nbsp; Duplicate Order</a></li>
+				
+				
+				<li><a href="#"><img src="/icons/printer.png">&nbsp; Print Order</a></li>
+				<li><a href="#"><img src="/icons/information.png">&nbsp; Debug Order</a></li>
+				
+				<li><a href="#"><img src="/icons/cancel.png"> &nbsp;Cancel Order</a></li>
+				<% if @admin_mode %>
 				<li><a href="#" onClick="Element.show('orderStatusUpdate')"> &nbsp;Change Status</a></li>
 				<li><a href="#"> &nbsp;Lookup Shipping</a></li>
+				<% end %>
 			</ul>
 		</div>
 		<div id="ie_clearing">&nbsp;</div>

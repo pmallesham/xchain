@@ -33,7 +33,7 @@
 			<% if @cart %>
 				<div style="font-size:90%;width:90%;min-height:300px;border-top:4px solid orange;border-bottom:2px solid orange;background-color:#EFEFEF;padding:5px">
 					<strong>Cart Contents</strong>
-					<form>
+					<form action="/orders/create_from_cart?cart_id=<%= @cart.id %>" method="POST">
 					<p>
 					<% for line_item in @cart.line_items %>
 						<input type="text" name="" style="width:30px" value="<%= line_item.qty %>"> x <%= line_item.product.title %><br />

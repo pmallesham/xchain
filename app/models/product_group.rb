@@ -1,0 +1,3 @@
+class ProductGroup < Product
+  
+end

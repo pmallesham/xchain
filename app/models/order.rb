@@ -123,25 +123,37 @@ class Order < ActiveRecord::Base
     self.save
   end
   
-  def can_review
-    self.order_status.id == 10 ? true : false 
+  def place_order!
+  #	self.shipping_method.id == 1 ? set_status(Status.find())
   end
   
-  def can_edit
-    self.order_status.id == 10 ? true : false 
+  def order_reviewed!
+  	
   end
   
-  def can_select_payment
-    self.order_status.id == 19 ? true : false 
+  def payment_selected!
+  	
   end
   
-  def can_send_payment
-    ( self.order_status.id == 14 || self.order_status.id == 20 ) ? true : false
-  end
+ # def can_review
+ #   self.order_status.id == 10 ? true : false 
+ # end
   
-  def additional_xml
-  	next_statuses
-  end
+ # def can_edit
+ #   self.order_status.id == 10 ? true : false 
+ # end
+  
+ # def can_select_payment
+ #   self.order_status.id == 19 ? true : false 
+ # end
+  
+ # def can_send_payment
+ #   ( self.order_status.id == 14 || self.order_status.id == 20 ) ? true : false
+ # end
+  
+ # def additional_xml
+ # 	next_statuses
+ # end
   
   protected
 

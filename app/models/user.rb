@@ -1,6 +1,7 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   belongs_to :customer
+  has_many :carts
   # Virtual attribute for the unencrypted password
   attr_accessor :password
 

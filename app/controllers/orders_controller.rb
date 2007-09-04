@@ -11,7 +11,7 @@
 
 class OrdersController < ApplicationController
   #before_filter :login_required
-  before_filter :load_order_object, :except => ['index', 'select_customer', 'new', 'create']
+  before_filter :load_order_object, :except => ['index', 'select_customer', 'new', 'create', 'create_from_cart' ]
 
   # GET /orders
   def index
@@ -26,6 +26,8 @@ class OrdersController < ApplicationController
   
   # GET /orders/1
   def show
+  	@admin_mode = false
+  	
   end
   
   def select_customer
@@ -110,6 +112,13 @@ class OrdersController < ApplicationController
         format.xml  { render :xml => @order.errors.to_xml }
       end
     end
+  end
+  
+  def create_from_cart
+  	cart = Cart.find(params[:cart_id])
+  	order = Order.create_from_cart(cart)
+  	order.save
+  	redirect_to order_url(order)
   end
   
   # PUT /orders/1
