@@ -26,7 +26,7 @@
 						<td><%= order.customer.name %></td>
 						<td><%= order.customer.country.name %></td>
 						<td>$USD 1200.00</td>
-						<td style="color:grey">Draft</td>
+						<td style="color:grey"><%= order.order_status.name %></td>
 					</tr>
 					<% end %>
 				</tbody>

@@ -166,6 +166,11 @@ context Order, "when creating from a cart " do
     @order = Order.create_from_cart(@cart)
   end
 
+  it "should remove the cart from active cart collection" do 
+  	@cart.checked_out?.should == true
+  	Cart.find_open_cart(User.find(1))
+  end
+  
   it "should be able to be created with a valid cart" do 
     #@order.should_be valid
   end
@@ -206,37 +211,88 @@ context Order, "when creating from a cart " do
 end
 
 
+#  Order status flow is (now)
+#    
+#   Draft ->  [ Pending Review || Payment Selection ] -> Payment Method Chosen -> [ ]
+#   Ordering Complete -> [ Hold Production || Sent to Warehouse ] -> [ Waiting for Parts || In manufacturing 
+#   || Ready for shipping ] -> Shipped -> Received -> Archived
+#   
+#   * -> Cancelled
 #
-#
-#
-#
-#
-#
-#
-#
-#
+=begin
 
-context Order, "Order when verifying status flow" do
+context Order, "Order when verifying status flow for custom shipping " do
 	
-	it "when draft, should not be able to be paid or reviewed"
+	it "when draft, should jump to pending review " do 
+        @order = Order.find(:draft_order)
+		@order.set_shipping(ShippingMethod.custom_shipping)
+		@order.place_order!
+		@order.status.name.should == 'Pending Review'
+	end
 	
-	it "when draft, should be able to be checked out if standard shipping "
+	it "when reviewed, will go to payment selection " do 
+		@order.order_reviewed!
+		@order.status.name.should == 'Payment Selection'
+	end
 	
-	it "when checking out, if custom shipping, should jump to pending review"
+	it "when payment method selected, will go to order process complete " do 
+		@order.payment_selected!  #normally this is dealt with by going setPaymentMethod(PAYMENT_METHOD)
+		@order.status.name.should == 'Order finalised'
+	end
 	
-	it "when pending review, should not be able to be paid "
-	
-	it "when any status less than order approved, can not be invoiced"
-	
-	it "when any stage after pending payment, can not be recalculated, or reinvoiced"
-  
-    it "when before ready for shipping, cannot have a shipment applied to it"
-    
-    
 end
 
+context Order, "Order when verifying status flow for standard shipping " do
+	
+	it "when draft, should jump to payment selection " do 
+		@order = Order.find(:draft_order)
+		@order.set_shipping(ShippingMethod.standard_ups)
+		@order.place_order!
+		@order.status.name.should == 'Payment Selection'
+	end
+	
+	it "when payment method selected, will go to order finalised" do 
+		@order.payment_selected!
+		@order.status.name.should == 'Order finalised'
+	end
 
+end
 
+context Order, "when customer is on strict pay before production terms" do 
+	
+	it "when in payment selection mode should only allow pay online"
+	# do
+	#	@customer = Customer.find(1)
+	#	@customer.pay_online = true
+	#	@customer.pay_transfer = false
+    #		@customer.pay_by_terms = false
+	#	@customer.order....
+		
+	#	@order.allowed_payment_methods.should == ['ONLINE']
+    #end
+
+end
+
+context Order, "when customer is on pay online, or pay via transfer terms " do 
+	
+	it "when in payment selection mode, should only allow pay online or via transfer terms" 
+
+end
+
+context Order, "when customer has all payment terms open" do 
+	
+	it "when in payment selection mode, should allow all options"
+	
+end
+
+context Order, "when unpaid " do 
+	
+	it "should allow payments to order"
+
+	it "should exist in unpaid orders collection"
+
+end
+=end
 
 describe Order, "when finding existing order" do
   before(:each) do

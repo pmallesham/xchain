@@ -25,7 +25,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users, :sessions, :customers
   map.resources :orders, 
-                  :new => { :select_customer => :get }, 
+                  :new => { :select_customer => :get, :create_from_cart => :post }, 
                   :member => { :review => :get, 
                                :update_status => :post, 
                                :select_payment => :get,

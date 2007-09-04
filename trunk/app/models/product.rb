@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
   #called in OrderLine calculation
   def get_pricing(price_type)
     if !pricing = pricings.find(:first, :conditions => ['price_type_id = ?', price_type.id] ) 
-    	raise 'Price for product cannot be found for given price type'
+    	raise 'Price for product '+self.id.to_s+' cannot be found for given price type '+price_type.id.to_s 
     end
     return pricing
   end

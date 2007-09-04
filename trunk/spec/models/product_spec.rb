@@ -33,3 +33,7 @@ describe Product, "when looking at a only visible items" do
 		@products.size.should == 4
 	end
 end 
+
+describe Product, "when using for a grouped product" do 
+	
+end
