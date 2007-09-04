@@ -219,19 +219,18 @@ end
 #   
 #   * -> Cancelled
 #
-=begin
 
 context Order, "Order when verifying status flow for custom shipping " do
 	
 	it "when draft, should jump to pending review " do 
-        @order = Order.find(:draft_order)
+    @order = Order.find(:draft_order)
 		@order.set_shipping(ShippingMethod.custom_shipping)
-		@order.place_order!
+		@order.place_order
 		@order.status.name.should == 'Pending Review'
 	end
 	
 	it "when reviewed, will go to payment selection " do 
-		@order.order_reviewed!
+		@order.order_reviewed
 		@order.status.name.should == 'Payment Selection'
 	end
 	
@@ -257,6 +256,8 @@ context Order, "Order when verifying status flow for standard shipping " do
 	end
 
 end
+
+=begin
 
 context Order, "when customer is on strict pay before production terms" do 
 	
