@@ -32,7 +32,9 @@ ActionController::Routing::Routes.draw do |map|
                                :payment_selection => :put,
                                :awaiting_payment => :get, 
                                :pay_online => :get, 
-                               :show_xml => :get }
+                               :show_xml => :get }, 
+                   :collection => { :quick_list => :get, :list_status_counts => :get, :quick_list_status_counts => :get }           
+                    
                                
     
   map.resources(:customers) do |customers|

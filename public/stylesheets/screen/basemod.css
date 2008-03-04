@@ -19,7 +19,7 @@
 {
   /*------------------------------------------------------------------------------------------------------*/
 
-  body { background: #DFDFDF; padding: 0px 0; }
+  body { background: #CCC; padding: 0px 0; }
 
   #page_margins { min-width: 960px; max-width: 80em; margin: 0 auto; border: 0px #889 solid;} 
   #page{ background: #fff; border: 0px #fff solid; }
@@ -33,7 +33,9 @@
   /* (de) Gestaltung der Hauptelemente des Layouts */
   #header {
     color: black;
-    background: #fff repeat-x top left;
+    background-image: url(/images/faded_clip.jpg);
+		background-position: top right;
+		background-repeat: no-repeat;
     padding: 45px 2em 1em 20px; 
   }
 
@@ -88,7 +90,7 @@
    */
 
   #nav * { border: 0px none !important}
-  #nav_main { background: #9F9F9F }
+  #nav_main { background: #666 }
   #nav_main ul { margin-left: 10px }
   #nav_main ul li { line-height: 1.2em}
   
@@ -97,7 +99,7 @@
   
   #nav_main ul li a:focus,
   #nav_main ul li a:hover,
-  #nav_main ul li a:active  { background: #ccc; color: yellow }
+  #nav_main ul li a:active  { background: #ccc; color: blue }
   
   #nav_main ul li#current { background: transparent }
   
@@ -105,6 +107,6 @@
   #nav_main ul li#current a,
   #nav_main ul li#current a:focus,
   #nav_main ul li#current a:hover,
-  #nav_main ul li#current a:active { background-color:#666; color: yellow; font-weight: bold }
+  #nav_main ul li#current a:active { background-color:#ccc; color: #666; font-weight: bold }
 
 }

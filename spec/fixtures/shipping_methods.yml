@@ -1,0 +1,9 @@
+--- 
+shipping_methods_001: 
+  id: "1"
+  name: "UPS SCS"
+  office_calculated: false
+shipping_methods_002: 
+  id: "2"
+  name: "Custom"
+  office_calculated: true
