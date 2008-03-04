@@ -2,13 +2,19 @@ class Order < ActiveRecord::Base
   DRAFT              = 10 
   PENDING_REVIEW     = 12
   PAYMENT_SELECTION  = 19
-  FINALISED          = 25
+  PENDING_PAYMENT    = 20  #MAYBE THIS CAN BE REMOVED
+  PAYMENT_SENT       = 22
+  PAYMENT_RECEIVED   = 24
+  FINALISED          = 25  #NEW STATUS, One of the big three. CREATED FINALISED SHIPPED RECEIVED
+  
+  PAYMENT_TRANSFER   = 1
+  PAYMENT_PAY_ONLINE = 2
   
   
   has_many :order_status_histories
   has_many :order_lines
   has_many :next_statuses, :class_name => "OrderStatus", :finder_sql => 'SELECT order_statuses.id as data, order_statuses.name as label FROM order_statuses '
-  belongs_to :order_status
+  belongs_to :status, :class_name => 'OrderStatus', :foreign_key => 'order_status_id'
   belongs_to :customer
   belongs_to :price_type
   belongs_to :created_by, :class_name => 'User', :foreign_key => 'created_by_user_id'
@@ -17,6 +23,7 @@ class Order < ActiveRecord::Base
   #belongs_to :current_status, :class_name => 'OrderStatus', :foreign_key => 'order_status_id'
   belongs_to :previous_status, :class_name => 'OrderStatus', :foreign_key => 'previous_order_status_id'
   belongs_to :payment_term
+  belongs_to :shipping_method
 
   before_save   :auto_calculate
   
@@ -49,7 +56,7 @@ class Order < ActiveRecord::Base
   def initialize(args = {})
     super
     self.order_status_id = 10 
-    self.order_status_histories.create(:order_status_id => 10, :comment => 'Created new order')
+    self.order_status_histories.build(:order_status_id => 10, :comment => 'Created new order')
   end
   
   def validate
@@ -60,14 +67,13 @@ class Order < ActiveRecord::Base
 
 
   # Workflow management 
-  def place_order
-    self.shipping_method.name == 'Custom' ? set_status(PENDING_REVIEW) : set_status(PAYMENT_SELECTION)
+  def place_order!
+    self.shipping_method.office_calculated ? set_status(PENDING_REVIEW) : set_status(PAYMENT_SELECTION)
   end
   
   def order_reviewed(comment = '')
     set_status(PAYMENT_SELECTION, comment)
   end
-  
   
   #todo remove customer assignment, not necessary
   def prefill_address()
@@ -80,9 +86,9 @@ class Order < ActiveRecord::Base
     self.billing_city       = billing_address.city
     self.billing_postcode   = billing_address.postcode
     self.billing_country_id = billing_address.country_id
-    self.shipping_address  = shipping_address.address
-    self.shipping_city     = shipping_address.city
-    self.shipping_postcode = shipping_address.postcode
+    self.shipping_address   = shipping_address.address
+    self.shipping_city      = shipping_address.city
+    self.shipping_postcode  = shipping_address.postcode
     self.shipping_country_id = shipping_address.country_id
   end
 
@@ -127,20 +133,27 @@ class Order < ActiveRecord::Base
     self.set_status(OrderStatus.find_by_name('Draft'), 'Initial creation')
   end
 
-  def set_status(status, message)
-    self.order_status = status
-    self.order_status_histories << OrderStatusHistory.create(:order_id => self.order_status_id, :comment => message)
+  def set_status(status, message = 'Automated')
+    unless status.class == "OrderStatus"
+      status = OrderStatus.find(status)
+    end
+    self.status = status
+    self.order_status_histories << OrderStatusHistory.create(:order_id => self.status.id, :comment => message)
   end
   
-  def update_status_history(status_history)
-    self.order_status_histories << status_history
-    self.order_status_id = status_history.order_status_id
-    self.save
+  def set_payment_method(payment_method_id)
+    self.payment_method_id = payment_method_id
+    if self.payment_method_id == PAYMENT_TRANSFER
+      set_status(PAYMENT_SENT)
+    end
   end
   
-  def place_order!
-  #	self.shipping_method.id == 1 ? set_status(Status.find())
-  end
+  # def update_status_history(status_history)
+  #    self.order_status_histories << status_history
+  #    self.status = status_history.order_status_id
+  #    self.save
+  #  end
+  
   
   def order_reviewed!
   	

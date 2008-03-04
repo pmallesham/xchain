@@ -1,2 +1,5 @@
---- {}
-
+--- 
+shipping_methods_001: 
+  id: "1"
+  name: "UPS SCS"
+  office_calculated: false

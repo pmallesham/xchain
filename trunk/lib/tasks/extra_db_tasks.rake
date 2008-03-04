@@ -30,3 +30,6 @@ namespace :db do
   task :refresh => ['db:recreate', 'db:migrate', 'db:fixtures:load']
 
 end
+
+
+

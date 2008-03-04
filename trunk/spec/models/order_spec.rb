@@ -37,35 +37,35 @@ describe Order, "when creating a new order" do
   end
   
   it "should be able to have an order line added" do 
-    @order.order_lines.create(:qty_ordered => 1, :product => Product.find(1))
+    @order.order_lines.build(:qty_ordered => 1, :product => Product.find(1))
     @order.calculate.to_s.should == "1.845"
     @order.total_amount_payable.to_s.should == "1.845"
   end
 
   it "should when valid and saved, have one order status history item" do 
     @order.purchase_order_number = 'PO-001'
-    @order.order_lines.create(:qty_ordered => 20, :product => Product.find(:first))
+    @order.order_lines.build(:qty_ordered => 20, :product => Product.find(:first))
     @order.save.should == true
     @order.order_status_histories.count.should == 1
   end
   
   it "should when changing to a large quantity, change discount %age" do
     @order.purchase_order_number = 'PO-001'
-    @order.order_lines.create(:qty_ordered => 2000, :product => Product.find(:first))
+    @order.order_lines.build(:qty_ordered => 2000, :product => Product.find(:first))
     @order.save.should == true
     @order.total_amount_payable.to_i.to_s.should == "1845"   #not happy, need to tidy up
   end
   
   it "should have a tax amount of 0 for an export order " do 
     @order.purchase_order_number = 'PO-001'
-    @order.order_lines.create(:qty_ordered => 20, :product => Product.find(:first))
+    @order.order_lines.build(:qty_ordered => 20, :product => Product.find(:first))
     @order.save.should == true
     @order.total_amount_payable.to_s.should == 24.6.to_s  #again issues with flaots equality. 
   end
   
   it "should have an additional tax of 12.5% for a local (New Zealand) order" do 
     @order.purchase_order_number = 'PO-001'
-    @order.order_lines.create(:qty_ordered => 20, :product => Product.find(:first))
+    @order.order_lines.build(:qty_ordered => 20, :product => Product.find(:first))
     @order.billing_country_id = 2  #set to NZ. 
     @order.save.should == true
     @order.total_amount_payable.to_s.should == 27.675.to_s  #issues with float equality. 
@@ -81,7 +81,7 @@ context Order, "new draft order" do
     @order = @customer.orders.build(:created_by => User.find(1))
     @order.prefill_address
     @order.purchase_order_number = 'NDO-001'
-    @order.order_lines.create(:qty_ordered => 20, :product => Product.find(:first))
+    @order.order_lines.build(:qty_ordered => 20, :product => Product.find(:first))
     @order.save.should == true
   end
   
@@ -130,7 +130,7 @@ context Order, "with a single, invalid order line added " do
   before(:each) do 
      @customer = Customer.find(1)
      @order = @customer.orders.create
-     @order.order_lines.create(:qty_ordered => 1, :product => Product.find(1))
+     @order.order_lines.build(:qty_ordered => 1, :product => Product.find(1))
      @order.purchase_order_number = "PO-001"
   end
   
@@ -166,10 +166,11 @@ context Order, "when creating from a cart " do
     @order = Order.create_from_cart(@cart)
   end
 
-  it "should remove the cart from active cart collection" do 
-  	@cart.checked_out?.should == true
-  	Cart.find_open_cart(User.find(1))
-  end
+  it "should remove the cart from active cart collection"
+# do 
+#  	@cart.checked_out?.should == true
+#  	Cart.find_open_cart(User.find(1))
+#  end
   
   it "should be able to be created with a valid cart" do 
     #@order.should_be valid
@@ -197,7 +198,7 @@ context Order, "when creating from a cart " do
   end
   
   it "should be in Draft status " do 
-  	@order.order_status.id.should == 10 
+  	@order.status.id.should == 10 
   end
   
   it "should have a source_id of 1" do 
@@ -223,20 +224,27 @@ end
 context Order, "Order when verifying status flow for custom shipping " do
 	
 	it "when draft, should jump to pending review " do 
-    @order = Order.find(:draft_order)
-		@order.set_shipping(ShippingMethod.custom_shipping)
-		@order.place_order
-		@order.status.name.should == 'Pending Review'
+    @order = Order.find(1)
+		@order.shipping_method = ShippingMethod.find_by_name('Custom')
+		@order.place_order!
+		@order.status.name.should == 'Order Pending Review'
 	end
 	
 	it "when reviewed, will go to payment selection " do 
+	  @order = Order.find(1)
+		@order.shipping_method = ShippingMethod.find_by_name('Custom')
+		@order.place_order!
 		@order.order_reviewed
-		@order.status.name.should == 'Payment Selection'
+		@order.status.name.should == 'Order Placed - Pending Payment Selection'
 	end
 	
 	it "when payment method selected, will go to order process complete " do 
-		@order.payment_selected!  #normally this is dealt with by going setPaymentMethod(PAYMENT_METHOD)
-		@order.status.name.should == 'Order finalised'
+	  @order = Order.find(1)
+		@order.shipping_method = ShippingMethod.find_by_name('Custom')
+		@order.place_order!
+		@order.order_reviewed
+		@order.set_payment_method(Order::PAYMENT_TRANSFER)
+		@order.status.name.should == 'Submitted - Payment Sent'
 	end
 	
 end
@@ -244,15 +252,19 @@ end
 context Order, "Order when verifying status flow for standard shipping " do
 	
 	it "when draft, should jump to payment selection " do 
-		@order = Order.find(:draft_order)
-		@order.set_shipping(ShippingMethod.standard_ups)
+		@order = Order.find(1)
+		@order.shipping_method = ShippingMethod.find_by_name('UPS SCS')
 		@order.place_order!
-		@order.status.name.should == 'Payment Selection'
+		@order.status.name.should == 'Order Placed - Pending Payment Selection'
 	end
 	
 	it "when payment method selected, will go to order finalised" do 
-		@order.payment_selected!
-		@order.status.name.should == 'Order finalised'
+	  @order = Order.find(1)
+		@order.shipping_method = ShippingMethod.find_by_name('UPS SCS')
+		@order.place_order!
+		@order.status.name.should == 'Order Placed - Pending Payment Selection'
+		@order.set_payment_method(Order::PAYMENT_TRANSFER)
+		@order.status.name.should == 'Submitted - Payment Sent'
 	end
 
 end
