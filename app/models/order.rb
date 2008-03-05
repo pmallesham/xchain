@@ -6,10 +6,8 @@ class Order < ActiveRecord::Base
   PAYMENT_SENT       = 22
   PAYMENT_RECEIVED   = 24
   FINALISED          = 25  #NEW STATUS, One of the big three. CREATED FINALISED SHIPPED RECEIVED
-  
   PAYMENT_TRANSFER   = 1
   PAYMENT_PAY_ONLINE = 2
-  
   
   has_many :order_status_histories
   has_many :order_lines
@@ -20,7 +18,6 @@ class Order < ActiveRecord::Base
   belongs_to :created_by, :class_name => 'User', :foreign_key => 'created_by_user_id'
   belongs_to :billing_country, :class_name => 'Country', :foreign_key => 'billing_country_id'
   belongs_to :shipping_country, :class_name => 'Country', :foreign_key => 'shipping_country_id'
-  #belongs_to :current_status, :class_name => 'OrderStatus', :foreign_key => 'order_status_id'
   belongs_to :previous_status, :class_name => 'OrderStatus', :foreign_key => 'previous_order_status_id'
   belongs_to :payment_term
   belongs_to :shipping_method
@@ -28,6 +25,26 @@ class Order < ActiveRecord::Base
   before_save   :auto_calculate
   
   validates_presence_of :purchase_order_number
+  
+  def self.find_for_orders_page(opts = {})
+    opts.reverse_merge! :order_by => 'status_name'
+    sql = "SELECT orders.id, orders.created_at, order_statuses.name as status_name, orders.customer_id, 
+                        customers.name as customer_name, orders.created_at, orders.total_amount_pay_online, 
+                        countries.name AS country_name
+                 FROM orders 
+                 INNER JOIN order_statuses ON ( orders.order_status_id = order_statuses.id)
+                 INNER JOIN customers ON ( orders.customer_id = customers.id)
+                 INNER JOIN countries ON ( countries.id = customers.country_id )"
+    case opts[:order_by]
+      when 'order_id'
+        sql << ' ORDER BY orders.id DESC'
+      when 'status_name'
+        sql << ' ORDER BY order_statuses.id ASC'
+    end
+
+    find_by_sql(sql)
+  end
+  
   
   def self.create_from_cart(cart)
     raise exception if !cart.user

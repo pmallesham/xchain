@@ -269,6 +269,54 @@ context Order, "Order when verifying status flow for standard shipping " do
 
 end
 
+context Order, "Order when using finder for Order Listing" do 
+  it "should only return limited columns [id, status_name, customer_name, customer_id, country_name, total_amount_pay_online, date_created]" do 
+    @orders = Order.find_for_orders_page
+    @orders.first.id.should_not == nil
+    @orders.first.status_name.should_not == nil
+    @orders.first.customer_name.should_not == nil
+    @orders.first.country_name.should_not == nil
+    @orders.first.total_amount_pay_online.should_not == nil
+    @orders.first.created_at.should_not == nil
+    
+    %w(date_updated created_by_id tax_amount).each do |col|
+      @orders.first[col].should == nil
+    end
+  end
+  
+  it "should by default be ordered by status" do 
+    @orders = Order.find_for_orders_page
+    check = false; 
+    last_order = nil
+    first_order_id = @orders.first.id
+    @orders.each do |o|
+      unless o.id == first_order_id
+       OrderStatus.find_by_name(o.status_name).id.should >= OrderStatus.find_by_name(last_order.status_name).id
+      end
+      last_order = o
+    end
+  end
+  
+  it "should accept the symbol :order_by and order_id, and order by id descending" do 
+    @orders = Order.find_for_orders_page :order_by => 'order_id'
+    last_order = nil
+    @orders.each do |o|
+      unless o == @orders.first
+        o.id.should < last_order.id
+      end
+      last_order = o
+    end
+  end
+  
+  it "should accept the symbol :order_by and customer_name, and order by customer name alphabetically ascending"
+  
+  it "should accept the symbol :order_by and customer_name, and order by customer name alphabetically ascending"
+  
+  it "should accept the symbol :order_by and country_name, and order by country name alphabetically ascending"
+  
+  
+end
+
 =begin
 
 context Order, "when customer is on strict pay before production terms" do 

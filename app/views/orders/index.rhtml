@@ -23,10 +23,10 @@
 					<tr>
 						<td><a href="/orders/<%= order.id %>"><%= order.id %></a></td>
 						<td><%= order.created_at %></td>
-						<td><%= order.customer.name %></td>
-						<td><%= order.customer.country.name %></td>
-						<td>$USD 1200.00</td>
-						<td style="color:grey"><%= order.order_status.name %></td>
+						<td><%= order.customer_name %></td>
+						<td><%= order.country_name %></td>
+						<td>$USD <%= order.total_amount_pay_online %></td>
+						<td style="color:grey"><%= order.status_name %></td>
 					</tr>
 					<% end %>
 				</tbody>
