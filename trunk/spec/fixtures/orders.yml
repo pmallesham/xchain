@@ -35,6 +35,78 @@ orders_001:
   shipping_address: SA1
   created_at: 2007-01-01 00:00:00
   payment_term_id: 1
+orders_002: 
+  airway_bill_number: 1Z2340
+  payment_is_received: "1"
+  payment_received_date: 2007-01-02 00:00:00
+  weight: "4"
+  invoice_text: ""
+  tracking_response: ""
+  shipping_amount: "40.00"
+  purchase_order_number: PO-001
+  price_type_id: "1"
+  invoice_pdf: ""
+  shipping_contact: ""
+  last_tracking_update_time: 2007-01-01 00:00:00
+  total_amount_pay_online: "340.00"
+  total_amount_payable: "340.00"
+  payment_method_id: "1"
+  tax_amount: "1.20"
+  notes: "NO"
+  created_by_id: "1"
+  order_status_id: "22"
+  id: "2"
+  shipping_city: SC
+  billing_address: 1001 Acmeville Rd, Acme Industry Centre
+  billing_city: Acmeville
+  billing_postcode: AM1001
+  billing_country_id: 1
+  customer_id: "2"
+  tax_type: ""
+  shipping_phone: ""
+  shipping_postcode: SPC
+  previous_order_status_id: "2"
+  shipping_method_id: "1"
+  shipping_country_id: "1"
+  shipping_address: SA1
+  created_at: 2007-01-01 00:00:00
+  payment_term_id: 1
+orders_003: 
+  airway_bill_number: 1Z2340
+  payment_is_received: "1"
+  payment_received_date: 2007-01-02 00:00:00
+  weight: "4"
+  invoice_text: ""
+  tracking_response: ""
+  shipping_amount: "40.00"
+  purchase_order_number: PO-001
+  price_type_id: "1"
+  invoice_pdf: ""
+  shipping_contact: ""
+  last_tracking_update_time: 2007-01-01 00:00:00
+  total_amount_pay_online: "340.00"
+  total_amount_payable: "340.00"
+  payment_method_id: "1"
+  tax_amount: "1.20"
+  notes: "NO"
+  created_by_id: "1"
+  order_status_id: "10"
+  id: "3"
+  shipping_city: SC
+  billing_address: 1001 Acmeville Rd, Acme Industry Centre
+  billing_city: Acmeville
+  billing_postcode: AM1001
+  billing_country_id: 1
+  customer_id: "2"
+  tax_type: ""
+  shipping_phone: ""
+  shipping_postcode: SPC
+  previous_order_status_id: "2"
+  shipping_method_id: "1"
+  shipping_country_id: "1"
+  shipping_address: SA1
+  created_at: 2007-01-01 00:00:00
+  payment_term_id: 1
 
 
 

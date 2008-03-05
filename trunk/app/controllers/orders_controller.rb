@@ -16,12 +16,7 @@ class OrdersController < ApplicationController
   # GET /orders
   def index
     params[:order_status] ? conditions = ['order_status_id = ?', params[:order_status]] : conditions = 'order_status_id < 100'
-    
-    @orders = Order.find(:all, 
-    	  					            :include => [{:customer => :country}, :order_status, :price_type], 
-    	                        :conditions => conditions, 
-    	                        :order => 'order_statuses.sort_order ASC,order_statuses.id ASC, orders.id DESC', 
-    	                        :limit => 5) 
+    @orders = Order.find_for_orders_page
   end
   
   # GET /orders/1
