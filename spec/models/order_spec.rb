@@ -291,6 +291,9 @@ context Order, "Order when using finder for Order Listing" do
     first_order_id = @orders.first.id
     @orders.each do |o|
       unless o.id == first_order_id
+        if last_order == nil
+          last_order = @orders.first
+        end
        OrderStatus.find_by_name(o.status_name).id.should >= OrderStatus.find_by_name(last_order.status_name).id
       end
       last_order = o
@@ -302,18 +305,43 @@ context Order, "Order when using finder for Order Listing" do
     last_order = nil
     @orders.each do |o|
       unless o == @orders.first
+        if last_order == nil
+          last_order = @orders.first
+        end
         o.id.should < last_order.id
       end
       last_order = o
     end
   end
   
-  it "should accept the symbol :order_by and customer_name, and order by customer name alphabetically ascending"
+  it "should accept the symbol :order_by and customer_name, and order by customer name alphabetically ascending" do
+    @orders = Order.find_for_orders_page :order_by => 'customer_name'
+    last_order = nil
+    @orders.each do |o|
+      unless o == @orders.first
+        if last_order == nil
+          last_order = @orders.first
+        end
+        o.customer_name > last_order.customer_name
+      end
+      last_order = o
+    end
+  end
   
-  it "should accept the symbol :order_by and customer_name, and order by customer name alphabetically ascending"
   
-  it "should accept the symbol :order_by and country_name, and order by country name alphabetically ascending"
-  
+  it "should accept the symbol :order_by and country_name, and order by country name alphabetically ascending" do
+    @orders = Order.find_for_orders_page :order_by => 'country_name'
+    last_order = nil
+    @orders.each do |o|
+      unless o == @orders.first
+        if last_order == nil
+          last_order = @orders.first
+        end
+        o.customer_name > last_order.customer_name
+      end
+      last_order = o
+    end
+  end
   
 end
 
