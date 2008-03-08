@@ -33,7 +33,6 @@
   /* (de) Gestaltung der Hauptelemente des Layouts */
   #header {
     color: black;
-    background-image: url(/images/faded_clip.jpg);
 		background-position: top right;
 		background-repeat: no-repeat;
     padding: 45px 2em 1em 20px; 

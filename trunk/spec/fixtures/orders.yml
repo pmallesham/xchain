@@ -61,7 +61,7 @@ orders_002:
   billing_city: Acmeville
   billing_postcode: AM1001
   billing_country_id: 1
-  customer_id: "2"
+  customer_id: "3"
   tax_type: ""
   shipping_phone: ""
   shipping_postcode: SPC
@@ -97,7 +97,7 @@ orders_003:
   billing_city: Acmeville
   billing_postcode: AM1001
   billing_country_id: 1
-  customer_id: "2"
+  customer_id: "4"
   tax_type: ""
   shipping_phone: ""
   shipping_postcode: SPC

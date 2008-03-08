@@ -15,14 +15,13 @@ class OrdersController < ApplicationController
 
   # GET /orders
   def index
-    params[:order_status] ? conditions = ['order_status_id = ?', params[:order_status]] : conditions = 'order_status_id < 100'
-    @orders = Order.find_for_orders_page
+    @sort_column = params[:sort_column] ||= 'status_name'
+    @orders = Order.find_for_orders_page :order_by => @sort_column
   end
   
   # GET /orders/1
   def show
   	@admin_mode = false
-  	
   end
   
   def select_customer

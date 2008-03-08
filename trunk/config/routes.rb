@@ -24,6 +24,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/service.wsdl', :action => 'wsdl'
 
   map.resources :users, :sessions, :customers
+  
+  map.connect '/orders/sort/:sort_column', :controller => 'orders', :action => 'index'
   map.resources :orders, 
                   :new => { :select_customer => :get, :create_from_cart => :post }, 
                   :member => { :review => :get, 
@@ -33,7 +35,7 @@ ActionController::Routing::Routes.draw do |map|
                                :awaiting_payment => :get, 
                                :pay_online => :get, 
                                :show_xml => :get }, 
-                   :collection => { :quick_list => :get, :list_status_counts => :get, :quick_list_status_counts => :get }           
+                   :collection => { :sorted => :post }           
                     
                                
     

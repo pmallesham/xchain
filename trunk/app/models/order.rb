@@ -40,6 +40,12 @@ class Order < ActiveRecord::Base
         sql << ' ORDER BY orders.id DESC'
       when 'status_name'
         sql << ' ORDER BY order_statuses.id ASC'
+      when 'customer_name'
+        sql << ' ORDER BY customers.name ASC'
+      when 'country_name'
+        sql << ' ORDER BY countries.name ASC'
+      else
+        raise 'Invalid order by '+opts[:order_by]
     end
 
     find_by_sql(sql)
